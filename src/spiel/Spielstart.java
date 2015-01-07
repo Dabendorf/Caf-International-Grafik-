@@ -75,9 +75,12 @@ public class Spielstart extends CafeMain {
 		for(int n=0;n<12;n++) {
 			 tische.add(new Tisch());
 			 tische.get(n).setLand(laenderkarten.get(0));
+			 tische.get(n).setKoord(tischex[n], tischey[n]);
+			 System.out.println(tische.get(n).getLand()+": "+tische.get(n).getX()+","+tische.get(n).getY());
+			 Spielfeld.tischzeichnen(n);
 			 laenderkarten.remove(0);
 		}
-		 for(int n=0;n<24;n++) {
+		for(int n=0;n<24;n++) {
 			 stuehle.add(new Stuhl());
 		}
 		tische.get(0).setStuehle(stuehle.get(11),stuehle.get(12),stuehle.get(13),stuehle.get(0));
