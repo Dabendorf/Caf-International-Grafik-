@@ -1,22 +1,25 @@
 package spiel;
  
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.GridBagLayout;
 import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
- 
+
 import javax.swing.JFrame;
  
 public class CafeMain {
    
-    // System Variablen
+    // System
     protected static String OS = System.getProperty("os.name").toLowerCase();
     protected static String dateipfad = new File("").getAbsolutePath();
     protected static String programmname = "Café International";
     protected static JFrame spielframe = new JFrame(programmname);
    
-    // Spieler Variablen
+    // Spieler
     protected static int spieler = 1;
     protected static String[] spielername = new String[2];
     protected static int[] punktespieler = new int[2];
@@ -36,18 +39,33 @@ public class CafeMain {
    
     // Sonstiges
     protected static boolean spielernamenkorrekt = false;
-   
+    protected static GridBagLayout gridlayout = new GridBagLayout();
    
     public CafeMain() throws IOException {
         spielframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         spielframe.setLocationRelativeTo(null);
-        Spielfeld spielfeld = new Spielfeld();
-        spielframe.add(spielfeld);
-        spielframe.setSize(600,600);
+        //Spielfeld spielfeld = new Spielfeld();
+        //spielframe.add(spielfeld);
+        spielframe.setPreferredSize(new Dimension(600, 600));
+        //spielframe.setSize(600,600);
         spielframe.setResizable(false);
-        spielframe.setLocation((Toolkit.getDefaultToolkit().getScreenSize().width - spielframe.getSize().width) / 2, (Toolkit.getDefaultToolkit().getScreenSize().height - spielframe.getSize().height) / 2);
-        spielframe.setIconImage(Toolkit.getDefaultToolkit().getImage("./src/spiel/demo_DE.jpg"));
+        spielframe.setIconImage(Toolkit.getDefaultToolkit().getImage("./resources/demo_DE.jpg"));
         spielframe.setVisible(false);
+        
+        //======
+        Container contentPane = spielframe.getContentPane();
+        contentPane.setLayout(gridlayout);
+        //======
+        spielframe.add(AufbauHilfe.createRandomBackgroundLabel("LINKSOBEN"), AufbauHilfe.createGridBagConstraints(0, 0, 1, 1, 1, 1));
+        spielframe.add(AufbauHilfe.createRandomBackgroundLabel("LINKSUNTEN"), AufbauHilfe.createGridBagConstraints(0, 1, 1, 1, 1, 1));
+        spielframe.add(AufbauHilfe.createRandomBackgroundLabel("RECHTSOBEN"), AufbauHilfe.createGridBagConstraints(2, 0, 1, 1, 1, 1));
+        spielframe.add(AufbauHilfe.createRandomBackgroundLabel("RECHTSUNTEN"), AufbauHilfe.createGridBagConstraints(2, 1, 1, 1, 1, 1));
+ 
+        Spielfeld spielpanel = new Spielfeld(4, 4);
+        spielframe.add(spielpanel, AufbauHilfe.createGridBagConstraints(1, 0, 1, 2, 3, 3));
+         
+        spielframe.pack();
+        
         ablauf();
     }
    
