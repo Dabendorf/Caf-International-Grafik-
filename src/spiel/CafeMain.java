@@ -43,8 +43,6 @@ public class CafeMain {
    
     public CafeMain() throws IOException {
         spielframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //Spielfeld spielfeld = new Spielfeld();
-        //spielframe.add(spielfeld);
         spielframe.setPreferredSize(new Dimension(600, 600));
         //spielframe.setSize(600,600);
         //spielframe.setResizable(false);

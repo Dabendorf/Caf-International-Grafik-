@@ -3,31 +3,21 @@ package spiel;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-/*class Spielfeld extends JPanel {
-    public Spielfeld(int rows, int columns) {
-        setLayout(new GridLayout(rows, columns));
- 
-        for (int i=0; i<rows*columns; i++) {
-            add(AufbauHilfe.createRandomBackgroundLabel(String.valueOf(i)));
-        }
-    }
-}*/
-
 class Spielfeld extends JPanel {
-	
-	JLabel spielfeldlabel[][] = new JLabel[11][11];
-	ArrayList<JLabel> spielfeldlabeltisch = new ArrayList<JLabel>(12);
-	ArrayList<JLabel> spielfeldlabelstuhl = new ArrayList<JLabel>(24);
+
+	protected static JLabel spielfeldlabel[][] = new JLabel[11][11];
+	protected static ArrayList<JLabel> spielfeldlabeltisch = new ArrayList<JLabel>(12);
+	protected static ArrayList<JLabel> spielfeldlabelstuhl = new ArrayList<JLabel>(24);
 	
 	public Spielfeld() {
-		//Random rand = new Random();
 		setLayout(new GridLayout(11,11));
 		for(int i=0;i<11;i++) {
 			for(int n=0;n<11;n++) {
@@ -38,6 +28,10 @@ class Spielfeld extends JPanel {
 				add(spielfeldlabel[n][i]);
 			}
 		}
+		feldmalen();
+	}
+	
+	public void feldmalen() {
 		spielfeldlabeltisch.add(spielfeldlabel[4][3]);
 		spielfeldlabeltisch.add(spielfeldlabel[5][2]);
 		spielfeldlabeltisch.add(spielfeldlabel[6][3]);
@@ -50,7 +44,7 @@ class Spielfeld extends JPanel {
 		spielfeldlabeltisch.add(spielfeldlabel[3][6]);
 		spielfeldlabeltisch.add(spielfeldlabel[2][5]);
 		spielfeldlabeltisch.add(spielfeldlabel[3][4]);
-		//==
+		
 		spielfeldlabelstuhl.add(spielfeldlabel[4][4]);
 		spielfeldlabelstuhl.add(spielfeldlabel[5][1]);
 		spielfeldlabelstuhl.add(spielfeldlabel[6][2]);
@@ -75,13 +69,29 @@ class Spielfeld extends JPanel {
 		spielfeldlabelstuhl.add(spielfeldlabel[3][7]);
 		spielfeldlabelstuhl.add(spielfeldlabel[2][6]);
 		spielfeldlabelstuhl.add(spielfeldlabel[1][5]);
-		//==
+		
+		
 		for(JLabel a:spielfeldlabeltisch) {
-			a.setBackground(Color.ORANGE);
-		}
-		for(JLabel b:spielfeldlabelstuhl) {
-			b.setBackground(Color.RED);
-		}
+            a.setBackground(Color.ORANGE);
+            final int tischindex = spielfeldlabeltisch.indexOf(a);
+            a.addMouseListener(new MouseAdapter() {
+            	@Override
+            	public void mouseClicked(MouseEvent e) {
+            		System.out.println("Tisch: "+tischindex);
+            	}
+            });
+        }
+        for(JLabel b:spielfeldlabelstuhl) {
+            b.setBackground(Color.RED);
+            final int stuhlindex = spielfeldlabelstuhl.indexOf(b);
+            b.addMouseListener(new MouseAdapter() {
+            	@Override
+            	public void mouseClicked(MouseEvent e) {
+            		System.out.println("Stuhl: "+stuhlindex);
+            	}
+            });
+        }
+   
 	}
 	
 }
