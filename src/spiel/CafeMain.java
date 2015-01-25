@@ -43,12 +43,11 @@ public class CafeMain {
    
     public CafeMain() throws IOException {
         spielframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        spielframe.setLocationRelativeTo(null);
         //Spielfeld spielfeld = new Spielfeld();
         //spielframe.add(spielfeld);
         spielframe.setPreferredSize(new Dimension(600, 600));
         //spielframe.setSize(600,600);
-        spielframe.setResizable(false);
+        //spielframe.setResizable(false);
         spielframe.setIconImage(Toolkit.getDefaultToolkit().getImage("./resources/demo_DE.jpg"));
         spielframe.setVisible(false);
         
@@ -61,10 +60,11 @@ public class CafeMain {
         spielframe.add(AufbauHilfe.createRandomBackgroundLabel("RECHTSOBEN"), AufbauHilfe.createGridBagConstraints(2, 0, 1, 1, 1, 1));
         spielframe.add(AufbauHilfe.createRandomBackgroundLabel("RECHTSUNTEN"), AufbauHilfe.createGridBagConstraints(2, 1, 1, 1, 1, 1));
  
-        Spielfeld spielpanel = new Spielfeld(4, 4);
+        Spielfeld spielpanel = new Spielfeld();
         spielframe.add(spielpanel, AufbauHilfe.createGridBagConstraints(1, 0, 1, 2, 3, 3));
          
         spielframe.pack();
+        spielframe.setLocationRelativeTo(null);
         
         ablauf();
     }
