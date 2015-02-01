@@ -55,7 +55,9 @@ public class CafeMain {
         //======
         spielframe.add(AufbauHilfe.createRandomBackgroundLabel("LINKSOBEN"), AufbauHilfe.createGridBagConstraints(0, 0, 1, 1, 1, 1));
         spielframe.add(AufbauHilfe.createRandomBackgroundLabel("LINKSUNTEN"), AufbauHilfe.createGridBagConstraints(0, 1, 1, 1, 1, 1));
-        spielframe.add(AufbauHilfe.createRandomBackgroundLabel("RECHTSOBEN"), AufbauHilfe.createGridBagConstraints(2, 0, 1, 1, 1, 1));
+        Kartenstapel kartenstapel = new Kartenstapel();
+        spielframe.add(kartenstapel, AufbauHilfe.createGridBagConstraints(2, 0, 1, 1, 1, 1));
+        //spielframe.add(AufbauHilfe.createRandomBackgroundLabel("RECHTSOBEN"), AufbauHilfe.createGridBagConstraints(2, 0, 1, 1, 1, 1));
         spielframe.add(AufbauHilfe.createRandomBackgroundLabel("RECHTSUNTEN"), AufbauHilfe.createGridBagConstraints(2, 1, 1, 1, 1, 1));
  
         Spielfeld spielpanel = new Spielfeld();

@@ -16,13 +16,14 @@ class Spielfeld extends JPanel {
 	protected static JLabel spielfeldlabel[][] = new JLabel[11][11];
 	protected static ArrayList<JLabel> spielfeldlabeltisch = new ArrayList<JLabel>(12);
 	protected static ArrayList<JLabel> spielfeldlabelstuhl = new ArrayList<JLabel>(24);
+	protected static int stuhlnummer;
+	protected static int tischnummer;
 	
 	public Spielfeld() {
 		setLayout(new GridLayout(11,11));
 		for(int i=0;i<11;i++) {
 			for(int n=0;n<11;n++) {
 				spielfeldlabel[n][i] = new JLabel(n+","+i);
-				
 				spielfeldlabel[n][i].setBackground(new Color(255,255,255));
 				spielfeldlabel[n][i].setOpaque(true);
 				add(spielfeldlabel[n][i]);
@@ -78,6 +79,7 @@ class Spielfeld extends JPanel {
             	@Override
             	public void mouseClicked(MouseEvent e) {
             		System.out.println("Tisch: "+tischindex);
+            		stuhlnummer = tischindex;
             	}
             });
         }
@@ -88,12 +90,26 @@ class Spielfeld extends JPanel {
             	@Override
             	public void mouseClicked(MouseEvent e) {
             		System.out.println("Stuhl: "+stuhlindex);
+            		tischnummer = stuhlindex;
             	}
             });
         }
    
 	}
 	
+}
+
+class Kartenstapel extends JPanel {
+	public Kartenstapel() {
+		setLayout(new GridLayout(5,2));
+		Random rand = new Random();
+		for(int i=0;i<10;i++) {
+			JLabel label = new JLabel();
+		    label.setBackground(new Color(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255)));
+		    label.setOpaque(true);
+		    add(label);
+		}
+	}
 }
  
 class AufbauHilfe {
