@@ -1,12 +1,8 @@
 package spiel;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.Collections;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -79,19 +75,6 @@ public class Spielstart extends CafeMain {
 		for(int n=0;n<12;n++) {
 			tische.add(new Tisch());
 			tische.get(n).setLand(laenderkarten.get(0));
-			//System.out.println("/./resources/demo_DE2.jpg");
-			//Icon icon = new ImageIcon("/./resources/demo_CF.jpg");
-			//System.out.println(BaseURL.getDocumentBase()+"/resources/demo_"+tische.get(n).getLand()+"2.jpg");
-			//Icon icon = new ImageIcon(BaseURL.getWorkingDir()+"/resources/demo_"+tische.get(n).getLand()+"2.jpg");
-			try {
-				URL url = new URL(BaseURL.getJarBase(Spielfeld.class), "demo_DE2.jpg");
-				Icon icon = new ImageIcon(url);
-				Spielfeld.spielfeldlabeltisch.get(n).setIcon(icon);
-			} catch(MalformedURLException e) {
-				// da passiert noch irgendwas später	
-			}
-			//Icon icon = new ImageIcon(dateipfad+"/resources/demo_DE2.jpg");
-			//Spielfeld.spielfeldlabeltisch.get(n).setIcon(icon);
 			laenderkarten.remove(0);
 		}
 		for(int n=0;n<24;n++) {

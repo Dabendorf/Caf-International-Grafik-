@@ -13,9 +13,9 @@ import javax.swing.JPanel;
 
 class Spielfeld extends JPanel {
 
-	protected static JLabel spielfeldlabel[][] = new JLabel[11][11];
-	protected static ArrayList<JLabel> spielfeldlabeltisch = new ArrayList<JLabel>(12);
-	protected static ArrayList<JLabel> spielfeldlabelstuhl = new ArrayList<JLabel>(24);
+	protected static Spielzelle spielfeldzelle[][] = new Spielzelle[11][11];
+	protected static ArrayList<Spielzelle> spielfeldtisch = new ArrayList<Spielzelle>(12);
+	protected static ArrayList<Spielzelle> spielfeldstuhl = new ArrayList<Spielzelle>(24);
 	protected static int stuhlnummer;
 	protected static int tischnummer;
 	
@@ -23,58 +23,62 @@ class Spielfeld extends JPanel {
 		setLayout(new GridLayout(11,11));
 		for(int i=0;i<11;i++) {
 			for(int n=0;n<11;n++) {
-				spielfeldlabel[n][i] = new JLabel(n+","+i);
-				spielfeldlabel[n][i].setBackground(new Color(255,255,255));
-				spielfeldlabel[n][i].setOpaque(true);
-				add(spielfeldlabel[n][i]);
+				spielfeldzelle[n][i] = new Spielzelle();
+				spielfeldzelle[n][i].setBackground(new Color(255,255,255));
+				spielfeldzelle[n][i].setOpaque(true);
+				add(spielfeldzelle[n][i]);
 			}
 		}
 		feldmalen();
 	}
 	
 	public void feldmalen() {
-		spielfeldlabeltisch.add(spielfeldlabel[4][3]);
-		spielfeldlabeltisch.add(spielfeldlabel[5][2]);
-		spielfeldlabeltisch.add(spielfeldlabel[6][3]);
-		spielfeldlabeltisch.add(spielfeldlabel[7][4]);
-		spielfeldlabeltisch.add(spielfeldlabel[8][5]);
-		spielfeldlabeltisch.add(spielfeldlabel[7][6]);
-		spielfeldlabeltisch.add(spielfeldlabel[6][7]);
-		spielfeldlabeltisch.add(spielfeldlabel[5][8]);
-		spielfeldlabeltisch.add(spielfeldlabel[4][7]);
-		spielfeldlabeltisch.add(spielfeldlabel[3][6]);
-		spielfeldlabeltisch.add(spielfeldlabel[2][5]);
-		spielfeldlabeltisch.add(spielfeldlabel[3][4]);
+		spielfeldtisch.add(spielfeldzelle[4][3]);
+		spielfeldtisch.add(spielfeldzelle[5][2]);
+		spielfeldtisch.add(spielfeldzelle[6][3]);
+		spielfeldtisch.add(spielfeldzelle[7][4]);
+		spielfeldtisch.add(spielfeldzelle[8][5]);
+		spielfeldtisch.add(spielfeldzelle[7][6]);
+		spielfeldtisch.add(spielfeldzelle[6][7]);
+		spielfeldtisch.add(spielfeldzelle[5][8]);
+		spielfeldtisch.add(spielfeldzelle[4][7]);
+		spielfeldtisch.add(spielfeldzelle[3][6]);
+		spielfeldtisch.add(spielfeldzelle[2][5]);
+		spielfeldtisch.add(spielfeldzelle[3][4]);
 		
-		spielfeldlabelstuhl.add(spielfeldlabel[4][4]);
-		spielfeldlabelstuhl.add(spielfeldlabel[5][1]);
-		spielfeldlabelstuhl.add(spielfeldlabel[6][2]);
-		spielfeldlabelstuhl.add(spielfeldlabel[7][3]);
-		spielfeldlabelstuhl.add(spielfeldlabel[8][4]);
-		spielfeldlabelstuhl.add(spielfeldlabel[7][5]);
-		spielfeldlabelstuhl.add(spielfeldlabel[6][6]);
-		spielfeldlabelstuhl.add(spielfeldlabel[5][7]);
-		spielfeldlabelstuhl.add(spielfeldlabel[4][6]);
-		spielfeldlabelstuhl.add(spielfeldlabel[3][5]);
-		spielfeldlabelstuhl.add(spielfeldlabel[2][4]);
-		spielfeldlabelstuhl.add(spielfeldlabel[3][3]);
-		spielfeldlabelstuhl.add(spielfeldlabel[4][2]);
-		spielfeldlabelstuhl.add(spielfeldlabel[5][3]);
-		spielfeldlabelstuhl.add(spielfeldlabel[6][4]);
-		spielfeldlabelstuhl.add(spielfeldlabel[9][5]);
-		spielfeldlabelstuhl.add(spielfeldlabel[8][6]);
-		spielfeldlabelstuhl.add(spielfeldlabel[7][7]);
-		spielfeldlabelstuhl.add(spielfeldlabel[6][8]);
-		spielfeldlabelstuhl.add(spielfeldlabel[5][9]);
-		spielfeldlabelstuhl.add(spielfeldlabel[4][8]);
-		spielfeldlabelstuhl.add(spielfeldlabel[3][7]);
-		spielfeldlabelstuhl.add(spielfeldlabel[2][6]);
-		spielfeldlabelstuhl.add(spielfeldlabel[1][5]);
+		spielfeldstuhl.add(spielfeldzelle[4][4]);
+		spielfeldstuhl.add(spielfeldzelle[5][1]);
+		spielfeldstuhl.add(spielfeldzelle[6][2]);
+		spielfeldstuhl.add(spielfeldzelle[7][3]);
+		spielfeldstuhl.add(spielfeldzelle[8][4]);
+		spielfeldstuhl.add(spielfeldzelle[7][5]);
+		spielfeldstuhl.add(spielfeldzelle[6][6]);
+		spielfeldstuhl.add(spielfeldzelle[5][7]);
+		spielfeldstuhl.add(spielfeldzelle[4][6]);
+		spielfeldstuhl.add(spielfeldzelle[3][5]);
+		spielfeldstuhl.add(spielfeldzelle[2][4]);
+		spielfeldstuhl.add(spielfeldzelle[3][3]);
+		spielfeldstuhl.add(spielfeldzelle[4][2]);
+		spielfeldstuhl.add(spielfeldzelle[5][3]);
+		spielfeldstuhl.add(spielfeldzelle[6][4]);
+		spielfeldstuhl.add(spielfeldzelle[9][5]);
+		spielfeldstuhl.add(spielfeldzelle[8][6]);
+		spielfeldstuhl.add(spielfeldzelle[7][7]);
+		spielfeldstuhl.add(spielfeldzelle[6][8]);
+		spielfeldstuhl.add(spielfeldzelle[5][9]);
+		spielfeldstuhl.add(spielfeldzelle[4][8]);
+		spielfeldstuhl.add(spielfeldzelle[3][7]);
+		spielfeldstuhl.add(spielfeldzelle[2][6]);
+		spielfeldstuhl.add(spielfeldzelle[1][5]);
 		
 		
-		for(JLabel a:spielfeldlabeltisch) {
-            a.setBackground(Color.ORANGE);
-            final int tischindex = spielfeldlabeltisch.indexOf(a);
+		for(Spielzelle a:spielfeldtisch) {
+            //a.setBackground(Color.ORANGE);
+            a.setTyp(Spielzelle.Typ.Tisch);
+            a.setLand(Spielzelle.Land.DE);
+            a.setGeschlecht(Spielzelle.Geschlecht.Mann);
+            //a.setZellart(2);
+            final int tischindex = spielfeldtisch.indexOf(a);
             a.addMouseListener(new MouseAdapter() {
             	@Override
             	public void mouseClicked(MouseEvent e) {
@@ -83,9 +87,10 @@ class Spielfeld extends JPanel {
             	}
             });
         }
-        for(JLabel b:spielfeldlabelstuhl) {
+        for(Spielzelle b:spielfeldstuhl) {
             b.setBackground(Color.RED);
-            final int stuhlindex = spielfeldlabelstuhl.indexOf(b);
+            //b.setZellart(1);
+            final int stuhlindex = spielfeldstuhl.indexOf(b);
             b.addMouseListener(new MouseAdapter() {
             	@Override
             	public void mouseClicked(MouseEvent e) {
