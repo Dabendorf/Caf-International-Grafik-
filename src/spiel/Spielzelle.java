@@ -9,10 +9,11 @@ import java.net.URL;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+import spiel.Gastkarte.Land;
+import spiel.Gastkarte.Geschlecht;;
+
 public class Spielzelle extends JPanel {
 	
-	public static enum Geschlecht {Mann, Frau};
-	public static enum Land {DE, FR, GB, US, TR, IN, CN, RU, ES, CU, CF, IT, JOKER};
 	public static enum Typ {Stuhl, Tisch};
 
 	private Land l;
@@ -64,23 +65,33 @@ public class Spielzelle extends JPanel {
 	}
 	 
 	protected void paintComponent(Graphics gr) {
-	    super.paintComponent(gr);
-	    if(i == null && l != null && g != null && t != null) {
-	    	try {
-	    		URL url = null;
-	    		if(t.equals(Typ.Stuhl)) {
-	    			url = new URL(BaseURL.getJarBase(Spielfeld.class), "demo_"+l.toString()+".jpg");
-	    			System.out.println(l.toString());
-	    		} else if(t.equals(Typ.Tisch)) {
-	    			url = new URL(BaseURL.getJarBase(Spielfeld.class), "demo_"+l.toString()+".jpg");
-	    		}
-	    		System.out.println(url);
-	    		i = ImageIO.read(url);
-	    	}catch(MalformedURLException e) {
-	    	}catch(IOException e) { }
-	    }
-	    if(i != null) {
-	    	gr.drawImage(i,0,0, getWidth(), getHeight(), null);
-	    }
+		super.paintComponent(gr);
+		if(t!=null) {
+			if(t.equals(Typ.Stuhl) && l!=null && g!=null) {
+				URL url = null;
+				try{
+					url = new URL(BaseURL.getJarBase(Spielfeld.class), "./bilder/gastkarten/gast_"+l.toString()+"_"+g.toString()+".jpg");
+					i = ImageIO.read(url);
+				}catch(MalformedURLException e) {
+				}catch(IOException e) { }
+			}else if(t.equals(Typ.Tisch) && l!=null) {
+				URL url = null;
+				try{
+					url = new URL(BaseURL.getJarBase(Spielfeld.class), "./bilder/tischkarten/tisch_"+l.toString()+".jpg");
+					i = ImageIO.read(url);
+				}catch(MalformedURLException e) {
+				}catch(IOException e) { }
+			}else if((t.equals(Typ.Tisch) || t.equals(Typ.Stuhl)) && l!=null) {
+				try {
+					URL url = new URL(BaseURL.getJarBase(Spielfeld.class), "./bilder/layout/platzhalter.jpg");
+					i = ImageIO.read(url);
+				}catch(MalformedURLException e) {
+				}catch(IOException e) { }
+				
+			}
+			if(i != null) {
+		    	gr.drawImage(i,0,0, getWidth(), getHeight(), null);
+		    }
+		}
 	}
 }

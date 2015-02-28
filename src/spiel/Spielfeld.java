@@ -11,13 +11,13 @@ import java.util.Random;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-class Spielfeld extends JPanel {
+public class Spielfeld extends JPanel {
 
-	protected static Spielzelle spielfeldzelle[][] = new Spielzelle[11][11];
+	protected Spielzelle spielfeldzelle[][] = new Spielzelle[11][11];
 	protected static ArrayList<Spielzelle> spielfeldtisch = new ArrayList<Spielzelle>(12);
 	protected static ArrayList<Spielzelle> spielfeldstuhl = new ArrayList<Spielzelle>(24);
-	protected static int stuhlnummer;
-	protected static int tischnummer;
+	protected int stuhlnummer;
+	protected int tischnummer;
 	
 	public Spielfeld() {
 		setLayout(new GridLayout(11,11));
@@ -31,7 +31,7 @@ class Spielfeld extends JPanel {
 		}
 		feldmalen();
 	}
-	
+
 	public void feldmalen() {
 		spielfeldtisch.add(spielfeldzelle[4][3]);
 		spielfeldtisch.add(spielfeldzelle[5][2]);
@@ -71,35 +71,46 @@ class Spielfeld extends JPanel {
 		spielfeldstuhl.add(spielfeldzelle[2][6]);
 		spielfeldstuhl.add(spielfeldzelle[1][5]);
 		
-		
+		Spielstart.laenderkartenmischen();
+		Spielstart.spielfeldgenerieren();
 		for(Spielzelle a:spielfeldtisch) {
-            //a.setBackground(Color.ORANGE);
             a.setTyp(Spielzelle.Typ.Tisch);
-            a.setLand(Spielzelle.Land.DE);
-            a.setGeschlecht(Spielzelle.Geschlecht.Mann);
-            //a.setZellart(2);
             final int tischindex = spielfeldtisch.indexOf(a);
             a.addMouseListener(new MouseAdapter() {
             	@Override
             	public void mouseClicked(MouseEvent e) {
-            		System.out.println("Tisch: "+tischindex);
             		stuhlnummer = tischindex;
             	}
             });
         }
         for(Spielzelle b:spielfeldstuhl) {
             b.setBackground(Color.RED);
-            //b.setZellart(1);
+            b.setTyp(Spielzelle.Typ.Stuhl);
             final int stuhlindex = spielfeldstuhl.indexOf(b);
             b.addMouseListener(new MouseAdapter() {
             	@Override
             	public void mouseClicked(MouseEvent e) {
-            		System.out.println("Stuhl: "+stuhlindex);
             		tischnummer = stuhlindex;
             	}
             });
         }
    
+	}
+	
+	public static ArrayList<Spielzelle> getSpielfeldtisch() {
+		return spielfeldtisch;
+	}
+
+	public static void setSpielfeldtisch(ArrayList<Spielzelle> spielfeldtisch) {
+		Spielfeld.spielfeldtisch = spielfeldtisch;
+	}
+
+	public static ArrayList<Spielzelle> getSpielfeldstuhl() {
+		return spielfeldstuhl;
+	}
+
+	public static void setSpielfeldstuhl(ArrayList<Spielzelle> spielfeldstuhl) {
+		Spielfeld.spielfeldstuhl = spielfeldstuhl;
 	}
 	
 }
