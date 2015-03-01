@@ -7,6 +7,7 @@ public class Stuhl {
 
 	private Gastkarte gast;
     private Tisch[] tische;
+    private Spielzelle sz;
 	private boolean bosetgastland = false;
     private boolean bosetgastgeschlecht = false;
     public boolean gastistjoker = false;
@@ -78,8 +79,17 @@ public class Stuhl {
 	public Tisch[] getTische() {
 		return tische;
 	}
+	
 	public void setTische(Tisch...tische) {
 		this.tische = tische;
+	}
+
+	public Spielzelle getSz() {
+		return sz;
+	}
+
+	public void setSz(Spielzelle sz) {
+		this.sz = sz;
 	}
 
 }

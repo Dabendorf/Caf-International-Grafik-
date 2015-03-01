@@ -9,52 +9,22 @@ import java.net.URL;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-import spiel.Gastkarte.Land;
-import spiel.Gastkarte.Geschlecht;;
 
 public class Spielzelle extends JPanel {
 	
-	public static enum Typ {Stuhl, Tisch};
+	public static enum Typ {Leer, Stuhl, Tisch};
 
-	private Land l;
-	private Geschlecht g;
 	private Typ t;
 	private BufferedImage i;
+	private Stuhl st;
+	private Tisch ti;
 	 
-	public Spielzelle() {
-		this(null, null, null);
-	}
-	 
-	public Spielzelle(Geschlecht g, Land l, Typ t) {
-		setLand(l);
-	    setGeschlecht(g);
+	public Spielzelle(Typ t) {
 	    setTyp(t);
-	}
-	 
-	public Geschlecht getGeschlecht() {
-		return g;
-	}
-	 
-	public Land getLand() {
-	    return l;
 	}
 	 
 	public Typ getTyp() {
 	    return t;
-	}
-	 
-	public void setGeschlecht(Geschlecht g) {
-		if(g != this.g) {
-			i = null;
-	    }
-	    this.g = g;
-	}
-	 
-	public void setLand(Land l) {
-		if(l != this.l) {
-			i = null;
-	    }
-	    this.l = l;
 	}
 	 
 	public void setTyp(Typ t) {
@@ -64,34 +34,58 @@ public class Spielzelle extends JPanel {
 	    this.t = t;
 	}
 	 
+	public Stuhl getSt() {
+		return st;
+	}
+
+	public void setSt(Stuhl st) {
+		this.st = st;
+	}
+
+	public Tisch getTi() {
+		return ti;
+	}
+
+	public void setTi(Tisch ti) {
+		this.ti = ti;
+	}
+
 	protected void paintComponent(Graphics gr) {
 		super.paintComponent(gr);
-		if(t!=null) {
-			if(t.equals(Typ.Stuhl) && l!=null && g!=null) {
-				URL url = null;
+		URL url = null;
+		if(t.equals(Typ.Leer)) {
+			
+		}else if(t.equals(Typ.Stuhl)) {
+			if(this.getSt().getGast()!=null) {
 				try{
-					url = new URL(BaseURL.getJarBase(Spielfeld.class), "./bilder/gastkarten/gast_"+l.toString()+"_"+g.toString()+".jpg");
+					url = new URL(BaseURL.getJarBase(Spielfeld.class), "./gastkarten/gast_"+this.getSt().getGast().land+"_"+this.getSt().getGast().geschlecht+".jpg");
 					i = ImageIO.read(url);
 				}catch(MalformedURLException e) {
 				}catch(IOException e) { }
-			}else if(t.equals(Typ.Tisch) && l!=null) {
-				URL url = null;
-				try{
-					url = new URL(BaseURL.getJarBase(Spielfeld.class), "./bilder/tischkarten/tisch_"+l.toString()+".jpg");
-					i = ImageIO.read(url);
-				}catch(MalformedURLException e) {
-				}catch(IOException e) { }
-			}else if((t.equals(Typ.Tisch) || t.equals(Typ.Stuhl)) && l!=null) {
+			}else{
 				try {
-					URL url = new URL(BaseURL.getJarBase(Spielfeld.class), "./bilder/layout/platzhalter.jpg");
+					url = new URL(BaseURL.getJarBase(Spielfeld.class), "./layout/platzhalter.jpg");
 					i = ImageIO.read(url);
 				}catch(MalformedURLException e) {
 				}catch(IOException e) { }
-				
 			}
-			if(i != null) {
-		    	gr.drawImage(i,0,0, getWidth(), getHeight(), null);
-		    }
+		}else if(t.equals(Typ.Tisch)) {
+			if(this.getTi().getLand()!=null) {
+				try{
+					url = new URL(BaseURL.getJarBase(Spielfeld.class), "./tischkarten/tisch_"+this.getTi().getLand().land+".jpg");
+					i = ImageIO.read(url);
+				}catch(MalformedURLException e) {
+				}catch(IOException e) { }
+			}else{
+				try {
+					url = new URL(BaseURL.getJarBase(Spielfeld.class), "./layout/platzhalter.jpg");
+					i = ImageIO.read(url);
+				}catch(MalformedURLException e) {
+				}catch(IOException e) { }
+			}
 		}
+		if(i!=null) {
+	    	gr.drawImage(i,0,0, getWidth(), getHeight(), null);
+	    }
 	}
 }

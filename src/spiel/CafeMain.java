@@ -43,7 +43,7 @@ public class CafeMain {
         spielframe.setPreferredSize(new Dimension(1200,800));
         spielframe.setMinimumSize(new Dimension(900,600));
         spielframe.setResizable(true);
-        spielframe.setIconImage(Toolkit.getDefaultToolkit().getImage(new URL(BaseURL.getJarBase(Spielfeld.class), "./bilder/layout/icon.jpg")));
+        spielframe.setIconImage(Toolkit.getDefaultToolkit().getImage(new URL(BaseURL.getJarBase(Spielfeld.class), "./layout/icon.jpg")));
         spielframe.setVisible(false);
         
         Container contentPane = spielframe.getContentPane();
@@ -65,15 +65,12 @@ public class CafeMain {
     }
    
     public static void ablauf() {
-        /*if(Spielstart.SysWin()) {
+        if(Spielstart.SysWin()) {
             JOptionPane.showMessageDialog(null, "Dein System ist hoffnungslos veraltet!\nWindoof ist nicht kompatibel mit diesem Spiel.\nSollte es zu Problemen bei der Ausführung kommen,\ndann öffne das Spiel bitte auf einem PC\nmit Mac OS oder Linux!", "System veraltet", JOptionPane.WARNING_MESSAGE);
         }
-        do{
+        /*do{
         Spielstart.namensfrage();
         } while(spielernamenkorrekt == false);*/
-        Spielstart.gastkartenmischen();
-        //Spielstart.laenderkartenmischen();
-        //Spielstart.spielfeldgenerieren();
         spielframe.setVisible(true);
     }
  

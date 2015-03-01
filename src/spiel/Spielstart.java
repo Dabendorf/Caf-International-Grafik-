@@ -77,15 +77,26 @@ public class Spielstart {
 	public static void spielfeldgenerieren() {
 		for(int n=0;n<12;n++) {
 			CafeMain.getTische().add(new Tisch());
-			Spielzuege.legetischkarte(n, 0);
-			/*CafeMain.getTische().get(n).setLand(CafeMain.getLaenderkarten().get(0));
-			Spielfeld.getSpielfeldtisch().get(n).setLand(CafeMain.getLaenderkarten().get(0).land);
-			Spielfeld.getSpielfeldtisch().get(n).repaint();
-			CafeMain.getLaenderkarten().remove(0);*/
+			Spielzuege.legetischkarte(n);
+			System.out.println(CafeMain.getTische().get(n).getLand());
 		}
 		for(int n=0;n<24;n++) {
 			CafeMain.getStuehle().add(new Stuhl());
 		}
+	}
+	
+	public static void zellelementzuordnung() {
+		for(int n=0;n<Spielfeld.spielfeldtisch.size();n++) {
+			Spielfeld.spielfeldtisch.get(n).setTi(CafeMain.getTische().get(n));
+			CafeMain.getTische().get(n).setSz(Spielfeld.spielfeldtisch.get(n));
+		}
+		for(int n=0;n<Spielfeld.spielfeldstuhl.size();n++) {
+			Spielfeld.spielfeldstuhl.get(n).setSt(CafeMain.getStuehle().get(n));
+			CafeMain.getStuehle().get(n).setSz(Spielfeld.spielfeldstuhl.get(n));
+		}
+	}
+	
+	public static void tischstuhlzuordnung() {
 		CafeMain.getTische().get(0).setStuehle(CafeMain.getStuehle().get(11),CafeMain.getStuehle().get(12),CafeMain.getStuehle().get(13),CafeMain.getStuehle().get(0));
 		CafeMain.getTische().get(1).setStuehle(CafeMain.getStuehle().get(1),CafeMain.getStuehle().get(2),CafeMain.getStuehle().get(12),CafeMain.getStuehle().get(13));
 		CafeMain.getTische().get(2).setStuehle(CafeMain.getStuehle().get(2),CafeMain.getStuehle().get(3),CafeMain.getStuehle().get(13),CafeMain.getStuehle().get(14));

@@ -1,13 +1,18 @@
 package spiel;
 
+import java.util.Arrays;
+
 public class Tisch {
 	
 	private Laenderkarte land;
     private Stuhl[] stuhl;
     private int x, y;
-    
-    public String toString() {
-		return "Tisch [land=" + land + ", stuhl=" + stuhl + "]";
+    private Spielzelle sz;
+
+	@Override
+	public String toString() {
+		return "Tisch [land=" + land + ", stuhl=" + Arrays.toString(stuhl)
+				+ ", x=" + x + ", y=" + y + ", sz=" + sz + "]";
 	}
     
 	public Laenderkarte getLand() {
@@ -34,6 +39,14 @@ public class Tisch {
 	public void setKoord(int x, int y) {
 		this.x = x;
 		this.y = y;
+	}
+	
+	public Spielzelle getSz() {
+		return sz;
+	}
+
+	public void setSz(Spielzelle sz) {
+		this.sz = sz;
 	}
 
 }

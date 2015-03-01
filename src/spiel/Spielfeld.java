@@ -3,8 +3,8 @@ package spiel;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+//import java.awt.event.MouseAdapter;
+//import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -16,14 +16,14 @@ public class Spielfeld extends JPanel {
 	protected Spielzelle spielfeldzelle[][] = new Spielzelle[11][11];
 	protected static ArrayList<Spielzelle> spielfeldtisch = new ArrayList<Spielzelle>(12);
 	protected static ArrayList<Spielzelle> spielfeldstuhl = new ArrayList<Spielzelle>(24);
-	protected int stuhlnummer;
-	protected int tischnummer;
+	//protected int stuhlnummer;
+	//protected int tischnummer;
 	
 	public Spielfeld() {
 		setLayout(new GridLayout(11,11));
 		for(int i=0;i<11;i++) {
 			for(int n=0;n<11;n++) {
-				spielfeldzelle[n][i] = new Spielzelle();
+				spielfeldzelle[n][i] = new Spielzelle(Spielzelle.Typ.Leer);
 				spielfeldzelle[n][i].setBackground(new Color(255,255,255));
 				spielfeldzelle[n][i].setOpaque(true);
 				add(spielfeldzelle[n][i]);
@@ -71,30 +71,18 @@ public class Spielfeld extends JPanel {
 		spielfeldstuhl.add(spielfeldzelle[2][6]);
 		spielfeldstuhl.add(spielfeldzelle[1][5]);
 		
-		Spielstart.laenderkartenmischen();
-		Spielstart.spielfeldgenerieren();
 		for(Spielzelle a:spielfeldtisch) {
             a.setTyp(Spielzelle.Typ.Tisch);
-            final int tischindex = spielfeldtisch.indexOf(a);
-            a.addMouseListener(new MouseAdapter() {
-            	@Override
-            	public void mouseClicked(MouseEvent e) {
-            		stuhlnummer = tischindex;
-            	}
-            });
         }
         for(Spielzelle b:spielfeldstuhl) {
-            b.setBackground(Color.RED);
             b.setTyp(Spielzelle.Typ.Stuhl);
-            final int stuhlindex = spielfeldstuhl.indexOf(b);
-            b.addMouseListener(new MouseAdapter() {
-            	@Override
-            	public void mouseClicked(MouseEvent e) {
-            		tischnummer = stuhlindex;
-            	}
-            });
         }
-   
+        
+		Spielstart.gastkartenmischen();
+		Spielstart.laenderkartenmischen();
+		Spielstart.spielfeldgenerieren();
+		Spielstart.tischstuhlzuordnung();
+		Spielstart.zellelementzuordnung();
 	}
 	
 	public static ArrayList<Spielzelle> getSpielfeldtisch() {
