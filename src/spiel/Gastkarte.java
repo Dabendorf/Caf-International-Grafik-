@@ -16,4 +16,12 @@ public class Gastkarte {
 	public String toString(){
 		return land + ":" + geschlecht;
 	}
+
+	public Land getLand() {
+		return land;
+	}
+
+	public Geschlecht getGeschlecht() {
+		return geschlecht;
+	}
 }

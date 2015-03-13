@@ -11,6 +11,8 @@ import java.util.Random;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import spiel.Kartenstapel.Typ;
+
 public class Spielfeld extends JPanel {
 
 	protected Spielzelle spielfeldzelle[][] = new Spielzelle[11][11];
@@ -24,7 +26,7 @@ public class Spielfeld extends JPanel {
 		for(int i=0;i<11;i++) {
 			for(int n=0;n<11;n++) {
 				spielfeldzelle[n][i] = new Spielzelle(Spielzelle.Typ.Leer);
-				spielfeldzelle[n][i].setBackground(new Color(255,255,255));
+				spielfeldzelle[n][i].setBackground(new Color(0,255,255));
 				spielfeldzelle[n][i].setOpaque(true);
 				add(spielfeldzelle[n][i]);
 			}
@@ -103,16 +105,41 @@ public class Spielfeld extends JPanel {
 	
 }
 
-class Kartenstapel extends JPanel {
-	public Kartenstapel() {
+class Spielkartenecke extends JPanel {
+	private Kartenstapel handkarten[] = new Kartenstapel[5];
+	
+	public Spielkartenecke() {
 		setLayout(new GridLayout(5,2));
-		Random rand = new Random();
+		int handkarte = 0;
 		for(int i=0;i<10;i++) {
-			JLabel label = new JLabel();
-		    label.setBackground(new Color(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255)));
-		    label.setOpaque(true);
-		    add(label);
+			if(i%2==0) {
+				handkarten[handkarte] = new Kartenstapel(Typ.Handkarte);
+				handkarten[handkarte].setOpaque(true);
+				handkarten[handkarte].setHandkartnum(handkarte);
+				add(handkarten[handkarte]);
+				handkarte += 1;
+			} else if(i==3) {
+				Kartenstapel kst = new Kartenstapel(Typ.Tische);
+				kst.setOpaque(true);
+				add(kst);
+			} else if(i==7) {
+				Kartenstapel kst = new Kartenstapel(Typ.Gaeste);
+				kst.setOpaque(true);
+				add(kst);
+			} else {
+				Kartenstapel kst = new Kartenstapel(Typ.Leer);
+				kst.setOpaque(true);
+				add(kst);
+			}
 		}
+	}
+	
+	public Kartenstapel[] getHandkarten() {
+		return handkarten;
+	}
+
+	public void setHandkarten(Kartenstapel[] handkarten) {
+		this.handkarten = handkarten;
 	}
 }
  

@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 
 public class Spielzelle extends JPanel {
 	
-	public static enum Typ {Leer, Stuhl, Tisch};
+	public enum Typ {Leer, Stuhl, Tisch};
 
 	private Typ t;
 	private BufferedImage i;
@@ -58,13 +58,13 @@ public class Spielzelle extends JPanel {
 		}else if(t.equals(Typ.Stuhl)) {
 			if(this.getSt().getGast()!=null) {
 				try{
-					url = new URL(BaseURL.getJarBase(Spielfeld.class), "./gastkarten/gast_"+this.getSt().getGast().land+"_"+this.getSt().getGast().geschlecht+".jpg");
+					url = new URL(BaseURL.getJarBase(Spielfeld.class), "./gast_"+this.getSt().getGast().land+"_"+this.getSt().getGast().geschlecht+".jpg");
 					i = ImageIO.read(url);
 				}catch(MalformedURLException e) {
 				}catch(IOException e) { }
 			}else{
 				try {
-					url = new URL(BaseURL.getJarBase(Spielfeld.class), "./layout/platzhalter.jpg");
+					url = new URL(BaseURL.getJarBase(Spielfeld.class), "./stuhl_leer2.jpg");
 					i = ImageIO.read(url);
 				}catch(MalformedURLException e) {
 				}catch(IOException e) { }
@@ -72,13 +72,13 @@ public class Spielzelle extends JPanel {
 		}else if(t.equals(Typ.Tisch)) {
 			if(this.getTi().getLand()!=null) {
 				try{
-					url = new URL(BaseURL.getJarBase(Spielfeld.class), "./tischkarten/tisch_"+this.getTi().getLand().land+".jpg");
+					url = new URL(BaseURL.getJarBase(Spielfeld.class), "./tisch_"+this.getTi().getLand().land+".jpg");
 					i = ImageIO.read(url);
 				}catch(MalformedURLException e) {
 				}catch(IOException e) { }
 			}else{
 				try {
-					url = new URL(BaseURL.getJarBase(Spielfeld.class), "./layout/platzhalter.jpg");
+					url = new URL(BaseURL.getJarBase(Spielfeld.class), "./tisch_leer2.jpg");
 					i = ImageIO.read(url);
 				}catch(MalformedURLException e) {
 				}catch(IOException e) { }

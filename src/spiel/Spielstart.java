@@ -18,15 +18,15 @@ public class Spielstart {
 	}
 
 	public static void namensfrage() {
+		JTextField spielername00 = new JTextField(new Feldbegrenzung(12), "", 0);
 		JTextField spielername01 = new JTextField(new Feldbegrenzung(12), "", 0);
-		JTextField spielername02 = new JTextField(new Feldbegrenzung(12), "", 0);
 		
-		Object[] namensfrage = {"Name von Spieler 1", spielername01, "Name von Spieler 2", spielername02};
+		Object[] namensfrage = {"Name von Spieler 1", spielername00, "Name von Spieler 2", spielername01};
 	    JOptionPane pane = new JOptionPane(namensfrage, JOptionPane.PLAIN_MESSAGE, JOptionPane.DEFAULT_OPTION);
 	    pane.createDialog(null, "Wie heißen die Spieler?").setVisible(true);
 	    
-	    CafeMain.setSpielername(0, spielername01.getText());
-	    CafeMain.setSpielername(1, spielername02.getText());
+	    CafeMain.setSpielername(0, spielername00.getText());
+	    CafeMain.setSpielername(1, spielername01.getText());
 	    
 	    if(CafeMain.getSpielername(0).equals("") || CafeMain.getSpielername(1).equals("")) {
 	    	JOptionPane.showMessageDialog(null, "Bitte gib beide Spielernamen ein!", "Unvollständige Eingabe", JOptionPane.ERROR_MESSAGE);
@@ -56,8 +56,8 @@ public class Spielstart {
 		Collections.shuffle(CafeMain.getGastkarten());
 		
 		for(int p=0;p<5;p++) {
-	    	CafeMain.getKartenspieler1().add(CafeMain.getGastkarten().get(0));
-	    	CafeMain.getKartenspieler2().add(CafeMain.getGastkarten().get(1));
+	    	CafeMain.getKartenspieler0().add(CafeMain.getGastkarten().get(0));
+	    	CafeMain.getKartenspieler1().add(CafeMain.getGastkarten().get(1));
 	    	CafeMain.getGastkarten().remove(0);
 	    	CafeMain.getGastkarten().remove(0);
 	    }
@@ -78,7 +78,6 @@ public class Spielstart {
 		for(int n=0;n<12;n++) {
 			CafeMain.getTische().add(new Tisch());
 			Spielzuege.legetischkarte(n);
-			System.out.println(CafeMain.getTische().get(n).getLand());
 		}
 		for(int n=0;n<24;n++) {
 			CafeMain.getStuehle().add(new Stuhl());
