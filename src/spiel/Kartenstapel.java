@@ -11,12 +11,16 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 public class Kartenstapel extends JPanel {
-	
-	public enum Typ {Leer, Gaeste, Tische, Handkarte};
+
+	public enum Typ {Leer, Gaeste, Tische, Handkarte, HandkarteInfo};
 	
 	private Typ t;
 	private BufferedImage i;
-	private int handkartnum;
+	private int handkartnum, spieler;
+	
+	public Kartenstapel(Typ t) {
+		setTyp(t);
+	}
 
 	protected void paintComponent(Graphics gr) {
 		super.paintComponent(gr);
@@ -36,9 +40,15 @@ public class Kartenstapel extends JPanel {
 				i = ImageIO.read(url);
 			}catch(MalformedURLException e) {
 			}catch(IOException e) { }
-		} else if(this.t == Typ.Handkarte) {
-			int spieler = CafeMain.getSpieler();
-			if(spieler == 0) {
+		} else if(this.t == Typ.Handkarte || this.t == Typ.HandkarteInfo) {
+			int spielertemp;
+			if(this.t == Typ.Handkarte) {
+				spielertemp = CafeMain.getSpieler();
+			} else {
+				spielertemp = this.spieler;
+			}
+			
+			if(spielertemp == 0) {
 				try{
 					url = new URL(BaseURL.getJarBase(Spielfeld.class), "./gast_"+CafeMain.getKartenspieler0().get(handkartnum).getLand()+"_"+CafeMain.getKartenspieler0().get(handkartnum).getGeschlecht()+".jpg");
 					i = ImageIO.read(url);
@@ -55,10 +65,6 @@ public class Kartenstapel extends JPanel {
 		if(i!=null) {
 	    	gr.drawImage(i,0,0, getWidth(), getHeight(), null);
 	    }
-	}
-	
-	public Kartenstapel(Typ t) {
-		setTyp(t);
 	}
 
 	public Typ getTyp() {
@@ -79,6 +85,10 @@ public class Kartenstapel extends JPanel {
 	
 	public void setHandkartnum(int handkartnum) {
 		this.handkartnum = handkartnum;
+	}
+	
+	public void setSpieler(int spieler) {
+		this.spieler = spieler;
 	}
 
 }

@@ -49,22 +49,19 @@ public class CafeMain {
         Container contentPane = spielframe.getContentPane();
         contentPane.setLayout(gridlayout);
         
-        spielframe.add(AufbauHilfe.createRandomBackgroundLabel("LINKSOBEN"), AufbauHilfe.createGridBagConstraints(0, 0, 1, 1, 1, 1));
-        spielframe.add(AufbauHilfe.createRandomBackgroundLabel("LINKSUNTEN"), AufbauHilfe.createGridBagConstraints(0, 1, 1, 1, 1, 1));
-
-        spielframe.add(new Spielkartenecke(), AufbauHilfe.createGridBagConstraints(2, 0, 1, 1, 1, 1));
-        //spielframe.add(AufbauHilfe.createRandomBackgroundLabel("RECHTSOBEN"), AufbauHilfe.createGridBagConstraints(2, 0, 1, 1, 1, 1));
-        spielframe.add(AufbauHilfe.createRandomBackgroundLabel("RECHTSUNTEN"), AufbauHilfe.createGridBagConstraints(2, 1, 1, 1, 1, 1));
- 
-        spielframe.add(new Spielfeld(), AufbauHilfe.createGridBagConstraints(1, 0, 1, 2, 3, 3));
-         
+        spielframe.add(new Barkartenecke(), new GridBagFelder(0, 0, 1, 1, 1, 1));
+        spielframe.add(new Uebersichtsecke(), new GridBagFelder(0, 1, 1, 1, 1, 1));
+        spielframe.add(new Spielfeld(), new GridBagFelder(1, 0, 1, 2, 3, 3));
+        spielframe.add(new Spielkartenecke(), new GridBagFelder(2, 0, 1, 1, 1, 1));
+        spielframe.add(new Barkartenecke(), new GridBagFelder(2, 1, 1, 1, 1, 1));
+        
         spielframe.pack();
         spielframe.setLocationRelativeTo(null);
         
         ablauf();
     }
    
-    public void ablauf() {
+    private void ablauf() {
         if(Spielstart.SysWin()) {
             JOptionPane.showMessageDialog(null, "Dein System ist hoffnungslos veraltet!\nWindoof ist nicht kompatibel mit diesem Spiel.\nSollte es zu Problemen bei der Ausführung kommen,\ndann öffne das Spiel bitte auf einem PC\nmit Mac OS oder Linux!", "System veraltet", JOptionPane.WARNING_MESSAGE);
         }
@@ -78,7 +75,6 @@ public class CafeMain {
         new CafeMain();
     }
 
-    //BENUTZEN
 	public static int getSpieler() {
 		return spieler;
 	}

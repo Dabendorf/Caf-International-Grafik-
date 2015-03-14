@@ -14,30 +14,13 @@ import javax.swing.JPanel;
 
 public class Spielzelle extends JPanel {
 	
-	public enum Geschlecht {Mann, Frau};
 	public enum Typ {Leer, Stuhl, Tisch};
-	public enum Land {DE, FR, GB, US, TR, IN, CN, RU, ES, CU, CF, IT, JOKER};
 
 	private Typ t;
 	private BufferedImage i;
 	private Stuhl st;
 	private Tisch ti;
-	private static final Map<String, BufferedImage> CACHE = new TreeMap<>();
-    private static final BufferedImage DEFAULT_IMAGE;
-    
-    static {
-        BufferedImage bi = null;
-        try {
-            URL url = new URL(BaseURL.getJarBase(Spielfeld.class), "defaultImage.jpg");
-            bi = ImageIO.read(url);
-            if(bi == null) {
-            	bi = ImageIO.read(url);
-            }
-        } catch (MalformedURLException e) {
-        } catch (IOException e) {
-        }
-        DEFAULT_IMAGE = bi;
-    }
+	private final Map<String, BufferedImage> cache = new TreeMap<>();
 	 
 	public Spielzelle(Typ t) {
 	    setTyp(t);
@@ -46,7 +29,7 @@ public class Spielzelle extends JPanel {
 	@Override
     protected void paintComponent(Graphics gr) {
         super.paintComponent(gr);
-        if(i == null) {
+        if(i == null) { //i==null? Macht das beim Kartenlegen später Probleme?
             i = loadImage(this.t);
         }
         gr.drawImage(i, 0, 0, getWidth(), getHeight(), null);
@@ -65,11 +48,11 @@ public class Spielzelle extends JPanel {
 			if(this.getTi().getLand()!=null) {
 				key = "./tisch_"+this.getTi().getLand().land+".jpg";
 			} else {
-				key = "./tisch_leer2.jpg";
+				key = "./tisch_leer.jpg";
 			}
 		}
 		if(!ty.equals(Typ.Leer)) {
-			bi = CACHE.get(key);
+			bi = cache.get(key);
 	        if(bi == null) {
 	            try {
 	                URL url = new URL(BaseURL.getJarBase(Spielfeld.class), key);
@@ -77,10 +60,7 @@ public class Spielzelle extends JPanel {
 	            } catch (MalformedURLException e) {
 	            } catch (IOException e) {
 	            }
-	            if(bi == null) {
-	                bi = DEFAULT_IMAGE;
-	            }
-	            CACHE.put(key, bi);
+	            cache.put(key, bi);
 	        }
 		}
 		return bi;

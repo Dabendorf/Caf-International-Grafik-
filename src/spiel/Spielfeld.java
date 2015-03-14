@@ -1,14 +1,8 @@
 package spiel;
 
 import java.awt.Color;
-import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
-//import java.awt.event.MouseAdapter;
-//import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.Random;
-
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import spiel.Kartenstapel.Typ;
@@ -110,14 +104,12 @@ class Spielkartenecke extends JPanel {
 	
 	public Spielkartenecke() {
 		setLayout(new GridLayout(5,2));
-		int handkarte = 0;
 		for(int i=0;i<10;i++) {
 			if(i%2==0) {
-				handkarten[handkarte] = new Kartenstapel(Typ.Handkarte);
-				handkarten[handkarte].setOpaque(true);
-				handkarten[handkarte].setHandkartnum(handkarte);
-				add(handkarten[handkarte]);
-				handkarte += 1;
+				handkarten[i/2] = new Kartenstapel(Typ.Handkarte);
+				handkarten[i/2].setOpaque(true);
+				handkarten[i/2].setHandkartnum(i/2);
+				add(handkarten[i/2]);
 			} else if(i==3) {
 				Kartenstapel kst = new Kartenstapel(Typ.Tische);
 				kst.setOpaque(true);
@@ -142,27 +134,49 @@ class Spielkartenecke extends JPanel {
 		this.handkarten = handkarten;
 	}
 }
- 
-class AufbauHilfe {
-    public static GridBagConstraints createGridBagConstraints(int x, int y, int width, int height, int weightX, int weightY) {
-        GridBagConstraints constraints = new GridBagConstraints();
-        constraints.fill = GridBagConstraints.BOTH;
-        constraints.gridx = x;
-        constraints.gridy = y;
-        constraints.gridwidth = width;
-        constraints.gridheight = height;
-        constraints.weightx = weightX;
-        constraints.weighty = weightY;
- 
-        return constraints;
-    }
- 
-    public static JLabel createRandomBackgroundLabel(String text) {
-        Random rand = new Random();
-        JLabel label = new JLabel(text);
-        label.setBackground(new Color(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255)));
-        label.setOpaque(true);
- 
-        return label;
-    }
+
+class Barkartenecke extends JPanel {
+	
+	private static int barpunkte[] = {1,2,3,4,5,-2,-4,-6,-8,-10,-4,-6,-8,-10,-12,-6,-8,-10,-12,-14,-16};
+	
+	public Barkartenecke() {
+		setLayout(new GridLayout(7,3));
+		for(int i=0;i<21;i++) {
+			Barzelle bz = new Barzelle(i);
+			bz.setOpaque(true);
+			add(bz);
+		}
+	}
+
+	public static int getBarpunkte(int n) {
+		return barpunkte[n];
+	}
+}
+
+class Uebersichtsecke extends JPanel {
+	private Kartenstapel handkarten[][] = new Kartenstapel[2][5];
+	
+	public Uebersichtsecke() {
+		setLayout(new GridLayout(6,2));
+		for(int i=0;i<2;i++) {
+			Informationszelle infz = new Informationszelle(); ///INFORMATIONSZELLE MUSS DAS WERDEN
+			infz.setOpaque(true);
+			add(infz);
+		}
+		for(int i=0;i<10;i++) {
+			if(i%2==0) {
+				handkarten[0][i/2] = new Kartenstapel(Typ.HandkarteInfo);
+				handkarten[0][i/2].setOpaque(true);
+				handkarten[0][i/2].setHandkartnum(i/2);
+				handkarten[0][i/2].setSpieler(0);
+				add(handkarten[0][i/2]);
+			} else {
+				handkarten[1][(i-1)/2] = new Kartenstapel(Typ.HandkarteInfo);
+				handkarten[1][(i-1)/2].setOpaque(true);
+				handkarten[1][(i-1)/2].setHandkartnum((i-1)/2);
+				handkarten[0][i/2].setSpieler(1);
+				add(handkarten[1][(i-1)/2]);
+			}
+		}
+	}
 }
