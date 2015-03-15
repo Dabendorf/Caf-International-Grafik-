@@ -85,13 +85,13 @@ public class Spielstart {
 	}
 	
 	public static void zellelementzuordnung() {
-		for(int n=0;n<Spielfeld.spielfeldtisch.size();n++) {
-			Spielfeld.spielfeldtisch.get(n).setTi(CafeMain.getTische().get(n));
-			CafeMain.getTische().get(n).setSz(Spielfeld.spielfeldtisch.get(n));
+		for(int n=0;n<Spielfeld.getSpielfeldtisch().size();n++) {
+			Spielfeld.getSpielfeldtisch().get(n).setTi(CafeMain.getTische().get(n));
+			CafeMain.getTische().get(n).setSz(Spielfeld.getSpielfeldtisch().get(n));
 		}
-		for(int n=0;n<Spielfeld.spielfeldstuhl.size();n++) {
-			Spielfeld.spielfeldstuhl.get(n).setSt(CafeMain.getStuehle().get(n));
-			CafeMain.getStuehle().get(n).setSz(Spielfeld.spielfeldstuhl.get(n));
+		for(int n=0;n<Spielfeld.getSpielfeldstuhl().size();n++) {
+			Spielfeld.getSpielfeldstuhl().get(n).setSt(CafeMain.getStuehle().get(n));
+			CafeMain.getStuehle().get(n).setSz(Spielfeld.getSpielfeldstuhl().get(n));
 		}
 	}
 	

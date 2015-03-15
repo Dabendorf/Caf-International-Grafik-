@@ -23,21 +23,21 @@ public class Stuhl {
 	}
 	
 	public void setGast(Gastkarte newgast) {
-		if(this.gast == null || this.gast.land == Land.JOKER){
+		if(this.gast == null || this.gast.getLand() == Land.JOKER){
 			for(Tisch t:this.getTische()) {
-				if(t.getLand().land.equals(newgast.land) || newgast.land == Land.JOKER) {
+				if(t.getLand().equals(newgast.getLand()) || newgast.getLand() == Land.JOKER) {
 					bosetgastland = true;
 				}
 			}
 			if(bosetgastland == true) {
 				bosetgastgeschlecht = true;
-				if(newgast.geschlecht == Geschlecht.Mann) {
+				if(newgast.getGeschlecht() == Geschlecht.Mann) {
 					for(Tisch t2:this.getTische()) {
 						for(Stuhl s1:t2.getStuehle()) {
 							if(s1.getGast() != null) { //Ohne diese Extrazeile hab ich immer eine NullPointerException bekommen
-								if(s1.getGast().geschlecht.equals(Geschlecht.Mann)) {
+								if(s1.getGast().getGeschlecht().equals(Geschlecht.Mann)) {
 									maenner += 1;
-								} else if(s1.getGast().geschlecht.equals(Geschlecht.Frau)) {
+								} else if(s1.getGast().getGeschlecht().equals(Geschlecht.Frau)) {
 									frauen += 1;
 								}
 							}
@@ -52,9 +52,9 @@ public class Stuhl {
 					for(Tisch t2:this.getTische()) {
 						for(Stuhl s1:t2.getStuehle()) {
 							if(s1.getGast() != null) { //Ohne diese Extrazeile hab ich immer eine NullPointerException bekommen
-								if(s1.getGast().geschlecht.equals(Geschlecht.Mann)) {
+								if(s1.getGast().getGeschlecht().equals(Geschlecht.Mann)) {
 									maenner += 1;
-								} else if(s1.getGast().geschlecht.equals(Geschlecht.Frau)) {
+								} else if(s1.getGast().getGeschlecht().equals(Geschlecht.Frau)) {
 									frauen += 1;
 								}
 							}

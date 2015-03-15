@@ -17,11 +17,11 @@ import spiel.Kartenstapel.Typ;
 
 public class Spielfeld extends JPanel {
 
-	protected Spielzelle spielfeldzelle[][] = new Spielzelle[11][11];
-	protected static ArrayList<Spielzelle> spielfeldtisch = new ArrayList<Spielzelle>(12);
-	protected static ArrayList<Spielzelle> spielfeldstuhl = new ArrayList<Spielzelle>(24);
-	//protected int stuhlnummer;
-	//protected int tischnummer;
+	private Spielzelle spielfeldzelle[][] = new Spielzelle[11][11];
+	private static ArrayList<Spielzelle> spielfeldtisch = new ArrayList<Spielzelle>(12);
+	private static ArrayList<Spielzelle> spielfeldstuhl = new ArrayList<Spielzelle>(24);
+	//private int stuhlnummer;
+	//private int tischnummer;
 	
 	public Spielfeld() {
 		setLayout(new GridLayout(11,11));

@@ -40,13 +40,13 @@ public class Spielzelle extends JPanel {
 		BufferedImage bi = null;
 		if(ty.equals(Typ.Stuhl)) {
 			if(this.getSt().getGast()!=null) {
-				key = "./gast_"+this.getSt().getGast().land+"_"+this.getSt().getGast().geschlecht+".png";
+				key = "./gast_"+this.getSt().getGast().getLand()+"_"+this.getSt().getGast().getGeschlecht()+".png";
 			} else {
 				key = "./stuhl_leer.png";
 			}
 		} else if(ty.equals(Typ.Tisch)) {
 			if(this.getTi().getLand()!=null) {
-				key = "./tisch_"+this.getTi().getLand().land+".png";
+				key = "./tisch_"+this.getTi().getLand()+".png";
 			} else {
 				key = "./tisch_leer.png";
 			}

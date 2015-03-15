@@ -4,7 +4,7 @@ import spiel.Gastkarte.Land;
 
 public class Laenderkarte {
 	
-	public final Land land;
+	private final Land land;
 	 
 	public Laenderkarte(Land land) {
 		this.land = land;

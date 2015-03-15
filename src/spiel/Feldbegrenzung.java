@@ -4,10 +4,9 @@ import java.awt.Toolkit;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
- 
- 
+
 public class Feldbegrenzung extends PlainDocument {
-	int maxlaenge;
+	private int maxlaenge;
 	
 	public Feldbegrenzung(int maxlaenge) {
 		this.maxlaenge = maxlaenge;
@@ -22,7 +21,7 @@ public class Feldbegrenzung extends PlainDocument {
 		}
 	}
 	
-	protected boolean laengeokay(final String text) {
+	private boolean laengeokay(final String text) {
 		if((getLength() + text.length() <= maxlaenge) && text.matches("[a-zA-Z0-9ÄÖÜäöüß]*")) {
 			return true;
 		} else { 
