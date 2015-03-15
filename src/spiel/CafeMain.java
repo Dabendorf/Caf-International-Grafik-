@@ -10,13 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
  
 public class CafeMain {
    
     // System
-    private String programmname = "Café International";
-    private JFrame spielframe = new JFrame(programmname);
+	private Meldungen msgbox = new Meldungen();
+    private JFrame spielframe = new JFrame(msgbox.programmname);
    
     // Spieler
     private static int spieler = 0;
@@ -43,7 +42,7 @@ public class CafeMain {
         spielframe.setPreferredSize(new Dimension(1200,800));
         spielframe.setMinimumSize(new Dimension(900,600));
         spielframe.setResizable(true);
-        spielframe.setIconImage(Toolkit.getDefaultToolkit().getImage(new URL(BaseURL.getJarBase(Spielfeld.class), "./icon.png")));
+        spielframe.setIconImage(Toolkit.getDefaultToolkit().getImage(new URL(BaseURL.getJarBase(Spielfeld.class), "./favicon.png")));
         spielframe.setVisible(false);
         
         Container contentPane = spielframe.getContentPane();
@@ -53,7 +52,7 @@ public class CafeMain {
         spielframe.add(new Uebersichtsecke(), new GridBagFelder(0, 1, 1, 1, 1, 1));
         spielframe.add(new Spielfeld(), new GridBagFelder(1, 0, 1, 2, 3, 3));
         spielframe.add(new Spielkartenecke(), new GridBagFelder(2, 0, 1, 1, 1, 1));
-        spielframe.add(new Barkartenecke(), new GridBagFelder(2, 1, 1, 1, 1, 1));
+        spielframe.add(new Bildecke(), new GridBagFelder(2, 1, 1, 1, 1, 1));
         
         spielframe.pack();
         spielframe.setLocationRelativeTo(null);
@@ -63,11 +62,13 @@ public class CafeMain {
    
     private void ablauf() {
         if(Spielstart.SysWin()) {
-            JOptionPane.showMessageDialog(null, "Dein System ist hoffnungslos veraltet!\nWindoof ist nicht kompatibel mit diesem Spiel.\nSollte es zu Problemen bei der Ausführung kommen,\ndann öffne das Spiel bitte auf einem PC\nmit Mac OS oder Linux!", "System veraltet", JOptionPane.WARNING_MESSAGE);
+            msgbox.windows();
         }
         /*do{
         Spielstart.namensfrage();
         } while(spielernamenkorrekt == false);*/
+        spielername[0] = "Lukas";
+        spielername[1] = "Malte";
         spielframe.setVisible(true);
     }
  
@@ -92,14 +93,13 @@ public class CafeMain {
 		CafeMain.spielername[index] = spielername;
 	}
 
-	//BENUTZEN
-	public static int[] getPunktespieler() {
-		return punktespieler;
+	public static int getPunktespieler(int index) {
+		return punktespieler[index];
 	}
 
 	//BENUTZEN
-	public static void setPunktespieler(int[] punktespieler) {
-		CafeMain.punktespieler = punktespieler;
+	public static void setPunktespieler(int index, int punktespieler) {
+		CafeMain.punktespieler[index] = punktespieler;
 	}
 
 	public static List<Tisch> getTische() {

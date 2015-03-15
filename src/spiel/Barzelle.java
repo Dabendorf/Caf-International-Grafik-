@@ -23,18 +23,23 @@ public class Barzelle extends JPanel {
 	protected void paintComponent(Graphics gr) {
 		super.paintComponent(gr);
 		URL url = null;
-		Font font = new Font("Arial", Font.BOLD, 17);
+		Font font = new Font("Arial", Font.BOLD,16);
 		FontMetrics fm = gr.getFontMetrics(font);
 		
 		if(this.gast == null) {
-			this.setBackground(Color.blue);
+			this.setBackground(new Color(0x20324F));
 			gr.setColor(Color.black);
 			this.setBorder(BorderFactory.createLineBorder(Color.black));
-			gr.setColor(Color.red);
-			String num = Integer.toString(Barkartenecke.getBarpunkte(barplatznum));
-			gr.drawString(num,this.getWidth()/2-fm.stringWidth(num)/2,fm.getHeight()-4);
+			int punkte = new Barkartenecke().getBarpunkte(barplatznum);
+			if(punkte > 0) {
+				gr.setColor(Color.white);
+			} else {
+				gr.setColor(Color.red);
+			}
+			String num = Integer.toString(punkte);
+			gr.drawString(num,this.getWidth()/2-fm.stringWidth(num)/2,this.getHeight()/2);
 		} else {
-			//Gast hierhin setzen
+			//Gast hierhin setzen, wenn Spielalgorithmus arbeitet
 		}
 	}
 	

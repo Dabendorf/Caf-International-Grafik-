@@ -30,13 +30,13 @@ public class Kartenstapel extends JPanel {
 			this.setBackground(Color.white);
 		} else if(this.t == Typ.Gaeste) {
 			try{
-				url = new URL(BaseURL.getJarBase(Spielfeld.class), "./stapel_gaeste.jpg");
+				url = new URL(BaseURL.getJarBase(Spielfeld.class), "./stapel_gaeste.png");
 				i = ImageIO.read(url);
 			}catch(MalformedURLException e) {
 			}catch(IOException e) { }
 		} else if(this.t == Typ.Tische) {
 			try{
-				url = new URL(BaseURL.getJarBase(Spielfeld.class), "./stapel_tische.jpg");
+				url = new URL(BaseURL.getJarBase(Spielfeld.class), "./stapel_tische.png");
 				i = ImageIO.read(url);
 			}catch(MalformedURLException e) {
 			}catch(IOException e) { }
@@ -50,13 +50,13 @@ public class Kartenstapel extends JPanel {
 			
 			if(spielertemp == 0) {
 				try{
-					url = new URL(BaseURL.getJarBase(Spielfeld.class), "./gast_"+CafeMain.getKartenspieler0().get(handkartnum).getLand()+"_"+CafeMain.getKartenspieler0().get(handkartnum).getGeschlecht()+".jpg");
+					url = new URL(BaseURL.getJarBase(Spielfeld.class), "./gast_"+CafeMain.getKartenspieler0().get(handkartnum).getLand()+"_"+CafeMain.getKartenspieler0().get(handkartnum).getGeschlecht()+".png");
 					i = ImageIO.read(url);
 				}catch(MalformedURLException e) {
 				}catch(IOException e) { }
 			} else {
 				try{
-					url = new URL(BaseURL.getJarBase(Spielfeld.class), "./gast_"+CafeMain.getKartenspieler1().get(handkartnum).getLand()+"_"+CafeMain.getKartenspieler1().get(handkartnum).getGeschlecht()+".jpg");
+					url = new URL(BaseURL.getJarBase(Spielfeld.class), "./gast_"+CafeMain.getKartenspieler1().get(handkartnum).getLand()+"_"+CafeMain.getKartenspieler1().get(handkartnum).getGeschlecht()+".png");
 					i = ImageIO.read(url);
 				}catch(MalformedURLException e) {
 				}catch(IOException e) { }

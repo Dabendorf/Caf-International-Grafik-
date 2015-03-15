@@ -1,8 +1,16 @@
 package spiel;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import spiel.Kartenstapel.Typ;
@@ -28,7 +36,7 @@ public class Spielfeld extends JPanel {
 		feldmalen();
 	}
 
-	public void feldmalen() {
+	private void feldmalen() {
 		spielfeldtisch.add(spielfeldzelle[4][3]);
 		spielfeldtisch.add(spielfeldzelle[5][2]);
 		spielfeldtisch.add(spielfeldzelle[6][3]);
@@ -100,7 +108,7 @@ public class Spielfeld extends JPanel {
 }
 
 class Spielkartenecke extends JPanel {
-	private Kartenstapel handkarten[] = new Kartenstapel[5];
+	private Kartenstapel handkarten[] = new Kartenstapel[5]; //WICHTIGE INFORMATION: Die Anzahl der Restkarten muss festgehalten werden.
 	
 	public Spielkartenecke() {
 		setLayout(new GridLayout(5,2));
@@ -136,8 +144,7 @@ class Spielkartenecke extends JPanel {
 }
 
 class Barkartenecke extends JPanel {
-	
-	private static int barpunkte[] = {1,2,3,4,5,-2,-4,-6,-8,-10,-4,-6,-8,-10,-12,-6,-8,-10,-12,-14,-16};
+	private int barpunkte[] = {1,2,3,4,5,-2,-4,-6,-8,-10,-4,-6,-8,-10,-12,-6,-8,-10,-12,-14,-16};
 	
 	public Barkartenecke() {
 		setLayout(new GridLayout(7,3));
@@ -148,7 +155,7 @@ class Barkartenecke extends JPanel {
 		}
 	}
 
-	public static int getBarpunkte(int n) {
+	public int getBarpunkte(int n) {
 		return barpunkte[n];
 	}
 }
@@ -159,8 +166,9 @@ class Uebersichtsecke extends JPanel {
 	public Uebersichtsecke() {
 		setLayout(new GridLayout(6,2));
 		for(int i=0;i<2;i++) {
-			Informationszelle infz = new Informationszelle(); ///INFORMATIONSZELLE MUSS DAS WERDEN
+			Informationszelle infz = new Informationszelle(i);
 			infz.setOpaque(true);
+			infz.setBorder(BorderFactory.createLineBorder(Color.black));
 			add(infz);
 		}
 		for(int i=0;i<10;i++) {
@@ -169,14 +177,30 @@ class Uebersichtsecke extends JPanel {
 				handkarten[0][i/2].setOpaque(true);
 				handkarten[0][i/2].setHandkartnum(i/2);
 				handkarten[0][i/2].setSpieler(0);
+				handkarten[0][i/2].setBorder(BorderFactory.createLineBorder(Color.black));
 				add(handkarten[0][i/2]);
 			} else {
 				handkarten[1][(i-1)/2] = new Kartenstapel(Typ.HandkarteInfo);
 				handkarten[1][(i-1)/2].setOpaque(true);
 				handkarten[1][(i-1)/2].setHandkartnum((i-1)/2);
-				handkarten[0][i/2].setSpieler(1);
+				handkarten[1][(i-1)/2].setSpieler(1);
+				handkarten[1][(i-1)/2].setBorder(BorderFactory.createLineBorder(Color.black));
 				add(handkarten[1][(i-1)/2]);
 			}
 		}
+	}
+}
+
+final class Bildecke extends JPanel {
+	protected void paintComponent(Graphics gr) {
+		super.paintComponent(gr);
+		try{
+			URL url = new URL(BaseURL.getJarBase(Spielfeld.class), "./icon.png");
+			BufferedImage i = ImageIO.read(url);
+			if(i!=null) {
+		    	gr.drawImage(i,0,0, getWidth(), getHeight(), null);
+		    }
+		}catch(MalformedURLException e) {
+		}catch(IOException e) { }
 	}
 }
