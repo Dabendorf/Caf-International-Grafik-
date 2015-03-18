@@ -22,7 +22,8 @@ public class Feldbegrenzung extends PlainDocument {
 	}
 	
 	private boolean laengeokay(final String text) {
-		if((getLength() + text.length() <= maxlaenge) && text.matches("[a-zA-Z0-9ÄÖÜäöüß]*")) {
+		Meldungen msgbox = new Meldungen();
+		if((getLength() + text.length() <= maxlaenge) && text.matches(msgbox.nameerlaubtezeichen)) {
 			return true;
 		} else { 
 			return false;

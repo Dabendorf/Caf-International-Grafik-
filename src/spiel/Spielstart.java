@@ -1,8 +1,12 @@
 package spiel;
 
+import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Collections;
 
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -12,27 +16,25 @@ import spiel.Gastkarte.Land;
 public class Spielstart {
 	
 	private static String OS = System.getProperty("os.name").toLowerCase();
-	
-	public Spielstart() throws IOException {
-		super();
-	}
 
 	public static void namensfrage() {
+		Meldungen msgbox = new Meldungen();
+		
 		JTextField spielername00 = new JTextField(new Feldbegrenzung(12), "", 0);
 		JTextField spielername01 = new JTextField(new Feldbegrenzung(12), "", 0);
 		
-		Object[] namensfrage = {"Name von Spieler 1", spielername00, "Name von Spieler 2", spielername01};
+		Object[] namensfrage = {msgbox.spielernameint(1), spielername00, msgbox.spielernameint(2), spielername01};
 	    JOptionPane pane = new JOptionPane(namensfrage, JOptionPane.PLAIN_MESSAGE, JOptionPane.DEFAULT_OPTION);
-	    pane.createDialog(null, "Wie heißen die Spieler?").setVisible(true);
+	    pane.createDialog(null, msgbox.fragespielername).setVisible(true);
 	    
 	    CafeMain.setSpielername(0, spielername00.getText());
 	    CafeMain.setSpielername(1, spielername01.getText());
 	    
 	    if(CafeMain.getSpielername(0).equals("") || CafeMain.getSpielername(1).equals("")) {
-	    	JOptionPane.showMessageDialog(null, "Bitte gib beide Spielernamen ein!", "Unvollständige Eingabe", JOptionPane.ERROR_MESSAGE);
+	    	JOptionPane.showMessageDialog(null, msgbox.spielernamevergessen, msgbox.titelunvollstaendig, JOptionPane.ERROR_MESSAGE);
 	    	namensfrage();
 	    } else if(CafeMain.getSpielername(0).equalsIgnoreCase(CafeMain.getSpielername(1))) {
-	    	JOptionPane.showMessageDialog(null, "Bitte benenne die Spieler unterschiedlich!", "Namensgleichheit", JOptionPane.ERROR_MESSAGE);
+	    	JOptionPane.showMessageDialog(null, msgbox.spielernamengleich, msgbox.titelnamensgleichheit, JOptionPane.ERROR_MESSAGE);
 	    	namensfrage();
 	    } else {
 	    	CafeMain.setSpielernamenkorrekt(true);
@@ -73,6 +75,62 @@ public class Spielstart {
 		}
 		Collections.shuffle(CafeMain.getLaenderkarten());
 	}
+	
+	public static void bilderladen() {
+    	String key = null;
+    	BufferedImage bitisch = null;
+		BufferedImage bistuhl = null;
+		
+		//12 Laender + 2 Platzhalter
+        for(Land land : Land.values()) {
+        	try {
+        		key = "./tisch_"+land+".png";
+                URL url = new URL(BaseURL.getJarBase(Spielfeld.class), key);
+                bitisch = ImageIO.read(url);
+                CafeMain.getTischcache().put(key, bitisch);
+            } catch (MalformedURLException e) {} catch (IOException e) {}
+        }
+        
+    	try {
+    		key = "./tisch_leer.png";
+            URL url = new URL(BaseURL.getJarBase(Spielfeld.class), key);
+            bitisch = ImageIO.read(url);
+            CafeMain.getTischcache().put(key, bitisch); 
+        } catch (MalformedURLException e) {} catch (IOException e) {}
+    	
+    	try {
+			key = "./stapel_tische.png";
+            URL url = new URL(BaseURL.getJarBase(Spielfeld.class), key);
+            bistuhl = ImageIO.read(url);
+            CafeMain.getTischcache().put(key, bistuhl);
+        } catch (MalformedURLException e) {} catch (IOException e) {}
+    	
+    	//13*2 = 26 Gäste + 2 Platzhalter
+    	for(Land land : Land.values()) {
+    		for(Geschlecht geschlecht : Geschlecht.values()) {
+    			try {
+    				key = "./gast_"+land+"_"+geschlecht+".png";
+	                URL url = new URL(BaseURL.getJarBase(Spielfeld.class), key);
+	                bistuhl = ImageIO.read(url);
+	                CafeMain.getStuhlcache().put(key, bistuhl);
+	            } catch (MalformedURLException e) {} catch (IOException e) {}
+    		}
+    	}
+    	
+    	try {
+    		key = "./stuhl_leer.png";
+            URL url = new URL(BaseURL.getJarBase(Spielfeld.class), key);
+            bistuhl = ImageIO.read(url);
+            CafeMain.getStuhlcache().put(key, bistuhl);
+        } catch (MalformedURLException e) {} catch (IOException e) {}
+        
+        try {
+        	key = "./stapel_gaeste.png";
+            URL url = new URL(BaseURL.getJarBase(Spielfeld.class), key);
+            bitisch = ImageIO.read(url);
+            CafeMain.getStuhlcache().put(key, bitisch);
+        } catch (MalformedURLException e) {} catch (IOException e) {}
+    }
 	
 	public static void spielfeldgenerieren() {
 		for(int n=0;n<12;n++) {

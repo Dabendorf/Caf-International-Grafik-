@@ -4,10 +4,13 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import javax.swing.JFrame;
  
@@ -36,6 +39,8 @@ public class CafeMain {
     // Sonstiges
     private static boolean spielernamenkorrekt = false;
     private static GridBagLayout gridlayout = new GridBagLayout();
+    private static Map<String, BufferedImage> tischcache = new TreeMap<>();
+    private static Map<String, BufferedImage> stuhlcache = new TreeMap<>();
    
 	public CafeMain() throws IOException {
         spielframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -69,6 +74,7 @@ public class CafeMain {
         } while(spielernamenkorrekt == false);*/
         spielername[0] = "Lukas";
         spielername[1] = "Malte";
+        Spielstart.bilderladen();
         spielframe.setVisible(true);
     }
  
@@ -145,5 +151,13 @@ public class CafeMain {
 	//BENUTZEN
 	public static List<Gastkarte> getBarkarten() {
 		return barkarten;
+	}
+	
+	public static Map<String, BufferedImage> getTischcache() {
+		return tischcache;
+	}
+
+	public static Map<String, BufferedImage> getStuhlcache() {
+		return stuhlcache;
 	}
 }
