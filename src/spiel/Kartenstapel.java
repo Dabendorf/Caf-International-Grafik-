@@ -14,6 +14,7 @@ public class Kartenstapel extends JPanel {
 	private BufferedImage i;
 	private int handkartnum, spieler;
 	private String key;
+	private boolean geklickt = false;
 	
 	public Kartenstapel(Typ t) {
 		setTyp(t);
@@ -73,12 +74,24 @@ public class Kartenstapel extends JPanel {
 		this.i = i;
 	}
 	
+	public int getHandkartnum() {
+		return handkartnum;
+	}
+	
 	public void setHandkartnum(int handkartnum) {
 		this.handkartnum = handkartnum;
 	}
 	
 	public void setSpieler(int spieler) {
 		this.spieler = spieler;
+	}
+	
+	public boolean isGeklickt() {
+		return geklickt;
+	}
+
+	public void setGeklickt(boolean geklickt) {
+		this.geklickt = geklickt;
 	}
 
 }

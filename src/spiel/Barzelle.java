@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.net.URL;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
@@ -14,23 +13,26 @@ public class Barzelle extends JPanel {
 	
 	private BufferedImage i;
 	private int barplatznum;
-	private Gastkarte gast;
+	private Gastkarte gast = null;
+	private String key = null;
 	
 	public Barzelle(int barplatznum) {
 		this.barplatznum = barplatznum;
 	}
 	
+	@Override
 	protected void paintComponent(Graphics gr) {
 		super.paintComponent(gr);
-		URL url = null;
-		Font font = new Font("Arial", Font.BOLD,16);
-		FontMetrics fm = gr.getFontMetrics(font);
-		
-		if(this.gast == null) {
+
+		if(gast != null) {
+	        gr.drawImage(i, 0, 0, getWidth(), getHeight(), null);
+		} else {
+			Font font = new Font("Arial", Font.BOLD,16);
+			FontMetrics fm = gr.getFontMetrics(font);
 			this.setBackground(new Color(0x20324F));
-			gr.setColor(Color.black);
 			this.setBorder(BorderFactory.createLineBorder(Color.black));
-			int punkte = new Barkartenecke().getBarpunkte(barplatznum);
+			new Barkartenecke();
+			int punkte = Barkartenecke.getBarpunkte(barplatznum);
 			if(punkte > 0) {
 				gr.setColor(Color.white);
 			} else {
@@ -38,13 +40,21 @@ public class Barzelle extends JPanel {
 			}
 			String num = Integer.toString(punkte);
 			gr.drawString(num,this.getWidth()/2-fm.stringWidth(num)/2,this.getHeight()/2);
-		} else {
-			//Gast hierhin setzen, wenn Spielalgorithmus arbeitet
+		}
+	}
+	
+	private void loadImage() {
+		if(gast!=null) {
+			key = "./gast_"+this.gast.getLand()+"_"+this.gast.getGeschlecht()+".png";
+			i = CafeMain.getStuhlcache().get(key);
 		}
 	}
 	
 	public void setGast(Gastkarte gast) {
 		this.gast = gast;
+		if(gast!=null) {
+			loadImage();
+		}
 	}
-
+	
 }

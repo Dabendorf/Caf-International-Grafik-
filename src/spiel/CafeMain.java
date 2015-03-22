@@ -65,16 +65,17 @@ public class CafeMain {
         ablauf();
     }
    
-    private void ablauf() {
-        if(Spielstart.SysWin()) {
+    private void ablauf() throws IOException {
+    	Spielstart spst = new Spielstart();
+        if(spst.SysWin()) {
             msgbox.windows();
         }
         /*do{
-        Spielstart.namensfrage();
+        spst.namensfrage();
         } while(spielernamenkorrekt == false);*/
         spielername[0] = "Lukas";
         spielername[1] = "Malte";
-        Spielstart.bilderladen();
+        spst.bilderladen();
         spielframe.setVisible(true);
     }
  
@@ -86,7 +87,6 @@ public class CafeMain {
 		return spieler;
 	}
 
-	//BENUTZEN
 	public static void setSpieler(int spieler) {
 		CafeMain.spieler = spieler;
 	}
@@ -103,7 +103,6 @@ public class CafeMain {
 		return punktespieler[index];
 	}
 
-	//BENUTZEN
 	public static void setPunktespieler(int index, int punktespieler) {
 		CafeMain.punktespieler[index] = punktespieler;
 	}
@@ -148,7 +147,6 @@ public class CafeMain {
 		return laenderkarten;
 	}
 
-	//BENUTZEN
 	public static List<Gastkarte> getBarkarten() {
 		return barkarten;
 	}

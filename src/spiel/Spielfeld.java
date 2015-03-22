@@ -3,6 +3,8 @@ package spiel;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -20,9 +22,8 @@ public class Spielfeld extends JPanel {
 	private Spielzelle spielfeldzelle[][] = new Spielzelle[11][11];
 	private static ArrayList<Spielzelle> spielfeldtisch = new ArrayList<Spielzelle>(12);
 	private static ArrayList<Spielzelle> spielfeldstuhl = new ArrayList<Spielzelle>(24);
-	//private int stuhlnummer;
-	//private int tischnummer;
-	
+	private int aktstuhlnummer;
+
 	public Spielfeld() {
 		setLayout(new GridLayout(11,11));
 		for(int i=0;i<11;i++) {
@@ -105,11 +106,20 @@ public class Spielfeld extends JPanel {
 		Spielfeld.spielfeldstuhl = spielfeldstuhl;
 	}
 	
+	public int getAktstuhlnummer() {
+		return aktstuhlnummer;
+	}
+
+	public void setAktstuhlnummer(int aktstuhlnummer) {
+		this.aktstuhlnummer = aktstuhlnummer;
+	}
+	
 }
 
 class Spielkartenecke extends JPanel {
-	private Kartenstapel handkarten[] = new Kartenstapel[5]; //WICHTIGE INFORMATION: Die Anzahl der Restkarten muss festgehalten werden.
-	
+	private static Kartenstapel handkarten[] = new Kartenstapel[5]; //WICHTIGE INFORMATION: Die Anzahl der Restkarten muss festgehalten werden.
+	private static int akthandkartnum;
+
 	public Spielkartenecke() {
 		setLayout(new GridLayout(5,2));
 		for(int i=0;i<10;i++) {
@@ -117,59 +127,104 @@ class Spielkartenecke extends JPanel {
 				handkarten[i/2] = new Kartenstapel(Typ.Handkarte);
 				handkarten[i/2].setOpaque(true);
 				handkarten[i/2].setHandkartnum(i/2);
+				handkarten[i/2].setBorder(BorderFactory.createLineBorder(Color.black, 2));
+				final int index = i/2;
+				handkarten[i/2].addMouseListener(new MouseAdapter() {
+	            	@Override
+	            	public void mouseClicked(MouseEvent e) {
+	            		klick(index);
+	            	}
+	            });
 				add(handkarten[i/2]);
 			} else if(i==3) {
 				Kartenstapel kst = new Kartenstapel(Typ.Tische);
 				kst.setOpaque(true);
+				kst.setBorder(BorderFactory.createLineBorder(Color.black, 2));
 				add(kst);
 			} else if(i==7) {
 				Kartenstapel kst = new Kartenstapel(Typ.Gaeste);
 				kst.setOpaque(true);
+				kst.setBorder(BorderFactory.createLineBorder(Color.black, 2));
 				add(kst);
 			} else {
 				Kartenstapel kst = new Kartenstapel(Typ.Leer);
 				kst.setOpaque(true);
+				kst.setBorder(BorderFactory.createLineBorder(Color.black, 2));
 				add(kst);
 			}
 		}
 	}
 	
-	public Kartenstapel[] getHandkarten() {
-		return handkarten;
+	private void klick(int num) {
+		if(handkarten[num].isGeklickt()) {
+			handkarten[num].setBorder(BorderFactory.createLineBorder(Color.black, 2));
+			handkarten[num].setGeklickt(false);
+		} else {
+			handkarten[num].setBorder(BorderFactory.createLineBorder(Color.red, 2));
+			handkarten[num].setGeklickt(true);
+			akthandkartnum = num;
+			for(int i=0;i<5;i++) {
+				if(i!=num) {
+					handkarten[i].setBorder(BorderFactory.createLineBorder(Color.black, 2));
+					handkarten[i].setGeklickt(false);
+				}
+			}
+		}
+	}
+	
+	public static Kartenstapel getHandkarte(int n) {
+		return handkarten[n];
 	}
 
 	public void setHandkarten(Kartenstapel[] handkarten) {
-		this.handkarten = handkarten;
+		Spielkartenecke.handkarten = handkarten;
+	}
+
+	public static int getAkthandkartnum() {
+		return akthandkartnum;
 	}
 }
 
 class Barkartenecke extends JPanel {
-	private int barpunkte[] = {1,2,3,4,5,-2,-4,-6,-8,-10,-4,-6,-8,-10,-12,-6,-8,-10,-12,-14,-16};
+	private static ArrayList<Barzelle> barzellen = new ArrayList<Barzelle>(21);
+	private static int barpunkte[] = {1,2,3,4,5,-2,-4,-6,-8,-10,-4,-6,-8,-10,-12,-6,-8,-10,-12,-14,-16};
 	
 	public Barkartenecke() {
 		setLayout(new GridLayout(7,3));
 		for(int i=0;i<21;i++) {
 			Barzelle bz = new Barzelle(i);
 			bz.setOpaque(true);
+			bz.addMouseListener(new MouseAdapter() {
+            	@Override
+            	public void mouseClicked(MouseEvent e) {
+            		Spielzuege.legebarkarte(Spielkartenecke.getAkthandkartnum());
+            	}
+            });
+			barzellen.add(bz);
 			add(bz);
 		}
 	}
 
-	public int getBarpunkte(int n) {
+	public static Barzelle getBarzellen(int num) {
+		return barzellen.get(num);
+	}
+
+	public static int getBarpunkte(int n) {
 		return barpunkte[n];
 	}
 }
 
 class Uebersichtsecke extends JPanel {
 	private Kartenstapel handkarten[][] = new Kartenstapel[2][5];
+	private static Informationszelle[] infz = new Informationszelle[2];
 	
 	public Uebersichtsecke() {
 		setLayout(new GridLayout(6,2));
 		for(int i=0;i<2;i++) {
-			Informationszelle infz = new Informationszelle(i);
-			infz.setOpaque(true);
-			infz.setBorder(BorderFactory.createLineBorder(Color.black));
-			add(infz);
+			infz[i] = new Informationszelle(i);
+			infz[i].setOpaque(true);
+			infz[i].setBorder(BorderFactory.createLineBorder(Color.black));
+			add(infz[i]);
 		}
 		for(int i=0;i<10;i++) {
 			if(i%2==0) {
@@ -188,6 +243,10 @@ class Uebersichtsecke extends JPanel {
 				add(handkarten[1][(i-1)/2]);
 			}
 		}
+	}
+
+	public static Informationszelle getInfz(int num) {
+		return infz[num];
 	}
 }
 

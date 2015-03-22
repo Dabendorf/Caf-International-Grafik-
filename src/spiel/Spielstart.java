@@ -15,9 +15,9 @@ import spiel.Gastkarte.Land;
 
 public class Spielstart {
 	
-	private static String OS = System.getProperty("os.name").toLowerCase();
+	private String OS = System.getProperty("os.name").toLowerCase();
 
-	public static void namensfrage() {
+	public void namensfrage() {
 		Meldungen msgbox = new Meldungen();
 		
 		JTextField spielername00 = new JTextField(new Feldbegrenzung(12), "", 0);
@@ -76,7 +76,7 @@ public class Spielstart {
 		Collections.shuffle(CafeMain.getLaenderkarten());
 	}
 	
-	public static void bilderladen() {
+	public void bilderladen() {
     	String key = null;
     	BufferedImage bitisch = null;
 		BufferedImage bistuhl = null;
@@ -192,7 +192,7 @@ public class Spielstart {
 		CafeMain.getStuehle().get(23).setTische(CafeMain.getTische().get(10));
 	}
 	
-	public static boolean SysWin() {
+	public boolean SysWin() {
         return (OS.indexOf("win") >= 0);
     }
 
