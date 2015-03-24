@@ -75,8 +75,12 @@ public class CafeMain {
         } while(spielernamenkorrekt == false);*/
         spielername[0] = "Lukas";
         spielername[1] = "Malte";
+        long zeit1 = Debug.zeitnehmen(); //DEBUG
         spst.bilderladen();
         spielframe.setVisible(true);
+        long zeit2 = Debug.zeitnehmen(); //DEBUG
+        Debug.laufzeitschreiben(zeit2-zeit1); //DEBUG
+        Spielfeld.getMeldungsbox().setText("Startzeit: "+(zeit2-zeit1)); //DEBUG
     }
  
     public static void main(String[] args) throws IOException {
