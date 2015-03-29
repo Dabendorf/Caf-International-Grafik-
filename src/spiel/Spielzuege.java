@@ -35,6 +35,7 @@ public class Spielzuege {
 			  }
 		);
 		thread.start();
+		new Spielende().barvoll();
 		spielerwechsel();
 		for(int i=0;i<5;i++) {
 			Spielkartenecke.getHandkarte(i).setBorder(BorderFactory.createLineBorder(Color.black));

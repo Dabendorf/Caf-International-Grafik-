@@ -34,8 +34,6 @@ public class Spielstart {
 	    } else if(CafeMain.getSpielername(0).equalsIgnoreCase(CafeMain.getSpielername(1))) {
 	    	JOptionPane.showMessageDialog(null, msgbox.spielernamengleich, msgbox.titelnamensgleichheit, JOptionPane.ERROR_MESSAGE);
 	    	namensfrage();
-	    } else {
-	    	CafeMain.setSpielernamenkorrekt(true);
 	    }
 	}
 	

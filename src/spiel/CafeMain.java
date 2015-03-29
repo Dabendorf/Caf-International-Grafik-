@@ -37,8 +37,6 @@ public class CafeMain {
     private static List<Stuhl> stuehle = new ArrayList<Stuhl>(24);
    
     // Sonstiges
-    private static boolean spielernamenkorrekt = false;
-    private static GridBagLayout gridlayout = new GridBagLayout();
     private static Map<String, BufferedImage> tischcache = new TreeMap<>();
     private static Map<String, BufferedImage> stuhlcache = new TreeMap<>();
    
@@ -51,7 +49,7 @@ public class CafeMain {
         spielframe.setVisible(false);
         
         Container contentPane = spielframe.getContentPane();
-        contentPane.setLayout(gridlayout);
+        contentPane.setLayout(new GridBagLayout());
 
         spielframe.add(new Barkartenecke(), new GridBagFelder(0, 0, 1, 1, 0.15, 0.5));
         spielframe.add(new Uebersichtsecke(), new GridBagFelder(0, 1, 1, 1, 0.15, 0.5));
@@ -70,11 +68,9 @@ public class CafeMain {
         if(spst.SysWin()) {
             msgbox.windows();
         }
-        /*do{
-        spst.namensfrage();
-        } while(spielernamenkorrekt == false);*/
-        spielername[0] = "Lukas";
-        spielername[1] = "Malte";
+        //spst.namensfrage();
+        spielername[0] = "Lukas"; //Kurzweg
+        spielername[1] = "Malte"; //Kurzweg
         long zeit1 = Debug.zeitnehmen(); //DEBUG
         spst.bilderladen();
         spielframe.setVisible(true);
@@ -133,14 +129,6 @@ public class CafeMain {
 
 	public static void setStuehle(List<Stuhl> stuehle) {
 		CafeMain.stuehle = stuehle;
-	}
-
-	public static boolean isSpielernamenkorrekt() {
-		return spielernamenkorrekt;
-	}
-
-	public static void setSpielernamenkorrekt(boolean spielernamenkorrekt) {
-		CafeMain.spielernamenkorrekt = spielernamenkorrekt;
 	}
 
 	public static List<Gastkarte> getKartenspieler0() {
