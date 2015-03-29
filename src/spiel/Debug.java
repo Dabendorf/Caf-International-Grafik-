@@ -19,7 +19,7 @@ public class Debug {
 		return zeit;
 	}
 	
-	public static void laufzeitschreiben(long zeit) throws IOException{
+	public static void laufzeitschreiben(long zeit) throws IOException {
         try {
             FileReader fr = new FileReader("laufzeit.txt");
             Properties prop = new Properties();
@@ -33,5 +33,5 @@ public class Debug {
             fr.close();
         }
         catch (IOException e){}
-	}
+	} //Laufzeit-Textdatei muss noch in Resources eingeordnet werden!
 }

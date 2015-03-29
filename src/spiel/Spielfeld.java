@@ -62,11 +62,12 @@ public class Spielfeld extends JPanel {
 			spielfeldzelle[stuhlkoordx[i]][stuhlkoordy[i]].setTyp(Spielzelle.Typ.Stuhl);
 		}
         
-		Spielstart.gastkartenmischen();
-		Spielstart.laenderkartenmischen();
-		Spielstart.spielfeldgenerieren();
-		Spielstart.tischstuhlzuordnung();
-		Spielstart.zellelementzuordnung();
+		Spielstart spst = new Spielstart();
+		spst.gastkartenmischen();
+		spst.laenderkartenmischen();
+		spst.spielfeldgenerieren();
+		spst.tischstuhlzuordnung();
+		spst.zellelementzuordnung();
 	}
 	
 	public static ArrayList<Spielzelle> getSpielfeldtisch() {

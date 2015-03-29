@@ -53,14 +53,11 @@ public class CafeMain {
         Container contentPane = spielframe.getContentPane();
         contentPane.setLayout(gridlayout);
 
-        double links = 0.15;
-        double rechts = 0.15;
-        double mitte = 1.0-links-rechts;
-        spielframe.add(new Barkartenecke(), new GridBagFelder(0, 0, 1, 1, links, 0.5));
-        spielframe.add(new Uebersichtsecke(), new GridBagFelder(0, 1, 1, 1, links, 0.5));
-        spielframe.add(new Spielfeld(), new GridBagFelder(1, 0, 1, 2, mitte, 1.0));
-        spielframe.add(new Spielkartenecke(), new GridBagFelder(2, 0, 1, 1, rechts, 0.5));
-        spielframe.add(new Bildecke(), new GridBagFelder(2, 1, 1, 1, rechts, 0.5));
+        spielframe.add(new Barkartenecke(), new GridBagFelder(0, 0, 1, 1, 0.15, 0.5));
+        spielframe.add(new Uebersichtsecke(), new GridBagFelder(0, 1, 1, 1, 0.15, 0.5));
+        spielframe.add(new Spielfeld(), new GridBagFelder(1, 0, 1, 2, 0.7, 1.0));
+        spielframe.add(new Spielkartenecke(), new GridBagFelder(2, 0, 1, 1, 0.15, 0.5));
+        spielframe.add(new Bildecke(), new GridBagFelder(2, 1, 1, 1, 0.15, 0.5));
         
         spielframe.pack();
         spielframe.setLocationRelativeTo(null);
@@ -114,12 +111,20 @@ public class CafeMain {
 		CafeMain.punktespieler[index] = punktespieler;
 	}
 
+	public static Tisch getTisch(int index) {
+		return tische.get(index);
+	}
+
 	public static List<Tisch> getTische() {
 		return tische;
 	}
-	
+
 	public static void setTische(List<Tisch> tische) {
 		CafeMain.tische = tische;
+	}
+	
+	public static Stuhl getStuhl(int index) {
+		return stuehle.get(index);
 	}
 
 	public static List<Stuhl> getStuehle() {

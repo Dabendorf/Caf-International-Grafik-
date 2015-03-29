@@ -14,8 +14,6 @@ import spiel.Gastkarte.Geschlecht;
 import spiel.Gastkarte.Land;
 
 public class Spielstart {
-	
-	private String OS = System.getProperty("os.name").toLowerCase();
 
 	public void namensfrage() {
 		Meldungen msgbox = new Meldungen();
@@ -41,7 +39,7 @@ public class Spielstart {
 	    }
 	}
 	
-	public static void gastkartenmischen() {
+	public void gastkartenmischen() {
 		for(int j=0;j<2;j++){
 	    	for(Land land : Land.values()) {
 	            int anzahl = 2;
@@ -65,7 +63,7 @@ public class Spielstart {
 	    }
 	}
 	
-	public static void laenderkartenmischen() {
+	public void laenderkartenmischen() {
 		for(int n=0;n<2;n++) {
 			 for(Land land : Land.values()) {
 				 if(land != Land.JOKER) {
@@ -140,7 +138,7 @@ public class Spielstart {
         } catch (MalformedURLException e) {} catch (IOException e) {}
     }
 	
-	public static void spielfeldgenerieren() {
+	public void spielfeldgenerieren() {
 		for(int n=0;n<12;n++) {
 			CafeMain.getTische().add(new Tisch());
 			Spielzuege.legetischkarte(n);
@@ -150,58 +148,58 @@ public class Spielstart {
 		}
 	}
 	
-	public static void zellelementzuordnung() {
+	public void zellelementzuordnung() {
 		for(int n=0;n<Spielfeld.getSpielfeldtisch().size();n++) {
-			Spielfeld.getSpielfeldtisch().get(n).setTi(CafeMain.getTische().get(n));
-			CafeMain.getTische().get(n).setSz(Spielfeld.getSpielfeldtisch().get(n));
+			Spielfeld.getSpielfeldtisch().get(n).setTisch(CafeMain.getTisch(n));
+			CafeMain.getTisch(n).setSpielzelle(Spielfeld.getSpielfeldtisch().get(n));
 		}
 		for(int n=0;n<Spielfeld.getSpielfeldstuhl().size();n++) {
-			Spielfeld.getSpielfeldstuhl().get(n).setSt(CafeMain.getStuehle().get(n));
-			CafeMain.getStuehle().get(n).setSz(Spielfeld.getSpielfeldstuhl().get(n));
+			Spielfeld.getSpielfeldstuhl().get(n).setStuhl(CafeMain.getStuhl(n));
+			CafeMain.getStuhl(n).setSpielzelle(Spielfeld.getSpielfeldstuhl().get(n));
 		}
 	}
 	
-	public static void tischstuhlzuordnung() {
-		CafeMain.getTische().get(0).setStuehle(CafeMain.getStuehle().get(11),CafeMain.getStuehle().get(12),CafeMain.getStuehle().get(13),CafeMain.getStuehle().get(0));
-		CafeMain.getTische().get(1).setStuehle(CafeMain.getStuehle().get(1),CafeMain.getStuehle().get(2),CafeMain.getStuehle().get(12),CafeMain.getStuehle().get(13));
-		CafeMain.getTische().get(2).setStuehle(CafeMain.getStuehle().get(2),CafeMain.getStuehle().get(3),CafeMain.getStuehle().get(13),CafeMain.getStuehle().get(14));
-		CafeMain.getTische().get(3).setStuehle(CafeMain.getStuehle().get(3),CafeMain.getStuehle().get(4),CafeMain.getStuehle().get(5),CafeMain.getStuehle().get(14));
-		CafeMain.getTische().get(4).setStuehle(CafeMain.getStuehle().get(4),CafeMain.getStuehle().get(5),CafeMain.getStuehle().get(15),CafeMain.getStuehle().get(16));
-		CafeMain.getTische().get(5).setStuehle(CafeMain.getStuehle().get(5),CafeMain.getStuehle().get(6),CafeMain.getStuehle().get(16),CafeMain.getStuehle().get(17));
-		CafeMain.getTische().get(6).setStuehle(CafeMain.getStuehle().get(6),CafeMain.getStuehle().get(7),CafeMain.getStuehle().get(17),CafeMain.getStuehle().get(18));
-		CafeMain.getTische().get(7).setStuehle(CafeMain.getStuehle().get(7),CafeMain.getStuehle().get(18),CafeMain.getStuehle().get(19),CafeMain.getStuehle().get(20));
-		CafeMain.getTische().get(8).setStuehle(CafeMain.getStuehle().get(7),CafeMain.getStuehle().get(8),CafeMain.getStuehle().get(20),CafeMain.getStuehle().get(21));
-		CafeMain.getTische().get(9).setStuehle(CafeMain.getStuehle().get(8),CafeMain.getStuehle().get(9),CafeMain.getStuehle().get(21),CafeMain.getStuehle().get(22));
-		CafeMain.getTische().get(10).setStuehle(CafeMain.getStuehle().get(9),CafeMain.getStuehle().get(10),CafeMain.getStuehle().get(22),CafeMain.getStuehle().get(23));
-		CafeMain.getTische().get(11).setStuehle(CafeMain.getStuehle().get(9),CafeMain.getStuehle().get(10),CafeMain.getStuehle().get(11),CafeMain.getStuehle().get(0));
-		CafeMain.getStuehle().get(0).setTische(CafeMain.getTische().get(11),CafeMain.getTische().get(0));
-		CafeMain.getStuehle().get(1).setTische(CafeMain.getTische().get(1));
-		CafeMain.getStuehle().get(2).setTische(CafeMain.getTische().get(1),CafeMain.getTische().get(2));
-		CafeMain.getStuehle().get(3).setTische(CafeMain.getTische().get(2),CafeMain.getTische().get(3));
-		CafeMain.getStuehle().get(4).setTische(CafeMain.getTische().get(3),CafeMain.getTische().get(4));
-		CafeMain.getStuehle().get(5).setTische(CafeMain.getTische().get(3),CafeMain.getTische().get(4),CafeMain.getTische().get(5));
-		CafeMain.getStuehle().get(6).setTische(CafeMain.getTische().get(5),CafeMain.getTische().get(6));
-		CafeMain.getStuehle().get(7).setTische(CafeMain.getTische().get(6),CafeMain.getTische().get(7),CafeMain.getTische().get(8));
-		CafeMain.getStuehle().get(8).setTische(CafeMain.getTische().get(8),CafeMain.getTische().get(9));
-		CafeMain.getStuehle().get(9).setTische(CafeMain.getTische().get(9),CafeMain.getTische().get(10),CafeMain.getTische().get(11));
-		CafeMain.getStuehle().get(10).setTische(CafeMain.getTische().get(10),CafeMain.getTische().get(11));
-		CafeMain.getStuehle().get(11).setTische(CafeMain.getTische().get(11),CafeMain.getTische().get(0));
-		CafeMain.getStuehle().get(12).setTische(CafeMain.getTische().get(0),CafeMain.getTische().get(1));
-		CafeMain.getStuehle().get(13).setTische(CafeMain.getTische().get(1),CafeMain.getTische().get(2),CafeMain.getTische().get(0));
-		CafeMain.getStuehle().get(14).setTische(CafeMain.getTische().get(2),CafeMain.getTische().get(3));
-		CafeMain.getStuehle().get(15).setTische(CafeMain.getTische().get(4));
-		CafeMain.getStuehle().get(16).setTische(CafeMain.getTische().get(4),CafeMain.getTische().get(5));
-		CafeMain.getStuehle().get(17).setTische(CafeMain.getTische().get(5),CafeMain.getTische().get(6));
-		CafeMain.getStuehle().get(18).setTische(CafeMain.getTische().get(6),CafeMain.getTische().get(7));
-		CafeMain.getStuehle().get(19).setTische(CafeMain.getTische().get(7));
-		CafeMain.getStuehle().get(20).setTische(CafeMain.getTische().get(7),CafeMain.getTische().get(8));
-		CafeMain.getStuehle().get(21).setTische(CafeMain.getTische().get(8),CafeMain.getTische().get(9));
-		CafeMain.getStuehle().get(22).setTische(CafeMain.getTische().get(9),CafeMain.getTische().get(10));
-		CafeMain.getStuehle().get(23).setTische(CafeMain.getTische().get(10));
+	public void tischstuhlzuordnung() {
+		CafeMain.getTisch(0).setStuehle(11,12,13,0);
+		CafeMain.getTisch(1).setStuehle(1,2,12,13);
+		CafeMain.getTisch(2).setStuehle(2,3,13,14);
+		CafeMain.getTisch(3).setStuehle(3,4,5,14);
+		CafeMain.getTisch(4).setStuehle(4,5,15,16);
+		CafeMain.getTisch(5).setStuehle(5,6,16,17);
+		CafeMain.getTisch(6).setStuehle(6,7,17,18);
+		CafeMain.getTisch(7).setStuehle(7,18,19,20);
+		CafeMain.getTisch(8).setStuehle(7,8,20,21);
+		CafeMain.getTisch(9).setStuehle(8,9,21,22);
+		CafeMain.getTisch(10).setStuehle(9,10,22,23);
+		CafeMain.getTisch(11).setStuehle(9,10,11,0);
+		CafeMain.getStuhl(0).setTische(11,0);
+		CafeMain.getStuhl(1).setTische(1);
+		CafeMain.getStuhl(2).setTische(1,2);
+		CafeMain.getStuhl(3).setTische(2,3);
+		CafeMain.getStuhl(4).setTische(3,4);
+		CafeMain.getStuhl(5).setTische(3,4,5);
+		CafeMain.getStuhl(6).setTische(5,6);
+		CafeMain.getStuhl(7).setTische(6,7,8);
+		CafeMain.getStuhl(8).setTische(8,9);
+		CafeMain.getStuhl(9).setTische(9,10,11);
+		CafeMain.getStuhl(10).setTische(10,11);
+		CafeMain.getStuhl(11).setTische(11,0);
+		CafeMain.getStuhl(12).setTische(0,1);
+		CafeMain.getStuhl(13).setTische(0,1,2);
+		CafeMain.getStuhl(14).setTische(2,3);
+		CafeMain.getStuhl(15).setTische(4);
+		CafeMain.getStuhl(16).setTische(4,5);
+		CafeMain.getStuhl(17).setTische(5,6);
+		CafeMain.getStuhl(18).setTische(6,7);
+		CafeMain.getStuhl(19).setTische(7);
+		CafeMain.getStuhl(20).setTische(7,8);
+		CafeMain.getStuhl(21).setTische(8,9);
+		CafeMain.getStuhl(22).setTische(9,10);
+		CafeMain.getStuhl(23).setTische(10);
 	}
 	
 	public boolean SysWin() {
-        return (OS.indexOf("win") >= 0);
+        return (System.getProperty("os.name").toLowerCase().indexOf("win") >= 0);
     }
 
 }

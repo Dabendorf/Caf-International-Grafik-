@@ -29,14 +29,14 @@ public class Spielzelle extends JPanel {
 	
 	private void loadImage() {
 		if(t.equals(Typ.Stuhl)) {
-			if(this.getSt().getGast()!=null) {
-				key = "./gast_"+this.getSt().getGast().getLand()+"_"+this.getSt().getGast().getGeschlecht()+".png";
+			if(this.getStuhl().getGast()!=null) {
+				key = "./gast_"+this.getStuhl().getGast().getLand()+"_"+this.getStuhl().getGast().getGeschlecht()+".png";
 			} else {
 				key = "./stuhl_leer.png";
 			}
 		} else if(t.equals(Typ.Tisch)) {
-			if(this.getTi().getLand()!=null) {
-				key = "./tisch_"+this.getTi().getLand()+".png";
+			if(this.getTisch().getLand()!=null) {
+				key = "./tisch_"+this.getTisch().getLand()+".png";
 			} else {
 				key = "./tisch_leer.png";
 			}
@@ -61,19 +61,19 @@ public class Spielzelle extends JPanel {
 	    this.t = t;
 	}
 	 
-	public Stuhl getSt() {
+	public Stuhl getStuhl() {
 		return st;
 	}
 
-	public void setSt(Stuhl st) {
+	public void setStuhl(Stuhl st) {
 		this.st = st;
 	}
 
-	public Tisch getTi() {
+	public Tisch getTisch() {
 		return ti;
 	}
 
-	public void setTi(Tisch ti) {
+	public void setTisch(Tisch ti) {
 		this.ti = ti;
 	}
 }
