@@ -15,7 +15,7 @@ import java.util.TreeMap;
 import javax.swing.JFrame;
  
 public class CafeMain {
-   
+	
     // System
 	private Meldungen msgbox = new Meldungen();
     private JFrame spielframe = new JFrame(msgbox.programmname);
@@ -44,20 +44,23 @@ public class CafeMain {
    
 	public CafeMain() throws IOException {
         spielframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        spielframe.setPreferredSize(new Dimension(1200,800));
-        spielframe.setMinimumSize(new Dimension(900,600));
+        spielframe.setPreferredSize(new Dimension(1400,800));
+        spielframe.setMinimumSize(new Dimension(1050,600));
         spielframe.setResizable(true);
         spielframe.setIconImage(Toolkit.getDefaultToolkit().getImage(new URL(BaseURL.getJarBase(Spielfeld.class), "./favicon.png")));
         spielframe.setVisible(false);
         
         Container contentPane = spielframe.getContentPane();
         contentPane.setLayout(gridlayout);
-        
-        spielframe.add(new Barkartenecke(), new GridBagFelder(0, 0, 1, 1, 1, 1));
-        spielframe.add(new Uebersichtsecke(), new GridBagFelder(0, 1, 1, 1, 1, 1));
-        spielframe.add(new Spielfeld(), new GridBagFelder(1, 0, 1, 2, 3, 3));
-        spielframe.add(new Spielkartenecke(), new GridBagFelder(2, 0, 1, 1, 1, 1));
-        spielframe.add(new Bildecke(), new GridBagFelder(2, 1, 1, 1, 1, 1));
+
+        double links = 0.15;
+        double rechts = 0.15;
+        double mitte = 1.0-links-rechts;
+        spielframe.add(new Barkartenecke(), new GridBagFelder(0, 0, 1, 1, links, 0.5));
+        spielframe.add(new Uebersichtsecke(), new GridBagFelder(0, 1, 1, 1, links, 0.5));
+        spielframe.add(new Spielfeld(), new GridBagFelder(1, 0, 1, 2, mitte, 1.0));
+        spielframe.add(new Spielkartenecke(), new GridBagFelder(2, 0, 1, 1, rechts, 0.5));
+        spielframe.add(new Bildecke(), new GridBagFelder(2, 1, 1, 1, rechts, 0.5));
         
         spielframe.pack();
         spielframe.setLocationRelativeTo(null);

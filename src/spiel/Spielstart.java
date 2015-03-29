@@ -101,8 +101,8 @@ public class Spielstart {
     	try {
 			key = "./stapel_tische.png";
             URL url = new URL(BaseURL.getJarBase(Spielfeld.class), key);
-            bistuhl = ImageIO.read(url);
-            CafeMain.getTischcache().put(key, bistuhl);
+            bitisch = ImageIO.read(url);
+            CafeMain.getTischcache().put(key, bitisch);
         } catch (MalformedURLException e) {} catch (IOException e) {}
     	
     	//13*2 = 26 Gäste + 2 Platzhalter
@@ -127,8 +127,16 @@ public class Spielstart {
         try {
         	key = "./stapel_gaeste.png";
             URL url = new URL(BaseURL.getJarBase(Spielfeld.class), key);
+            bistuhl = ImageIO.read(url);
+            CafeMain.getStuhlcache().put(key, bistuhl);
+        } catch (MalformedURLException e) {} catch (IOException e) {}
+        
+        //Bild unten Rechts in Tischcache
+        try {
+        	key = "./icon.png";
+            URL url = new URL(BaseURL.getJarBase(Spielfeld.class), key);
             bitisch = ImageIO.read(url);
-            CafeMain.getStuhlcache().put(key, bitisch);
+            CafeMain.getTischcache().put(key, bitisch);
         } catch (MalformedURLException e) {} catch (IOException e) {}
     }
 	

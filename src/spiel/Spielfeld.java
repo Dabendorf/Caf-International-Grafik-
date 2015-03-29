@@ -47,51 +47,20 @@ public class Spielfeld extends JPanel {
 		feldmalen();
 	}
 
-	private void feldmalen() {
-		spielfeldtisch.add(spielfeldzelle[4][3]);
-		spielfeldtisch.add(spielfeldzelle[5][2]);
-		spielfeldtisch.add(spielfeldzelle[6][3]);
-		spielfeldtisch.add(spielfeldzelle[7][4]);
-		spielfeldtisch.add(spielfeldzelle[8][5]);
-		spielfeldtisch.add(spielfeldzelle[7][6]);
-		spielfeldtisch.add(spielfeldzelle[6][7]);
-		spielfeldtisch.add(spielfeldzelle[5][8]);
-		spielfeldtisch.add(spielfeldzelle[4][7]);
-		spielfeldtisch.add(spielfeldzelle[3][6]);
-		spielfeldtisch.add(spielfeldzelle[2][5]);
-		spielfeldtisch.add(spielfeldzelle[3][4]);
+	private void feldmalen() { 
+		int[] tischkoordx = {4,5,6,7,8,7,6,5,4,3,2,3};
+		int[] tischkoordy = {3,2,3,4,5,6,7,8,7,6,5,4};
+		for(int i=0;i<12;i++) {
+			spielfeldtisch.add(spielfeldzelle[tischkoordx[i]][tischkoordy[i]]);
+			spielfeldzelle[tischkoordx[i]][tischkoordy[i]].setTyp(Spielzelle.Typ.Tisch);
+		}
 		
-		spielfeldstuhl.add(spielfeldzelle[4][4]);
-		spielfeldstuhl.add(spielfeldzelle[5][1]);
-		spielfeldstuhl.add(spielfeldzelle[6][2]);
-		spielfeldstuhl.add(spielfeldzelle[7][3]);
-		spielfeldstuhl.add(spielfeldzelle[8][4]);
-		spielfeldstuhl.add(spielfeldzelle[7][5]);
-		spielfeldstuhl.add(spielfeldzelle[6][6]);
-		spielfeldstuhl.add(spielfeldzelle[5][7]);
-		spielfeldstuhl.add(spielfeldzelle[4][6]);
-		spielfeldstuhl.add(spielfeldzelle[3][5]);
-		spielfeldstuhl.add(spielfeldzelle[2][4]);
-		spielfeldstuhl.add(spielfeldzelle[3][3]);
-		spielfeldstuhl.add(spielfeldzelle[4][2]);
-		spielfeldstuhl.add(spielfeldzelle[5][3]);
-		spielfeldstuhl.add(spielfeldzelle[6][4]);
-		spielfeldstuhl.add(spielfeldzelle[9][5]);
-		spielfeldstuhl.add(spielfeldzelle[8][6]);
-		spielfeldstuhl.add(spielfeldzelle[7][7]);
-		spielfeldstuhl.add(spielfeldzelle[6][8]);
-		spielfeldstuhl.add(spielfeldzelle[5][9]);
-		spielfeldstuhl.add(spielfeldzelle[4][8]);
-		spielfeldstuhl.add(spielfeldzelle[3][7]);
-		spielfeldstuhl.add(spielfeldzelle[2][6]);
-		spielfeldstuhl.add(spielfeldzelle[1][5]);
-		
-		for(Spielzelle a:spielfeldtisch) {
-            a.setTyp(Spielzelle.Typ.Tisch);
-        }
-        for(Spielzelle b:spielfeldstuhl) {
-            b.setTyp(Spielzelle.Typ.Stuhl);
-        }
+		int[] stuhlkoordx = {4,5,6,7,8,7,6,5,4,3,2,3,4,5,6,9,8,7,6,5,4,3,2,1};
+		int[] stuhlkoordy = {4,1,2,3,4,5,6,7,6,5,4,3,2,3,4,5,6,7,8,9,8,7,6,5};
+		for(int i=0;i<24;i++) {
+			spielfeldstuhl.add(spielfeldzelle[stuhlkoordx[i]][stuhlkoordy[i]]);
+			spielfeldzelle[stuhlkoordx[i]][stuhlkoordy[i]].setTyp(Spielzelle.Typ.Stuhl);
+		}
         
 		Spielstart.gastkartenmischen();
 		Spielstart.laenderkartenmischen();

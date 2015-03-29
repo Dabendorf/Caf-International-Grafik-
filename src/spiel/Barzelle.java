@@ -12,14 +12,17 @@ import javax.swing.JPanel;
 public class Barzelle extends JPanel {
 	
 	private BufferedImage i;
-	private int barplatznum;
 	private Gastkarte gast = null;
 	private String key = null;
+	private int punkte;
+	private String num;
+	private Font font = new Font("Arial", Font.BOLD,16);
+	private FontMetrics fm;
 	
-	public Barzelle(int barplatznum) {
-		this.barplatznum = barplatznum;
+	public Barzelle(int punkte) {
+		this.punkte = punkte;
 	}
-	
+
 	@Override
 	protected void paintComponent(Graphics gr) {
 		super.paintComponent(gr);
@@ -27,18 +30,12 @@ public class Barzelle extends JPanel {
 		if(gast != null) {
 	        gr.drawImage(i, 0, 0, getWidth(), getHeight(), null);
 		} else {
-			Font font = new Font("Arial", Font.BOLD,16);
-			FontMetrics fm = gr.getFontMetrics(font);
-			this.setBackground(new Color(0x20324F));
-			this.setBorder(BorderFactory.createLineBorder(Color.black));
-			new Barkartenecke();
-			int punkte = Barkartenecke.getBarpunkte(barplatznum);
+			fm = gr.getFontMetrics(font);
 			if(punkte > 0) {
 				gr.setColor(Color.white);
 			} else {
 				gr.setColor(Color.red);
 			}
-			String num = Integer.toString(punkte);
 			gr.drawString(num,this.getWidth()/2-fm.stringWidth(num)/2,this.getHeight()/2);
 		}
 	}
@@ -50,11 +47,21 @@ public class Barzelle extends JPanel {
 		}
 	}
 	
+	public void zelltext() {
+		this.setBackground(new Color(0x20324F));
+		this.setBorder(BorderFactory.createLineBorder(Color.black));
+		num = Integer.toString(punkte);
+	}
+	
 	public void setGast(Gastkarte gast) {
 		this.gast = gast;
 		if(gast!=null) {
 			loadImage();
 		}
+	}
+	
+	public int getPunkte() {
+		return punkte;
 	}
 	
 }

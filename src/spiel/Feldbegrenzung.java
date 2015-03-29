@@ -5,6 +5,11 @@ import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
 
+/**
+ * Quelle: http://javawiki.sowas.com/doku.php?id=swing:jtextfield-size
+ * Funktion abgewandelt
+ */
+
 public class Feldbegrenzung extends PlainDocument {
 	private int maxlaenge;
 	
@@ -30,8 +35,4 @@ public class Feldbegrenzung extends PlainDocument {
 		}
 	}
 	
-	public static void main(final String [] ignored) {
-		//Quelle: http://javawiki.sowas.com/doku.php?id=swing:jtextfield-size
-		//Funktion abgewandelt
-	}
 }

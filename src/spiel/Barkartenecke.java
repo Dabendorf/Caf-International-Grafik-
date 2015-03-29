@@ -14,8 +14,9 @@ public class Barkartenecke extends JPanel {
 	public Barkartenecke() {
 		setLayout(new GridLayout(7,3));
 		for(int i=0;i<21;i++) {
-			Barzelle bz = new Barzelle(i);
+			Barzelle bz = new Barzelle(barpunkte[i]);
 			bz.setOpaque(true);
+			bz.zelltext();
 			bz.addMouseListener(new MouseAdapter() {
             	@Override
             	public void mouseClicked(MouseEvent e) {
@@ -29,9 +30,5 @@ public class Barkartenecke extends JPanel {
 
 	public static Barzelle getBarzellen(int num) {
 		return barzellen.get(num);
-	}
-
-	public static int getBarpunkte(int n) {
-		return barpunkte[n];
 	}
 }
