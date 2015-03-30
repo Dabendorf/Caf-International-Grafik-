@@ -46,6 +46,7 @@ public class Spielzuege {
 		} else {
 			//anderer Spieler
 		}
+		handkartendemarkieren();
 	}
 	
 	protected void punktzahl(int addition) {
@@ -66,6 +67,11 @@ public class Spielzuege {
 		} else {
 			CafeMain.setSpieler(0);
 		}
+		handkartendemarkieren();
+	}
+	
+	protected void handkartendemarkieren() {
+		Spielkartenecke.setAkthandkartnum(-1);
 		for(int i=0;i<5;i++) {
 			Spielkartenecke.getHandkarte(i).setBorder(BorderFactory.createLineBorder(Color.black));
 			Spielkartenecke.getHandkarte(i).repaint();

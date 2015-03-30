@@ -66,7 +66,9 @@ public class Spielfeld extends JPanel {
 			spielfeldzelle[stuhlkoordx[i]][stuhlkoordy[i]].addMouseListener(new MouseAdapter() {
             	@Override
 				public void mouseClicked(MouseEvent e) {
-            		new Spielzuege().legegastkarte(Spielkartenecke.getAkthandkartnum(),j);
+            		if(Spielkartenecke.getAkthandkartnum()!=-1) {
+            			new Spielzuege().legegastkarte(Spielkartenecke.getAkthandkartnum(),j);
+            		}
             	}
             });
 		}

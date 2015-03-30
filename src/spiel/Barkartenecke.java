@@ -20,7 +20,9 @@ public class Barkartenecke extends JPanel {
 			bz.addMouseListener(new MouseAdapter() {
             	@Override
 				public void mouseClicked(MouseEvent e) {
-            		new Spielzuege().legebarkarte(Spielkartenecke.getAkthandkartnum());
+            		if(Spielkartenecke.getAkthandkartnum()!=-1) {
+            			new Spielzuege().legebarkarte(Spielkartenecke.getAkthandkartnum());
+            		}
             	}
             });
 			barzellen.add(bz);

@@ -2,7 +2,7 @@ package spiel;
 
 public class Tisch {
 	
-	private Laenderkarte laenderkarte; //Tisch leeren
+	private Laenderkarte laenderkarte; //Tisch leeren -> Erst feststellen, dann leeren, für Fehlervermeidung und PktBerechnung bei mehreren Tischen
     private Stuhl[] stuehle;
 	private Spielzelle sz;
     
@@ -12,7 +12,9 @@ public class Tisch {
 	
 	protected void setLaenderkarte(Laenderkarte laenderkarte) {
 		this.laenderkarte = laenderkarte;
-		this.sz.repaint();
+		if(sz!=null) {
+			this.sz.repaint();
+		}
 	}
 	
 	protected Stuhl[] getStuehle() {

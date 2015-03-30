@@ -67,9 +67,9 @@ public class Stuhl {
 					}
 				}
 			}
-			if((gasttemp.getGeschlecht().equals(Geschlecht.Mann)) && (mann > frau+1)) {
+			if((gasttemp.getGeschlecht().equals(Geschlecht.Mann)) && (mann > frau)) {
 				korr = false;
-			} else if((gasttemp.getGeschlecht().equals(Geschlecht.Frau)) && (frau+1 > mann)) {
+			} else if((gasttemp.getGeschlecht().equals(Geschlecht.Frau)) && (frau > mann)) {
 				korr = false;
 			}
 		}

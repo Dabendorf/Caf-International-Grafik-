@@ -12,7 +12,7 @@ import spiel.Kartenstapel.Typ;
 
 public class Spielkartenecke extends JPanel {
 	private static Kartenstapel handkarten[] = new Kartenstapel[5]; //WICHTIGE INFORMATION: Die Anzahl der Restkarten muss festgehalten werden.
-	private static int akthandkartnum;
+	private static int akthandkartnum = -1;
 
 	protected Spielkartenecke() {
 		setLayout(new GridLayout(5,2));
@@ -53,6 +53,7 @@ public class Spielkartenecke extends JPanel {
 		if(handkarten[num].isGeklickt()) {
 			handkarten[num].setBorder(BorderFactory.createLineBorder(Color.black, 2));
 			handkarten[num].setGeklickt(false);
+			akthandkartnum = -1;
 		} else {
 			handkarten[num].setBorder(BorderFactory.createLineBorder(Color.red, 2));
 			handkarten[num].setGeklickt(true);
@@ -76,5 +77,9 @@ public class Spielkartenecke extends JPanel {
 
 	protected static int getAkthandkartnum() {
 		return akthandkartnum;
+	}
+
+	public static void setAkthandkartnum(int akthandkartnum) {
+		Spielkartenecke.akthandkartnum = akthandkartnum;
 	}
 }
