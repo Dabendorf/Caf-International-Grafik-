@@ -1,20 +1,37 @@
 package spiel;
 
+import spiel.Gastkarte.Geschlecht;
+import spiel.Gastkarte.Land;
+
 public class Stuhl {
 
 	private Gastkarte gast;
     private Tisch[] tische;
     private Spielzelle sz;
     
-	public Gastkarte getGast() {
+	protected Gastkarte getGast() {
 		return gast;
 	}
 	
-	public void setGast(Gastkarte gast) {
-		this.gast = gast;
+	protected void setGast(Gastkarte gasttemp) {
+		Meldungen msgbox = new Meldungen();
+		if(!gastLandKorrekt(gasttemp)) {
+			Spielfeld.getMeldungsbox().setText(msgbox.gastlandfalsch);
+		} else if(!gastGeschlechtKorrekt(gasttemp)) {
+			if(gasttemp.getGeschlecht().equals(Geschlecht.Mann)) {
+				Spielfeld.getMeldungsbox().setText(msgbox.gastzuvielemaenner);
+			} else {
+				Spielfeld.getMeldungsbox().setText(msgbox.gastzuvielefrauen);
+			}
+		} else if(!gastPartnerKorrekt(gasttemp)) {
+			Spielfeld.getMeldungsbox().setText(msgbox.gastpartnerfalsch);
+		} else {
+			this.gast = gasttemp;
+			this.sz.repaint();
+		}
 	}
 	
-	public void setTische(int...tischeNr) {
+	protected void setTische(int...tischeNr) {
 		Tisch[] tischetemp = new Tisch[tischeNr.length];
 		int i=0;
 		for(int tischNr : tischeNr) {
@@ -23,8 +40,44 @@ public class Stuhl {
 		this.tische = tischetemp;
 	}
 
-	public void setSpielzelle(Spielzelle sz) {
+	protected void setSpielzelle(Spielzelle sz) {
 		this.sz = sz;
+	}
+	
+	private boolean gastLandKorrekt(Gastkarte gasttemp) {
+		boolean korr = false;
+		for(Tisch tisch:this.tische) {
+			if(tisch.getLaenderkarte().getLand().equals(gasttemp.getLand()) || gasttemp.getLand().equals(Land.JOKER)) {
+				korr = true;
+			}
+		}
+		return korr;
+	}
+	
+	private boolean gastGeschlechtKorrekt(Gastkarte gasttemp) {
+		boolean korr = true;
+		for(Tisch tisch:this.tische) {
+			int mann=0, frau=0;
+			for(Stuhl stuhl:tisch.getStuehle()) {
+				if(stuhl.getGast()!=null) {
+					if(stuhl.getGast().getGeschlecht().equals(Geschlecht.Mann)) {
+						mann++;
+					} else {
+						frau++;
+					}
+				}
+			}
+			if((gasttemp.getGeschlecht().equals(Geschlecht.Mann)) && (mann > frau+1)) {
+				korr = false;
+			} else if((gasttemp.getGeschlecht().equals(Geschlecht.Frau)) && (frau+1 > mann)) {
+				korr = false;
+			}
+		}
+		return korr;
+	}
+	
+	private boolean gastPartnerKorrekt(Gastkarte gasttemp) {
+		return true;
 	}
 
 }
