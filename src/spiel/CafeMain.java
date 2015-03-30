@@ -40,7 +40,7 @@ public class CafeMain {
     private static Map<String, BufferedImage> tischcache = new TreeMap<>();
     private static Map<String, BufferedImage> stuhlcache = new TreeMap<>();
    
-	public CafeMain() throws IOException {
+	protected CafeMain() throws IOException {
         spielframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         spielframe.setPreferredSize(new Dimension(1400,800));
         spielframe.setMinimumSize(new Dimension(1050,600));
@@ -83,79 +83,79 @@ public class CafeMain {
         new CafeMain();
     }
 
-	public static int getSpieler() {
+	protected static int getSpieler() {
 		return spieler;
 	}
 
-	public static void setSpieler(int spieler) {
+	protected static void setSpieler(int spieler) {
 		CafeMain.spieler = spieler;
 	}
 
-	public static String getSpielername(int index) {
+	protected static String getSpielername(int index) {
 		return spielername[index];
 	}
 
-	public static void setSpielername(int index, String spielername) {
+	protected static void setSpielername(int index, String spielername) {
 		CafeMain.spielername[index] = spielername;
 	}
 
-	public static int getPunktespieler(int index) {
+	protected static int getPunktespieler(int index) {
 		return punktespieler[index];
 	}
 
-	public static void setPunktespieler(int index, int punktespieler) {
+	protected static void setPunktespieler(int index, int punktespieler) {
 		CafeMain.punktespieler[index] = punktespieler;
 	}
 
-	public static Tisch getTisch(int index) {
+	protected static Tisch getTisch(int index) {
 		return tische.get(index);
 	}
 
-	public static List<Tisch> getTische() {
+	protected static List<Tisch> getTische() {
 		return tische;
 	}
 
-	public static void setTische(List<Tisch> tische) {
+	protected static void setTische(List<Tisch> tische) {
 		CafeMain.tische = tische;
 	}
 	
-	public static Stuhl getStuhl(int index) {
+	protected static Stuhl getStuhl(int index) {
 		return stuehle.get(index);
 	}
 
-	public static List<Stuhl> getStuehle() {
+	protected static List<Stuhl> getStuehle() {
 		return stuehle;
 	}
 
-	public static void setStuehle(List<Stuhl> stuehle) {
+	protected static void setStuehle(List<Stuhl> stuehle) {
 		CafeMain.stuehle = stuehle;
 	}
 
-	public static List<Gastkarte> getKartenspieler0() {
+	protected static List<Gastkarte> getKartenspieler0() {
 		return kartenspieler0;
 	}
 
-	public static List<Gastkarte> getKartenspieler1() {
+	protected static List<Gastkarte> getKartenspieler1() {
 		return kartenspieler1;
 	}
 
-	public static List<Gastkarte> getGastkarten() {
+	protected static List<Gastkarte> getGastkarten() {
 		return gastkarten;
 	}
 
-	public static List<Laenderkarte> getLaenderkarten() {
+	protected static List<Laenderkarte> getLaenderkarten() {
 		return laenderkarten;
 	}
 
-	public static List<Gastkarte> getBarkarten() {
+	protected static List<Gastkarte> getBarkarten() {
 		return barkarten;
 	}
 	
-	public static Map<String, BufferedImage> getTischcache() {
+	protected static Map<String, BufferedImage> getTischcache() {
 		return tischcache;
 	}
 
-	public static Map<String, BufferedImage> getStuhlcache() {
+	protected static Map<String, BufferedImage> getStuhlcache() {
 		return stuhlcache;
 	}
 }

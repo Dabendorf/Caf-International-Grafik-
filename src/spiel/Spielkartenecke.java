@@ -14,7 +14,7 @@ public class Spielkartenecke extends JPanel {
 	private static Kartenstapel handkarten[] = new Kartenstapel[5]; //WICHTIGE INFORMATION: Die Anzahl der Restkarten muss festgehalten werden.
 	private static int akthandkartnum;
 
-	public Spielkartenecke() {
+	protected Spielkartenecke() {
 		setLayout(new GridLayout(5,2));
 		for(int i=0;i<10;i++) {
 			if(i%2==0) {
@@ -66,15 +66,15 @@ public class Spielkartenecke extends JPanel {
 		}
 	}
 	
-	public static Kartenstapel getHandkarte(int n) {
+	protected static Kartenstapel getHandkarte(int n) {
 		return handkarten[n];
 	}
 
-	public void setHandkarten(Kartenstapel[] handkarten) {
+	protected void setHandkarten(Kartenstapel[] handkarten) {
 		Spielkartenecke.handkarten = handkarten;
 	}
 
-	public static int getAkthandkartnum() {
+	protected static int getAkthandkartnum() {
 		return akthandkartnum;
 	}
 }

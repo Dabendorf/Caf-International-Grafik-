@@ -10,7 +10,7 @@ public class Informationszelle extends JPanel {
 	
 	private int spieler;
 	
-	public Informationszelle(int spielernum) {
+	protected Informationszelle(int spielernum) {
 		this.spieler = spielernum;
 	}
 	

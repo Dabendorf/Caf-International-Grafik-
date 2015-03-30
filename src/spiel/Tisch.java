@@ -2,19 +2,24 @@ package spiel;
 
 public class Tisch {
 	
-	private Laenderkarte land;
+	private Laenderkarte laenderkarte; //Tisch leeren
     private Stuhl[] stuehle;
-    private Spielzelle sz;
+	private Spielzelle sz;
     
-	public Laenderkarte getLand() {
-		return land;
+	protected Laenderkarte getLaenderkarte() {
+		return laenderkarte;
 	}
 	
-	public void setLand(Laenderkarte land) {
-		this.land = land;
+	protected void setLaenderkarte(Laenderkarte laenderkarte) {
+		this.laenderkarte = laenderkarte;
+		this.sz.repaint();
 	}
 	
-	public void setStuehle(int...stuehleNr) {
+	protected Stuhl[] getStuehle() {
+		return stuehle;
+	}
+	
+	protected void setStuehle(int...stuehleNr) {
 		Stuhl[] stuehletemp = new Stuhl[stuehleNr.length];
 		int i=0;
 		for(int stuhlNr : stuehleNr) {
@@ -23,7 +28,7 @@ public class Tisch {
 		this.stuehle = stuehletemp;
 	}
 
-	public void setSpielzelle(Spielzelle sz) {
+	protected void setSpielzelle(Spielzelle sz) {
 		this.sz = sz;
 	}
 

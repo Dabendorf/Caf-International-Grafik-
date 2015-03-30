@@ -21,7 +21,7 @@ public final class BaseURL {
      * @return Archiv Basis-URL
      * @throws NullPointerException falls "clazz" null ist.
      */
-    public static URL getJarBase(Class<?> clazz) {
+    protected static URL getJarBase(Class<?> clazz) {
         URL rc = clazz.getResource(clazz.getSimpleName() + CONCAT);
         String name = clazz.getName().replace('.', '/').concat(CONCAT);
         name = rc.toString().replace(name, "");
@@ -43,7 +43,7 @@ public final class BaseURL {
      * @return Archiv-URL
      * @throws NullPointerException falls "clazz" null ist.
      */
-    public static URL getCodeBase(Class<?> clazz) {
+    protected static URL getCodeBase(Class<?> clazz) {
         URL rc = getJarBase(clazz);
         if (rc.getProtocol().equals("jar")) {
             String name = rc.toString();
@@ -65,7 +65,7 @@ public final class BaseURL {
      * als URL zurueck.
      * @return URL Arbeitsverzeichnis
      */
-    public static URL getDocumentBase() {
+    protected static URL getDocumentBase() {
         try {
             String rc = getWorkingDir().toURI().toURL().toString();
             return new URL(null, rc.substring(0, rc.length() - 2));
@@ -80,7 +80,7 @@ public final class BaseURL {
      * zurueck.
      * @return File Arbeitsverzeichnis
      */
-    public static File getWorkingDir() {
+    protected static File getWorkingDir() {
         return getAbsoluteFile(CURRENT);
     }
  
@@ -93,7 +93,7 @@ public final class BaseURL {
      * @param f
      * @return
      */
-    public static File getAbsoluteFile(File f) {
+    protected static File getAbsoluteFile(File f) {
         try {
             f = f.getCanonicalFile();
         } catch (IOException e) {
@@ -107,7 +107,7 @@ public final class BaseURL {
      * @param u
      * @return File Zielverzeichnis einer File-URL
      */
-    public static File URLtoFile(URL u) {
+    protected static File URLtoFile(URL u) {
         if(!"file".equalsIgnoreCase(u.getProtocol())) {
             throw new IllegalArgumentException("protocol is not 'file'");
         }

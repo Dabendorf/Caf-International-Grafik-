@@ -4,7 +4,7 @@ import java.awt.GridBagConstraints;
 
 public class GridBagFelder extends GridBagConstraints {
 	
-	public GridBagFelder(int x, int y, int width, int height, double weightX, double weightY) {
+	protected GridBagFelder(int x, int y, int width, int height, double weightX, double weightY) {
 		this.fill = GridBagConstraints.BOTH;
 	    this.gridx = x;
 	    this.gridy = y;

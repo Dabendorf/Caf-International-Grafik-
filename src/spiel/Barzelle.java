@@ -19,7 +19,7 @@ public class Barzelle extends JPanel {
 	private Font font = new Font("Arial", Font.BOLD,16);
 	private FontMetrics fm;
 	
-	public Barzelle(int punkte) {
+	protected Barzelle(int punkte) {
 		this.punkte = punkte;
 	}
 
@@ -47,20 +47,20 @@ public class Barzelle extends JPanel {
 		}
 	}
 	
-	public void zelltext() {
+	protected void zelltext() {
 		this.setBackground(new Color(0x20324F));
 		this.setBorder(BorderFactory.createLineBorder(Color.black));
 		num = Integer.toString(punkte);
 	}
 	
-	public void setGast(Gastkarte gast) {
+	protected void setGast(Gastkarte gast) {
 		this.gast = gast;
 		if(gast!=null) {
 			loadImage();
 		}
 	}
 	
-	public int getPunkte() {
+	protected int getPunkte() {
 		return punkte;
 	}
 	

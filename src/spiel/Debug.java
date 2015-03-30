@@ -14,12 +14,12 @@ import java.util.Properties;
  */
 public class Debug {
 	
-	public static long zeitnehmen() {
+	protected static long zeitnehmen() {
 		long zeit = System.currentTimeMillis();
 		return zeit;
 	}
 	
-	public static void laufzeitschreiben(long zeit) throws IOException {
+	protected static void laufzeitschreiben(long zeit) throws IOException {
         try {
             FileReader fr = new FileReader("laufzeit.txt");
             Properties prop = new Properties();

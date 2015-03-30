@@ -15,7 +15,7 @@ import spiel.Gastkarte.Land;
 
 public class Spielstart {
 
-	public void namensfrage() {
+	protected void namensfrage() {
 		Meldungen msgbox = new Meldungen();
 		
 		JTextField spielername00 = new JTextField(new Feldbegrenzung(12), "", 0);
@@ -37,7 +37,7 @@ public class Spielstart {
 	    }
 	}
 	
-	public void gastkartenmischen() {
+	protected void gastkartenmischen() {
 		for(int j=0;j<2;j++){
 	    	for(Land land : Land.values()) {
 	            int anzahl = 2;
@@ -61,7 +61,7 @@ public class Spielstart {
 	    }
 	}
 	
-	public void laenderkartenmischen() {
+	protected void laenderkartenmischen() {
 		for(int n=0;n<2;n++) {
 			 for(Land land : Land.values()) {
 				 if(land != Land.JOKER) {
@@ -72,7 +72,7 @@ public class Spielstart {
 		Collections.shuffle(CafeMain.getLaenderkarten());
 	}
 	
-	public void bilderladen() {
+	protected void bilderladen() {
     	String key = null;
     	BufferedImage bitisch = null;
 		BufferedImage bistuhl = null;
@@ -136,17 +136,17 @@ public class Spielstart {
         } catch (MalformedURLException e) {} catch (IOException e) {}
     }
 	
-	public void spielfeldgenerieren() {
+	protected void spielfeldgenerieren() {
 		for(int n=0;n<12;n++) {
 			CafeMain.getTische().add(new Tisch());
-			Spielzuege.legetischkarte(n);
+			new Spielzuege().legetischkarte(n);
 		}
 		for(int n=0;n<24;n++) {
 			CafeMain.getStuehle().add(new Stuhl());
 		}
 	}
 	
-	public void zellelementzuordnung() {
+	protected void zellelementzuordnung() {
 		for(int n=0;n<Spielfeld.getSpielfeldtisch().size();n++) {
 			Spielfeld.getSpielfeldtisch().get(n).setTisch(CafeMain.getTisch(n));
 			CafeMain.getTisch(n).setSpielzelle(Spielfeld.getSpielfeldtisch().get(n));
@@ -157,7 +157,7 @@ public class Spielstart {
 		}
 	}
 	
-	public void tischstuhlzuordnung() {
+	protected void tischstuhlzuordnung() {
 		CafeMain.getTisch(0).setStuehle(11,12,13,0);
 		CafeMain.getTisch(1).setStuehle(1,2,12,13);
 		CafeMain.getTisch(2).setStuehle(2,3,13,14);
@@ -196,7 +196,7 @@ public class Spielstart {
 		CafeMain.getStuhl(23).setTische(10);
 	}
 	
-	public boolean SysWin() {
+	protected boolean SysWin() {
         return (System.getProperty("os.name").toLowerCase().indexOf("win") >= 0);
     }
 

@@ -12,7 +12,7 @@ public class Uebersichtsecke extends JPanel {
 	private Kartenstapel handkarten[][] = new Kartenstapel[2][5];
 	private static Informationszelle[] infz = new Informationszelle[2];
 	
-	public Uebersichtsecke() {
+	protected Uebersichtsecke() {
 		setLayout(new GridLayout(6,2));
 		for(int i=0;i<2;i++) {
 			infz[i] = new Informationszelle(i);
@@ -39,7 +39,7 @@ public class Uebersichtsecke extends JPanel {
 		}
 	}
 
-	public static Informationszelle getInfz(int num) {
+	protected static Informationszelle getInfz(int num) {
 		return infz[num];
 	}
 }

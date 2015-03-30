@@ -11,7 +11,7 @@ public class Barkartenecke extends JPanel {
 	private static ArrayList<Barzelle> barzellen = new ArrayList<Barzelle>(21);
 	private static int barpunkte[] = {1,2,3,4,5,-2,-4,-6,-8,-10,-4,-6,-8,-10,-12,-6,-8,-10,-12,-14,-16};
 	
-	public Barkartenecke() {
+	protected Barkartenecke() {
 		setLayout(new GridLayout(7,3));
 		for(int i=0;i<21;i++) {
 			Barzelle bz = new Barzelle(barpunkte[i]);
@@ -19,8 +19,8 @@ public class Barkartenecke extends JPanel {
 			bz.zelltext();
 			bz.addMouseListener(new MouseAdapter() {
             	@Override
-            	public void mouseClicked(MouseEvent e) {
-            		Spielzuege.legebarkarte(Spielkartenecke.getAkthandkartnum());
+				public void mouseClicked(MouseEvent e) {
+            		new Spielzuege().legebarkarte(Spielkartenecke.getAkthandkartnum());
             	}
             });
 			barzellen.add(bz);
@@ -28,7 +28,7 @@ public class Barkartenecke extends JPanel {
 		}
 	}
 
-	public static Barzelle getBarzellen(int num) {
+	protected static Barzelle getBarzellen(int num) {
 		return barzellen.get(num);
 	}
 }

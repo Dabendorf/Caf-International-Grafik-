@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 
 public class Spielzelle extends JPanel {
 	
-	public enum Typ {Leer, Stuhl, Tisch};
+	protected enum Typ {Leer, Stuhl, Tisch};
 
 	private Typ t;
 	private BufferedImage i;
@@ -16,7 +16,7 @@ public class Spielzelle extends JPanel {
 	private Tisch ti;
 	private String key;
 	 
-	public Spielzelle(Typ t) {
+	protected Spielzelle(Typ t) {
 	    setTyp(t);
 	}
 
@@ -35,8 +35,8 @@ public class Spielzelle extends JPanel {
 				key = "./stuhl_leer.png";
 			}
 		} else if(t.equals(Typ.Tisch)) {
-			if(this.getTisch().getLand()!=null) {
-				key = "./tisch_"+this.getTisch().getLand()+".png";
+			if(this.getTisch().getLaenderkarte()!=null) {
+				key = "./tisch_"+this.getTisch().getLaenderkarte()+".png";
 			} else {
 				key = "./tisch_leer.png";
 			}
@@ -50,30 +50,30 @@ public class Spielzelle extends JPanel {
 		}
     }
 	
-	public Typ getTyp() {
+	protected Typ getTyp() {
 	    return t;
 	}
 	 
-	public void setTyp(Typ t) {
+	protected void setTyp(Typ t) {
 	    if(t != this.t) {
 	    	i = null;
 	    }
 	    this.t = t;
 	}
 	 
-	public Stuhl getStuhl() {
+	protected Stuhl getStuhl() {
 		return st;
 	}
 
-	public void setStuhl(Stuhl st) {
+	protected void setStuhl(Stuhl st) {
 		this.st = st;
 	}
 
-	public Tisch getTisch() {
+	protected Tisch getTisch() {
 		return ti;
 	}
 
-	public void setTisch(Tisch ti) {
+	protected void setTisch(Tisch ti) {
 		this.ti = ti;
 	}
 }

@@ -6,12 +6,12 @@ import javax.swing.BorderFactory;
 
 public class Spielzuege {
 	
-	public static void legetischkarte(int tischnr) {
-		CafeMain.getTisch(tischnr).setLand(CafeMain.getLaenderkarten().get(0));
+	protected void legetischkarte(int tischnr) {
+		CafeMain.getTisch(tischnr).setLaenderkarte(CafeMain.getLaenderkarten().get(0));
 		CafeMain.getLaenderkarten().remove(0);
 	}
 	
-	public static void legebarkarte(int handkartennum) {
+	protected void legebarkarte(int handkartennum) {
 		int barnum = CafeMain.getBarkarten().size();
 		if(CafeMain.getSpieler() == 0) {
 			CafeMain.getBarkarten().add(CafeMain.getKartenspieler0().get(handkartennum));
@@ -37,13 +37,18 @@ public class Spielzuege {
 		thread.start();
 		new Spielende().barvoll();
 		spielerwechsel();
-		for(int i=0;i<5;i++) {
-			Spielkartenecke.getHandkarte(i).setBorder(BorderFactory.createLineBorder(Color.black));
-			Spielkartenecke.getHandkarte(i).repaint();
+	}
+
+	protected void legegastkarte(int handkartennum,int stuhlNr) {
+		if(CafeMain.getSpieler() == 0) {
+			CafeMain.getStuehle().get(stuhlNr).setGast(CafeMain.getKartenspieler0().get(handkartennum));
+			//Punktzahl und Neuekartenziehen
+		} else {
+			//anderer Spieler
 		}
 	}
 	
-	public static void punktzahl(int addition) {
+	protected void punktzahl(int addition) {
 		if(CafeMain.getSpieler() == 0) {
 			int neupktz = CafeMain.getPunktespieler(0) + addition;
 			CafeMain.setPunktespieler(0, neupktz);
@@ -55,11 +60,15 @@ public class Spielzuege {
 		}
 	}
 	
-	public static void spielerwechsel() {
+	protected void spielerwechsel() {
 		if(CafeMain.getSpieler() == 0) {
 			CafeMain.setSpieler(1);
 		} else {
 			CafeMain.setSpieler(0);
+		}
+		for(int i=0;i<5;i++) {
+			Spielkartenecke.getHandkarte(i).setBorder(BorderFactory.createLineBorder(Color.black));
+			Spielkartenecke.getHandkarte(i).repaint();
 		}
 	}
 

@@ -13,7 +13,7 @@ import javax.swing.text.PlainDocument;
 public class Feldbegrenzung extends PlainDocument {
 	private int maxlaenge;
 	
-	public Feldbegrenzung(int maxlaenge) {
+	protected Feldbegrenzung(int maxlaenge) {
 		this.maxlaenge = maxlaenge;
 	}
 	

@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 
 public class Kartenstapel extends JPanel {
 
-	public enum Typ {Leer, Gaeste, Tische, Handkarte, HandkarteInfo};
+	protected enum Typ {Leer, Gaeste, Tische, Handkarte, HandkarteInfo};
 	
 	private Typ t;
 	private BufferedImage i;
@@ -16,7 +16,7 @@ public class Kartenstapel extends JPanel {
 	private String key;
 	private boolean geklickt = false;
 	
-	public Kartenstapel(Typ t) {
+	protected Kartenstapel(Typ t) {
 		setTyp(t);
 	}
 	
@@ -58,39 +58,39 @@ public class Kartenstapel extends JPanel {
 		}
 	}
 	
-	public Typ getTyp() {
+	protected Typ getTyp() {
 		return t;
 	}
 
-	public void setTyp(Typ t) {
+	protected void setTyp(Typ t) {
 		this.t = t;
 	}
 
-	public BufferedImage getI() {
+	protected BufferedImage getI() {
 		return i;
 	}
 
-	public void setI(BufferedImage i) {
+	protected void setI(BufferedImage i) {
 		this.i = i;
 	}
 	
-	public int getHandkartnum() {
+	protected int getHandkartnum() {
 		return handkartnum;
 	}
 	
-	public void setHandkartnum(int handkartnum) {
+	protected void setHandkartnum(int handkartnum) {
 		this.handkartnum = handkartnum;
 	}
 	
-	public void setSpieler(int spieler) {
+	protected void setSpieler(int spieler) {
 		this.spieler = spieler;
 	}
 	
-	public boolean isGeklickt() {
+	protected boolean isGeklickt() {
 		return geklickt;
 	}
 
-	public void setGeklickt(boolean geklickt) {
+	protected void setGeklickt(boolean geklickt) {
 		this.geklickt = geklickt;
 	}
 

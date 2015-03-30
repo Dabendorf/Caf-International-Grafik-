@@ -3,6 +3,8 @@ package spiel;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.JLabel;
@@ -17,7 +19,7 @@ public class Spielfeld extends JPanel {
 	private static ArrayList<Spielzelle> spielfeldstuhl = new ArrayList<Spielzelle>(24);
 	private int aktstuhlnummer;
 
-	public Spielfeld() {
+	protected Spielfeld() {
 		setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.weightx = 1.0;
@@ -58,8 +60,15 @@ public class Spielfeld extends JPanel {
 		int[] stuhlkoordx = {4,5,6,7,8,7,6,5,4,3,2,3,4,5,6,9,8,7,6,5,4,3,2,1};
 		int[] stuhlkoordy = {4,1,2,3,4,5,6,7,6,5,4,3,2,3,4,5,6,7,8,9,8,7,6,5};
 		for(int i=0;i<24;i++) {
+			final int j = i;
 			spielfeldstuhl.add(spielfeldzelle[stuhlkoordx[i]][stuhlkoordy[i]]);
 			spielfeldzelle[stuhlkoordx[i]][stuhlkoordy[i]].setTyp(Spielzelle.Typ.Stuhl);
+			spielfeldzelle[stuhlkoordx[i]][stuhlkoordy[i]].addMouseListener(new MouseAdapter() {
+            	@Override
+				public void mouseClicked(MouseEvent e) {
+            		new Spielzuege().legegastkarte(Spielkartenecke.getAkthandkartnum(),j);
+            	}
+            });
 		}
         
 		Spielstart spst = new Spielstart();
@@ -70,31 +79,31 @@ public class Spielfeld extends JPanel {
 		spst.zellelementzuordnung();
 	}
 	
-	public static ArrayList<Spielzelle> getSpielfeldtisch() {
+	protected static ArrayList<Spielzelle> getSpielfeldtisch() {
 		return spielfeldtisch;
 	}
 
-	public static void setSpielfeldtisch(ArrayList<Spielzelle> spielfeldtisch) {
+	protected static void setSpielfeldtisch(ArrayList<Spielzelle> spielfeldtisch) {
 		Spielfeld.spielfeldtisch = spielfeldtisch;
 	}
 
-	public static ArrayList<Spielzelle> getSpielfeldstuhl() {
+	protected static ArrayList<Spielzelle> getSpielfeldstuhl() {
 		return spielfeldstuhl;
 	}
 
-	public static void setSpielfeldstuhl(ArrayList<Spielzelle> spielfeldstuhl) {
+	protected static void setSpielfeldstuhl(ArrayList<Spielzelle> spielfeldstuhl) {
 		Spielfeld.spielfeldstuhl = spielfeldstuhl;
 	}
 	
-	public int getAktstuhlnummer() {
+	protected int getAktstuhlnummer() {
 		return aktstuhlnummer;
 	}
 
-	public void setAktstuhlnummer(int aktstuhlnummer) {
+	protected void setAktstuhlnummer(int aktstuhlnummer) {
 		this.aktstuhlnummer = aktstuhlnummer;
 	}
 	
-	public static JLabel getMeldungsbox() {
+	protected static JLabel getMeldungsbox() {
 		return meldungsbox;
 	}
 }
