@@ -33,15 +33,15 @@ public class Meldungen {
 	
 	protected String siegermeldung(int ergebnis) {
 		if(ergebnis == 0) {
-			return CafeMain.getSpielername(0)+" gewinnt die Partie hochverdient!\nEr gewinnt mit "+CafeMain.getPunktespieler(0)+" zu "+CafeMain.getPunktespieler(1)+" Punkten.\nHerzlichen Glückwunsch.";
+			return CafeMain.getSpieler(0).getName()+" gewinnt die Partie hochverdient!\nEr gewinnt mit "+CafeMain.getPunktespieler(0)+" zu "+CafeMain.getPunktespieler(1)+" Punkten.\nHerzlichen Glückwunsch.";
 		} else if(ergebnis == 1) {
-			return CafeMain.getSpielername(0)+" gewinnt die Partie mit knappem Vorsprung!\nEr gewinnt mit "+CafeMain.getPunktespieler(0)+" zu "+CafeMain.getPunktespieler(1)+" Punkten.\nHerzlichen Glückwunsch.";
+			return CafeMain.getSpieler(0).getName()+" gewinnt die Partie mit knappem Vorsprung!\nEr gewinnt mit "+CafeMain.getPunktespieler(0)+" zu "+CafeMain.getPunktespieler(1)+" Punkten.\nHerzlichen Glückwunsch.";
 		} else if(ergebnis == 2) {
 			return "Diese Partie endet Unentschieden.\nBeide Spieler erreichten eine Punktzahl von "+CafeMain.getPunktespieler(0)+" Punkten.";
 		} else if(ergebnis == 3) {
-			return CafeMain.getSpielername(1)+" gewinnt die Partie mit knappem Vorsprung!\nEr gewinnt mit "+CafeMain.getPunktespieler(1)+" zu "+CafeMain.getPunktespieler(0)+" Punkten.\nHerzlichen Glückwunsch.";
+			return CafeMain.getSpieler(1).getName()+" gewinnt die Partie mit knappem Vorsprung!\nEr gewinnt mit "+CafeMain.getPunktespieler(1)+" zu "+CafeMain.getPunktespieler(0)+" Punkten.\nHerzlichen Glückwunsch.";
 		} else {
-			return CafeMain.getSpielername(1)+" gewinnt die Partie hochverdient!\nEr gewinnt mit "+CafeMain.getPunktespieler(1)+" zu "+CafeMain.getPunktespieler(0)+" Punkten.\nHerzlichen Glückwunsch.";
+			return CafeMain.getSpieler(1).getName()+" gewinnt die Partie hochverdient!\nEr gewinnt mit "+CafeMain.getPunktespieler(1)+" zu "+CafeMain.getPunktespieler(0)+" Punkten.\nHerzlichen Glückwunsch.";
 		}
 	}
 

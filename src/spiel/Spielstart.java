@@ -25,13 +25,13 @@ public class Spielstart {
 	    JOptionPane pane = new JOptionPane(namensfrage, JOptionPane.PLAIN_MESSAGE, JOptionPane.DEFAULT_OPTION);
 	    pane.createDialog(null, msgbox.fragespielername).setVisible(true);
 	    
-	    CafeMain.setSpielername(0, spielername00.getText());
-	    CafeMain.setSpielername(1, spielername01.getText());
+	    CafeMain.getSpieler(0).setName(spielername00.getText());
+	    CafeMain.getSpieler(1).setName(spielername01.getText());
 	    
-	    if(CafeMain.getSpielername(0).equals("") || CafeMain.getSpielername(1).equals("")) {
+	    if(CafeMain.getSpieler(0).getName().equals("") || CafeMain.getSpieler(1).getName().equals("")) {
 	    	JOptionPane.showMessageDialog(null, msgbox.spielernamevergessen, msgbox.titelunvollstaendig, JOptionPane.ERROR_MESSAGE);
 	    	namensfrage();
-	    } else if(CafeMain.getSpielername(0).equalsIgnoreCase(CafeMain.getSpielername(1))) {
+	    } else if(CafeMain.getSpieler(0).getName().equalsIgnoreCase(CafeMain.getSpieler(1).getName())) {
 	    	JOptionPane.showMessageDialog(null, msgbox.spielernamengleich, msgbox.titelnamensgleichheit, JOptionPane.ERROR_MESSAGE);
 	    	namensfrage();
 	    }

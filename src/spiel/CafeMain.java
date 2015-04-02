@@ -21,8 +21,8 @@ public class CafeMain {
     private JFrame spielframe = new JFrame(msgbox.programmname);
    
     // Spieler
-    private static int spieler = 0;
-    private static String[] spielername = new String[2];
+    private static int aktspieler = 0;
+    private static Spieler[] spieler = new Spieler[2];
     private static int[] punktespieler = new int[2];
     private static List<Gastkarte> kartenspieler0 = new ArrayList<Gastkarte>();
     private static List<Gastkarte> kartenspieler1 = new ArrayList<Gastkarte>();
@@ -60,17 +60,20 @@ public class CafeMain {
         spielframe.pack();
         spielframe.setLocationRelativeTo(null);
         
+        spieler[0] = new Spieler();
+        spieler[1] = new Spieler();
+        
         ablauf();
     }
-   
-    private void ablauf() throws IOException {
+
+	private void ablauf() throws IOException {
     	Spielstart spst = new Spielstart();
         if(spst.SysWin()) {
             msgbox.windows();
         }
-        //spst.namensfrage();
-        spielername[0] = "Lukas"; //Kurzweg
-        spielername[1] = "Malte"; //Kurzweg
+        spst.namensfrage();
+        //spieler[0].setName("Lukas"); //Kurzweg
+        //spieler[1].setName("Malte"); //Kurzweg
         long zeit1 = Debug.zeitnehmen(); //DEBUG
         spst.bilderladen();
         spielframe.setVisible(true);
@@ -83,20 +86,16 @@ public class CafeMain {
         new CafeMain();
     }
 
-	protected static int getSpieler() {
-		return spieler;
+	protected static int getAktSpieler() {
+		return aktspieler;
 	}
 
-	protected static void setSpieler(int spieler) {
-		CafeMain.spieler = spieler;
+	protected static void setAktSpieler(int aktspieler) {
+		CafeMain.aktspieler = aktspieler;
 	}
-
-	protected static String getSpielername(int index) {
-		return spielername[index];
-	}
-
-	protected static void setSpielername(int index, String spielername) {
-		CafeMain.spielername[index] = spielername;
+	
+	public static Spieler getSpieler(int num) {
+		return spieler[num];
 	}
 
 	protected static int getPunktespieler(int index) {

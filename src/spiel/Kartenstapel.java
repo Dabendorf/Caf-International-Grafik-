@@ -37,7 +37,7 @@ public class Kartenstapel extends JPanel {
 		} else if(this.t == Typ.Handkarte || this.t == Typ.HandkarteInfo) {
 			int spielertemp;
 			if(this.t == Typ.Handkarte) {
-				spielertemp = CafeMain.getSpieler();
+				spielertemp = CafeMain.getAktSpieler();
 			} else {
 				spielertemp = this.spieler;
 			}

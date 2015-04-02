@@ -13,7 +13,7 @@ public class Spielzuege {
 	
 	protected void legebarkarte(int handkartennum) {
 		int barnum = CafeMain.getBarkarten().size();
-		if(CafeMain.getSpieler() == 0) {
+		if(CafeMain.getAktSpieler() == 0) {
 			CafeMain.getBarkarten().add(CafeMain.getKartenspieler0().get(handkartennum));
 			Barkartenecke.getBarzellen(barnum).setGast(CafeMain.getKartenspieler0().get(handkartennum));
 			punktzahl(Barkartenecke.getBarzellen(barnum).getPunkte());
@@ -40,7 +40,7 @@ public class Spielzuege {
 	}
 
 	protected void legegastkarte(int handkartennum,int stuhlNr) {
-		if(CafeMain.getSpieler() == 0) {
+		if(CafeMain.getAktSpieler() == 0) {
 			CafeMain.getStuehle().get(stuhlNr).setGast(CafeMain.getKartenspieler0().get(handkartennum));
 			//Punktzahl und Neuekartenziehen
 		} else {
@@ -50,7 +50,7 @@ public class Spielzuege {
 	}
 	
 	protected void punktzahl(int addition) {
-		if(CafeMain.getSpieler() == 0) {
+		if(CafeMain.getAktSpieler() == 0) {
 			int neupktz = CafeMain.getPunktespieler(0) + addition;
 			CafeMain.setPunktespieler(0, neupktz);
 			Uebersichtsecke.getInfz(0).repaint();
@@ -62,10 +62,10 @@ public class Spielzuege {
 	}
 	
 	protected void spielerwechsel() {
-		if(CafeMain.getSpieler() == 0) {
-			CafeMain.setSpieler(1);
+		if(CafeMain.getAktSpieler() == 0) {
+			CafeMain.setAktSpieler(1);
 		} else {
-			CafeMain.setSpieler(0);
+			CafeMain.setAktSpieler(0);
 		}
 		handkartendemarkieren();
 	}
