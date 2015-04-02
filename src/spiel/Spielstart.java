@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Collections;
 
 import javax.imageio.ImageIO;
@@ -52,12 +53,20 @@ public class Spielstart {
 	        }
 	    }
 		Collections.shuffle(CafeMain.getGastkarten());
+
+		System.out.println("Spieler1: "+CafeMain.getSpieler(0));
+		System.out.println("Spieler1-Name: "+CafeMain.getSpieler(0).getName());
+		System.out.println("Spieler1-Punktzahl: "+CafeMain.getSpieler(0).getPunkte());
+		System.out.println("Spieler1-Handkarten: "+CafeMain.getSpieler(0).getHandkarten());
 		
 		for(int p=0;p<5;p++) {
-	    	CafeMain.getKartenspieler0().add(CafeMain.getGastkarten().get(0));
+			//LA KNACKPUNKT TRES IMPORTANT
+			CafeMain.getSpieler(0).getHandkarten().add(CafeMain.getGastkarten().get(0));
+			CafeMain.getSpieler(1).getHandkarten().add(CafeMain.getGastkarten().get(0));
+	    	/*CafeMain.getKartenspieler0().add(CafeMain.getGastkarten().get(0));
 	    	CafeMain.getKartenspieler1().add(CafeMain.getGastkarten().get(1));
 	    	CafeMain.getGastkarten().remove(0);
-	    	CafeMain.getGastkarten().remove(0);
+	    	CafeMain.getGastkarten().remove(0);*/
 	    }
 	}
 	

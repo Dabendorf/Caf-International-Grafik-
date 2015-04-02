@@ -19,20 +19,9 @@ public class Informationszelle extends JPanel {
 		Font font = new Font("Arial", Font.BOLD,16);
 		FontMetrics fm = gr.getFontMetrics(font);
 		
-		if(spieler == 0) {
-			String spnm = CafeMain.getSpieler(0).getName();
-			String pkt = Integer.toString(CafeMain.getSpieler(0).getPunkte());
-			String ges = spnm+"\n"+pkt;
-			gr.drawString(ges,this.getWidth()/2-fm.stringWidth(ges)/2,this.getHeight()/2);
-			//gr.drawString(spnm,this.getWidth()/2-fm.stringWidth(spnm)/2,this.getHeight()/2);
-			/*gr.drawString(pkt,this.getWidth()/2-fm.stringWidth(pkt)/2,this.getHeight()/2);*/
-		} else {
-			String spnm = CafeMain.getSpieler(1).getName();
-			String pkt = Integer.toString(CafeMain.getSpieler(1).getPunkte());
-			String ges = spnm+"\n"+pkt;
-			gr.drawString(ges,this.getWidth()/2-fm.stringWidth(ges)/2,this.getHeight()/2);
-			//gr.drawString(spnm,this.getWidth()/2-fm.stringWidth(spnm)/2,this.getHeight()/2);
-			/*gr.drawString(pkt,this.getWidth()/2-fm.stringWidth(pkt)/2,this.getHeight()/2);*/
-		}
+		String spnm = CafeMain.getSpieler(spieler).getName();
+		String pkt = Integer.toString(CafeMain.getSpieler(spieler).getPunkte());
+		String ges = spnm+"\n"+pkt;
+		gr.drawString(ges,this.getWidth()/2-fm.stringWidth(ges)/2,this.getHeight()/2);
 	}
 }

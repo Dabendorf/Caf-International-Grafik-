@@ -7,7 +7,7 @@ public class Spieler {
 	
 	private String name;
     private int punkte = 0;
-    private ArrayList<Gastkarte> handkarten = new ArrayList<Gastkarte>();
+    private List<Gastkarte> handkarten = new ArrayList<Gastkarte>();
 
 	public Spieler() {
 		
@@ -31,6 +31,10 @@ public class Spieler {
 
 	public List<Gastkarte> getHandkarten() {
 		return handkarten;
+	}
+
+	public void setHandkarten(ArrayList<Gastkarte> handkarten) {
+		this.handkarten = handkarten;
 	}
 
 }

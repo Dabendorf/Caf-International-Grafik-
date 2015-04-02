@@ -24,8 +24,8 @@ public class CafeMain {
     private static int aktspieler = 0;
     private static Spieler[] spieler = new Spieler[2];
     
-    /*VERNICHTEN*/private static List<Gastkarte> kartenspieler0 = new ArrayList<Gastkarte>();
-    /*VERNICHTEN*/private static List<Gastkarte> kartenspieler1 = new ArrayList<Gastkarte>();
+    /*VERNICHTEN*///private static List<Gastkarte> kartenspieler0 = new ArrayList<Gastkarte>();
+    /*VERNICHTEN*///private static List<Gastkarte> kartenspieler1 = new ArrayList<Gastkarte>();
    
     // Spielkarten
     private static List<Gastkarte> gastkarten = new ArrayList<Gastkarte>();
@@ -71,9 +71,9 @@ public class CafeMain {
         if(spst.SysWin()) {
             msgbox.windows();
         }
-        spst.namensfrage();
-        //spieler[0].setName("Lukas"); //Kurzweg
-        //spieler[1].setName("Malte"); //Kurzweg
+        //spst.namensfrage();
+        spieler[0].setName("Lukas"); //Kurzweg
+        spieler[1].setName("Malte"); //Kurzweg
         long zeit1 = Debug.zeitnehmen(); //DEBUG
         spst.bilderladen();
         spielframe.setVisible(true);
@@ -126,13 +126,13 @@ public class CafeMain {
 		CafeMain.stuehle = stuehle;
 	}
 
-	protected static List<Gastkarte> getKartenspieler0() {
+	/*protected static List<Gastkarte> getKartenspieler0() {
 		return kartenspieler0;
 	}
 
 	protected static List<Gastkarte> getKartenspieler1() {
 		return kartenspieler1;
-	}
+	}*/
 
 	protected static List<Gastkarte> getGastkarten() {
 		return gastkarten;

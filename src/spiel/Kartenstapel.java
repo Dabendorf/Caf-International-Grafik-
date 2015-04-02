@@ -42,11 +42,7 @@ public class Kartenstapel extends JPanel {
 				spielertemp = this.spieler;
 			}
 			
-			if(spielertemp == 0) {
-				key = "./gast_"+CafeMain.getKartenspieler0().get(handkartnum).getLand()+"_"+CafeMain.getKartenspieler0().get(handkartnum).getGeschlecht()+".png";
-			} else {
-				key = "./gast_"+CafeMain.getKartenspieler1().get(handkartnum).getLand()+"_"+CafeMain.getKartenspieler1().get(handkartnum).getGeschlecht()+".png";
-			}
+			key = "./gast_"+CafeMain.getSpieler(spielertemp).getHandkarten().get(handkartnum).getLand()+"_"+CafeMain.getSpieler(spielertemp).getHandkarten().get(handkartnum).getGeschlecht()+".png";
 		}
 		
 		if(!t.equals(Typ.Leer)) {
