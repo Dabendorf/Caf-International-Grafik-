@@ -23,9 +23,9 @@ public class CafeMain {
     // Spieler
     private static int aktspieler = 0;
     private static Spieler[] spieler = new Spieler[2];
-    private static int[] punktespieler = new int[2];
-    private static List<Gastkarte> kartenspieler0 = new ArrayList<Gastkarte>();
-    private static List<Gastkarte> kartenspieler1 = new ArrayList<Gastkarte>();
+    
+    /*VERNICHTEN*/private static List<Gastkarte> kartenspieler0 = new ArrayList<Gastkarte>();
+    /*VERNICHTEN*/private static List<Gastkarte> kartenspieler1 = new ArrayList<Gastkarte>();
    
     // Spielkarten
     private static List<Gastkarte> gastkarten = new ArrayList<Gastkarte>();
@@ -95,15 +95,11 @@ public class CafeMain {
 	}
 	
 	public static Spieler getSpieler(int num) {
-		return spieler[num];
-	}
-
-	protected static int getPunktespieler(int index) {
-		return punktespieler[index];
-	}
-
-	protected static void setPunktespieler(int index, int punktespieler) {
-		CafeMain.punktespieler[index] = punktespieler;
+		if(num == 42) {
+			return spieler[CafeMain.getAktSpieler()];
+		} else {
+			return spieler[num];
+		}
 	}
 
 	protected static Tisch getTisch(int index) {

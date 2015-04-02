@@ -50,15 +50,9 @@ public class Spielzuege {
 	}
 	
 	protected void punktzahl(int addition) {
-		if(CafeMain.getAktSpieler() == 0) {
-			int neupktz = CafeMain.getPunktespieler(0) + addition;
-			CafeMain.setPunktespieler(0, neupktz);
-			Uebersichtsecke.getInfz(0).repaint();
-		} else {
-			int neupktz = CafeMain.getPunktespieler(1) + addition;
-			CafeMain.setPunktespieler(1, neupktz);
-			Uebersichtsecke.getInfz(1).repaint();
-		}
+		int neupktz = CafeMain.getSpieler(42).getPunkte()+ addition;
+		CafeMain.getSpieler(42).setPunkte(neupktz);
+		Uebersichtsecke.getInfz(CafeMain.getAktSpieler()).repaint();
 	}
 	
 	protected void spielerwechsel() {

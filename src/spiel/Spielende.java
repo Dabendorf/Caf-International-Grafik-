@@ -28,8 +28,8 @@ public class Spielende {
 			break;
 		}
 		
-		int pkt0 = CafeMain.getPunktespieler(0);
-		int pkt1 = CafeMain.getPunktespieler(1);
+		int pkt0 = CafeMain.getSpieler(0).getPunkte();
+		int pkt1 = CafeMain.getSpieler(1).getPunkte();
 		
 		if(pkt0 > pkt1+20) {
 			JOptionPane.showMessageDialog(null, grund+msgbox.siegermeldung(0), msgbox.spielende, JOptionPane.INFORMATION_MESSAGE);

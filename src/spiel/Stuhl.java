@@ -26,6 +26,7 @@ public class Stuhl {
 		} else if(!gastPartnerKorrekt(gasttemp)) {
 			Spielfeld.getMeldungsbox().setText(msgbox.gastpartnerfalsch);
 		} else {
+			System.out.println("Gast wird gelegt");
 			this.gast = gasttemp;
 			this.sz.repaint();
 		}
