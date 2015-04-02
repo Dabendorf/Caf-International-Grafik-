@@ -16,15 +16,6 @@ public class Spielzuege {
 		CafeMain.getBarkarten().add(CafeMain.getSpieler(42).getHandkarten().get(handkartennum));
 		Barkartenecke.getBarzellen(barnum).setGast(CafeMain.getSpieler(42).getHandkarten().get(handkartennum));
 		punktzahl(Barkartenecke.getBarzellen(barnum).getPunkte());
-		/*if(CafeMain.getAktSpieler() == 0) {
-			CafeMain.getBarkarten().add(CafeMain.getKartenspieler0().get(handkartennum));
-			Barkartenecke.getBarzellen(barnum).setGast(CafeMain.getKartenspieler0().get(handkartennum));
-			punktzahl(Barkartenecke.getBarzellen(barnum).getPunkte());
-		} else {
-			CafeMain.getBarkarten().add(CafeMain.getKartenspieler1().get(handkartennum));
-			Barkartenecke.getBarzellen(barnum).setGast(CafeMain.getKartenspieler1().get(handkartennum));
-			punktzahl(Barkartenecke.getBarzellen(barnum).getPunkte());
-		}*/
 		
 		Barkartenecke.getBarzellen(barnum).setBorder(BorderFactory.createLineBorder(Color.red));
 		Thread thread = new Thread(new Runnable() {

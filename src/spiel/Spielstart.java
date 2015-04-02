@@ -4,7 +4,6 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Collections;
 
 import javax.imageio.ImageIO;
@@ -16,6 +15,42 @@ import spiel.Gastkarte.Land;
 
 public class Spielstart {
 
+	protected void grafikladen() {
+		bilderladen();
+        neuesspiel();
+		spielfeldgenerieren();
+		tischstuhlzuordnung();
+		zellelementzuordnung();
+	}
+	
+	protected void neuesspiel() {
+		for(int i=0;i<2;i++) {
+			CafeMain.getSpieler(i).setPunkte(0);
+			CafeMain.getSpieler(i).getHandkarten().clear();
+		}
+		for(int i=0;i<21;i++) {
+			Barkartenecke.getBarzellen(i).setGast(null);
+			Barkartenecke.getBarzellen(i).repaint();
+		}
+		for(int i=0;i<12;i++) {
+			if(CafeMain.getLaenderkarten().size()!= 0) {
+				new Spielzuege().legetischkarte(i);
+			}
+		}
+		CafeMain.setAktSpieler(0);
+		CafeMain.getGastkarten().clear();
+		CafeMain.getLaenderkarten().clear();
+		CafeMain.getBarkarten().clear();
+		gastkartenmischen();
+		laenderkartenmischen();
+		for(int i=0;i<2;i++) {
+			Uebersichtsecke.getInfz(i).repaint();
+			for(int n=0;n<5;n++) {
+				Uebersichtsecke.getKartsp(i,n).repaint();
+			}
+		}
+	}
+	
 	protected void namensfrage() {
 		Meldungen msgbox = new Meldungen();
 		
@@ -38,7 +73,7 @@ public class Spielstart {
 	    }
 	}
 	
-	protected void gastkartenmischen() {
+	private void gastkartenmischen() {
 		for(int j=0;j<2;j++){
 	    	for(Land land : Land.values()) {
 	            int anzahl = 2;
@@ -53,24 +88,16 @@ public class Spielstart {
 	        }
 	    }
 		Collections.shuffle(CafeMain.getGastkarten());
-
-		System.out.println("Spieler1: "+CafeMain.getSpieler(0));
-		System.out.println("Spieler1-Name: "+CafeMain.getSpieler(0).getName());
-		System.out.println("Spieler1-Punktzahl: "+CafeMain.getSpieler(0).getPunkte());
-		System.out.println("Spieler1-Handkarten: "+CafeMain.getSpieler(0).getHandkarten());
 		
 		for(int p=0;p<5;p++) {
-			//LA KNACKPUNKT TRES IMPORTANT
 			CafeMain.getSpieler(0).getHandkarten().add(CafeMain.getGastkarten().get(0));
-			CafeMain.getSpieler(1).getHandkarten().add(CafeMain.getGastkarten().get(0));
-	    	/*CafeMain.getKartenspieler0().add(CafeMain.getGastkarten().get(0));
-	    	CafeMain.getKartenspieler1().add(CafeMain.getGastkarten().get(1));
+			CafeMain.getSpieler(1).getHandkarten().add(CafeMain.getGastkarten().get(1));
 	    	CafeMain.getGastkarten().remove(0);
-	    	CafeMain.getGastkarten().remove(0);*/
+	    	CafeMain.getGastkarten().remove(0);
 	    }
 	}
 	
-	protected void laenderkartenmischen() {
+	private void laenderkartenmischen() {
 		for(int n=0;n<2;n++) {
 			 for(Land land : Land.values()) {
 				 if(land != Land.JOKER) {
@@ -81,7 +108,7 @@ public class Spielstart {
 		Collections.shuffle(CafeMain.getLaenderkarten());
 	}
 	
-	protected void bilderladen() {
+	private void bilderladen() {
     	String key = null;
     	BufferedImage bitisch = null;
 		BufferedImage bistuhl = null;
@@ -145,7 +172,7 @@ public class Spielstart {
         } catch (MalformedURLException e) {} catch (IOException e) {}
     }
 	
-	protected void spielfeldgenerieren() {
+	private void spielfeldgenerieren() {
 		for(int n=0;n<12;n++) {
 			CafeMain.getTische().add(new Tisch());
 			new Spielzuege().legetischkarte(n);
@@ -155,7 +182,7 @@ public class Spielstart {
 		}
 	}
 	
-	protected void zellelementzuordnung() {
+	private void zellelementzuordnung() {
 		for(int n=0;n<Spielfeld.getSpielfeldtisch().size();n++) {
 			Spielfeld.getSpielfeldtisch().get(n).setTisch(CafeMain.getTisch(n));
 			CafeMain.getTisch(n).setSpielzelle(Spielfeld.getSpielfeldtisch().get(n));
@@ -166,7 +193,7 @@ public class Spielstart {
 		}
 	}
 	
-	protected void tischstuhlzuordnung() {
+	private void tischstuhlzuordnung() {
 		CafeMain.getTisch(0).setStuehle(11,12,13,0);
 		CafeMain.getTisch(1).setStuehle(1,2,12,13);
 		CafeMain.getTisch(2).setStuehle(2,3,13,14);

@@ -45,7 +45,8 @@ public class Spielende {
 		
         int menue = JOptionPane.showOptionDialog(null,msgbox.endetitel,msgbox.endefrage, JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, msgbox.endoptionen, msgbox.endoptionen[0]);
         if(menue == 0) {
-        	//Starte neues Spiel
+        	Spielstart spst = new Spielstart();
+        	spst.neuesspiel();
         } else {
         	System.exit(0);
         }

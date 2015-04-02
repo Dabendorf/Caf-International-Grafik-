@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 import spiel.Kartenstapel.Typ;
 
 public class Uebersichtsecke extends JPanel {
-	private Kartenstapel handkarten[][] = new Kartenstapel[2][5];
+	private static Kartenstapel handkarten[][] = new Kartenstapel[2][5];
 	private static Informationszelle[] infz = new Informationszelle[2];
 	
 	protected Uebersichtsecke() {
@@ -41,5 +41,9 @@ public class Uebersichtsecke extends JPanel {
 
 	protected static Informationszelle getInfz(int num) {
 		return infz[num];
+	}
+	
+	protected static Kartenstapel getKartsp(int x, int y) {
+		return handkarten[x][y];
 	}
 }

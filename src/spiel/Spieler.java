@@ -33,8 +33,4 @@ public class Spieler {
 		return handkarten;
 	}
 
-	public void setHandkarten(ArrayList<Gastkarte> handkarten) {
-		this.handkarten = handkarten;
-	}
-
 }

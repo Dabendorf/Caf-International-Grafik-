@@ -23,9 +23,6 @@ public class CafeMain {
     // Spieler
     private static int aktspieler = 0;
     private static Spieler[] spieler = new Spieler[2];
-    
-    /*VERNICHTEN*///private static List<Gastkarte> kartenspieler0 = new ArrayList<Gastkarte>();
-    /*VERNICHTEN*///private static List<Gastkarte> kartenspieler1 = new ArrayList<Gastkarte>();
    
     // Spielkarten
     private static List<Gastkarte> gastkarten = new ArrayList<Gastkarte>();
@@ -41,7 +38,10 @@ public class CafeMain {
     private static Map<String, BufferedImage> stuhlcache = new TreeMap<>();
    
 	protected CafeMain() throws IOException {
-        spielframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		spieler[0] = new Spieler();
+        spieler[1] = new Spieler();
+		
+		spielframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         spielframe.setPreferredSize(new Dimension(1400,800));
         spielframe.setMinimumSize(new Dimension(1050,600));
         spielframe.setResizable(true);
@@ -60,9 +60,6 @@ public class CafeMain {
         spielframe.pack();
         spielframe.setLocationRelativeTo(null);
         
-        spieler[0] = new Spieler();
-        spieler[1] = new Spieler();
-        
         ablauf();
     }
 
@@ -74,8 +71,9 @@ public class CafeMain {
         //spst.namensfrage();
         spieler[0].setName("Lukas"); //Kurzweg
         spieler[1].setName("Malte"); //Kurzweg
+        
         long zeit1 = Debug.zeitnehmen(); //DEBUG
-        spst.bilderladen();
+        spst.grafikladen();
         spielframe.setVisible(true);
         long zeit2 = Debug.zeitnehmen(); //DEBUG
         Debug.laufzeitschreiben(zeit2-zeit1); //DEBUG

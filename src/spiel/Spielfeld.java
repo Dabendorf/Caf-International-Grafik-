@@ -72,13 +72,6 @@ public class Spielfeld extends JPanel {
             	}
             });
 		}
-        
-		Spielstart spst = new Spielstart();
-		spst.gastkartenmischen();
-		spst.laenderkartenmischen();
-		spst.spielfeldgenerieren();
-		spst.tischstuhlzuordnung();
-		spst.zellelementzuordnung();
 	}
 	
 	protected static ArrayList<Spielzelle> getSpielfeldtisch() {
