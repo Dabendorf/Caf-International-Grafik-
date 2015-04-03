@@ -22,7 +22,8 @@ public class CafeMain {
    
     // Spieler
     private static int aktspieler = 0;
-    private static Spieler[] spieler = new Spieler[2];
+    //private static Spieler[] spieler = new Spieler[2];
+    private static Spieler[] spieler = {new Spieler(), new Spieler()};
    
     // Spielkarten
     private static List<Gastkarte> gastkarten = new ArrayList<Gastkarte>();
@@ -38,9 +39,6 @@ public class CafeMain {
     private static Map<String, BufferedImage> stuhlcache = new TreeMap<>();
    
 	protected CafeMain() throws IOException {
-		spieler[0] = new Spieler();
-        spieler[1] = new Spieler();
-		
 		spielframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         spielframe.setPreferredSize(new Dimension(1400,800));
         spielframe.setMinimumSize(new Dimension(1050,600));
@@ -92,7 +90,7 @@ public class CafeMain {
 		CafeMain.aktspieler = aktspieler;
 	}
 	
-	public static Spieler getSpieler(int num) {
+	protected static Spieler getSpieler(int num) {
 		if(num == 42) {
 			return spieler[CafeMain.getAktSpieler()];
 		} else {
@@ -123,14 +121,6 @@ public class CafeMain {
 	protected static void setStuehle(List<Stuhl> stuehle) {
 		CafeMain.stuehle = stuehle;
 	}
-
-	/*protected static List<Gastkarte> getKartenspieler0() {
-		return kartenspieler0;
-	}
-
-	protected static List<Gastkarte> getKartenspieler1() {
-		return kartenspieler1;
-	}*/
 
 	protected static List<Gastkarte> getGastkarten() {
 		return gastkarten;

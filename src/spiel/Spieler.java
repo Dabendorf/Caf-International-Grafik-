@@ -9,27 +9,25 @@ public class Spieler {
     private int punkte = 0;
     private List<Gastkarte> handkarten = new ArrayList<Gastkarte>();
 
-	public Spieler() {
-		
-    }
+	public Spieler() {}
 
-	public String getName() {
+	protected String getName() {
 		return name;
 	}
 
-	public void setName(String name) {
+	protected void setName(String name) {
 		this.name = name;
 	}
 
-	public int getPunkte() {
+	protected int getPunkte() {
 		return punkte;
 	}
 
-	public void setPunkte(int punkte) {
+	protected void setPunkte(int punkte) {
 		this.punkte = punkte;
 	}
 
-	public List<Gastkarte> getHandkarten() {
+	protected List<Gastkarte> getHandkarten() {
 		return handkarten;
 	}
 
