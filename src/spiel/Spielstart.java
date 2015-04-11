@@ -77,6 +77,8 @@ public class Spielstart {
 	    	JOptionPane.showMessageDialog(null, msgbox.spielernamengleich, msgbox.titelnamensgleichheit, JOptionPane.ERROR_MESSAGE);
 	    	namensfrage();
 	    }
+	    Uebersichtsecke.getInfz(0).punktzahlschreiben();
+        Uebersichtsecke.getInfz(1).punktzahlschreiben();
 	}
 	
 	private void gastkartenmischen() {

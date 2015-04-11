@@ -26,7 +26,9 @@ public class Spielkartenecke extends JPanel {
 				handkarten[i/2].addMouseListener(new MouseAdapter() {
 	            	@Override
 	            	public void mouseClicked(MouseEvent e) {
-	            		klick(index);
+	            		if(CafeMain.getZustand()==11 || CafeMain.getZustand()==12) {
+	            			klickhand(index);
+	            		}
 	            	}
 	            });
 				add(handkarten[i/2]);
@@ -39,6 +41,12 @@ public class Spielkartenecke extends JPanel {
 				Kartenstapel kst = new Kartenstapel(Typ.Gaeste);
 				kst.setOpaque(true);
 				kst.setBorder(BorderFactory.createLineBorder(Color.black, 2));
+				kst.addMouseListener(new MouseAdapter() {
+	            	@Override
+	            	public void mouseClicked(MouseEvent e) {
+	            		klickgast();
+	            	}
+	            });
 				add(kst);
 			} else {
 				Kartenstapel kst = new Kartenstapel(Typ.Leer);
@@ -49,7 +57,7 @@ public class Spielkartenecke extends JPanel {
 		}
 	}
 	
-	private void klick(int num) {
+	private void klickhand(int num) {
 		if(handkarten[num].isGeklickt()) {
 			handkarten[num].setBorder(BorderFactory.createLineBorder(Color.black, 2));
 			handkarten[num].setGeklickt(false);
@@ -63,6 +71,14 @@ public class Spielkartenecke extends JPanel {
 					handkarten[i].setBorder(BorderFactory.createLineBorder(Color.black, 2));
 					handkarten[i].setGeklickt(false);
 				}
+			}
+		}
+	}
+	
+	private void klickgast() {
+		for(int i=0;i<5;i++) {
+			if(handkarten[i].getI()==null) {
+				new Spielzuege().gastkarteziehen(i);
 			}
 		}
 	}

@@ -1,5 +1,5 @@
 package spiel;
- 
+
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
@@ -19,25 +19,25 @@ public class CafeMain {
     // System
 	private Meldungen msgbox = new Meldungen();
     private JFrame spielframe = new JFrame(msgbox.programmname);
-   
+    
     // Spieler
     private static int aktspieler = 0;
     private static Spieler[] spieler = {new Spieler(), new Spieler()};
-   
+    
     // Spielkarten
     private static List<Gastkarte> gastkarten = new ArrayList<Gastkarte>();
     private static List<Laenderkarte> laenderkarten = new ArrayList<Laenderkarte>();
     private static List<Gastkarte> barkarten = new ArrayList<Gastkarte>();
-   
+    
     // Spielfeld
     private static List<Tisch> tische = new ArrayList<Tisch>(12);
     private static List<Stuhl> stuehle = new ArrayList<Stuhl>(24);
-   
+    
     // Sonstiges
     private static Map<String, BufferedImage> tischcache = new TreeMap<>();
     private static Map<String, BufferedImage> stuhlcache = new TreeMap<>();
     private static int zustand = 0; //(0:Spielstart),(11:1Karte legbar),(12:2Karten legbar),(21:Gastkarte ziehen),(22:Tischkarte ziehen),(31:SpielendeGast),(32:SpielendeTisch),(33:SpielendeBar)
-   
+    
 	protected CafeMain() throws IOException {
 		spielframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         spielframe.setPreferredSize(new Dimension(1400,800));
@@ -67,10 +67,10 @@ public class CafeMain {
             msgbox.windows();
         }
         //spst.namensfrage();
-        spieler[0].setName("Lukas"); //Kurzweg
-        spieler[1].setName("Malte"); //Kurzweg
-        Uebersichtsecke.getInfz(0).punktzahlschreiben(); //Verlagern in Namensfrage
-        Uebersichtsecke.getInfz(1).punktzahlschreiben(); //Verlagern in Namensfrage
+        spieler[0].setName("Lukas"); //KURZWEG
+        spieler[1].setName("Malte"); //KURZWEG
+        Uebersichtsecke.getInfz(0).punktzahlschreiben(); //KURZWEG
+        Uebersichtsecke.getInfz(1).punktzahlschreiben(); //KURZWEG
         
         long zeit1 = Debug.zeitnehmen(); //DEBUG
         spst.grafikladen();

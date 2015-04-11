@@ -24,7 +24,9 @@ public class Kartenstapel extends JPanel {
     protected void paintComponent(Graphics gr) {
         super.paintComponent(gr);
         loadImage();
-        gr.drawImage(i, 0, 0, getWidth(), getHeight(), null);
+        if(i!=null) {
+        	gr.drawImage(i, 0, 0, getWidth(), getHeight(), null);
+        }
     }
 	
 	private void loadImage() {
@@ -41,11 +43,15 @@ public class Kartenstapel extends JPanel {
 			} else {
 				spielertemp = this.spieler;
 			}
-			
-			key = "./gast_"+CafeMain.getSpieler(spielertemp).getHandkarten().get(handkartnum).getLand()+"_"+CafeMain.getSpieler(spielertemp).getHandkarten().get(handkartnum).getGeschlecht()+".png";
+			if(CafeMain.getSpieler(spielertemp).getHandkarten().get(handkartnum)!=null) {
+				key = "./gast_"+CafeMain.getSpieler(spielertemp).getHandkarten().get(handkartnum).getLand()+"_"+CafeMain.getSpieler(spielertemp).getHandkarten().get(handkartnum).getGeschlecht()+".png";
+			}else{
+				i = null;
+				key = null;
+			}
 		}
 		
-		if(!t.equals(Typ.Leer)) {
+		if(!t.equals(Typ.Leer) && key!=null) {
 			if(t.equals(Typ.Handkarte) || t.equals(Typ.HandkarteInfo) || t.equals(Typ.Gaeste)) {
 				i = CafeMain.getStuhlcache().get(key);
 			} else if (t.equals(Typ.Tische)){

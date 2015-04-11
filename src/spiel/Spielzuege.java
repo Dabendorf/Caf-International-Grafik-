@@ -15,7 +15,10 @@ public class Spielzuege {
 		int barnum = CafeMain.getBarkarten().size();
 		CafeMain.getBarkarten().add(CafeMain.getSpieler(42).getHandkarten().get(handkartennum));
 		Barkartenecke.getBarzellen(barnum).setGast(CafeMain.getSpieler(42).getHandkarten().get(handkartennum));
+		CafeMain.getSpieler(42).getHandkarten().set(handkartennum,null);
+		Uebersichtsecke.getKartsp(CafeMain.getAktSpieler(), handkartennum).repaint();
 		punktzahl(Barkartenecke.getBarzellen(barnum).getPunkte());
+		handkartendemarkieren();
 		
 		Barkartenecke.getBarzellen(barnum).setBorder(BorderFactory.createLineBorder(Color.red));
 		Thread thread = new Thread(new Runnable() {
@@ -29,15 +32,25 @@ public class Spielzuege {
 			  }
 		);
 		thread.start();
-		if(!new Spielende().barvoll()) {
-			spielerwechsel();
-		}
+		CafeMain.setZustand(21);
 	}
 
 	protected void legegastkarte(int handkartennum,int stuhlNr) {
 		CafeMain.getStuehle().get(stuhlNr).setGast(CafeMain.getSpieler(42).getHandkarten().get(handkartennum));
 		//Punktzahl und Neuekartenziehen
 		handkartendemarkieren();
+	}
+	
+	protected void gastkarteziehen(int handkartennum) {
+		CafeMain.getSpieler(42).getHandkarten().set(handkartennum, CafeMain.getGastkarten().get(0));
+		CafeMain.getGastkarten().remove(0);
+		
+		Uebersichtsecke.getKartsp(CafeMain.getAktSpieler(), handkartennum).repaint();
+		handkartendemarkieren();
+		CafeMain.setZustand(12);
+		if(!new Spielende().barvoll()) {
+			spielerwechsel();
+		}
 	}
 	
 	protected void punktzahl(int addition) {
