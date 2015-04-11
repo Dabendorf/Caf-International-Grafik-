@@ -29,8 +29,9 @@ public class Spielzuege {
 			  }
 		);
 		thread.start();
-		new Spielende().barvoll();
-		spielerwechsel();
+		if(!new Spielende().barvoll()) {
+			spielerwechsel();
+		}
 	}
 
 	protected void legegastkarte(int handkartennum,int stuhlNr) {

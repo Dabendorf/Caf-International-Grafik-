@@ -4,9 +4,14 @@ import javax.swing.JOptionPane;
 
 public class Spielende {
 	
-	protected void barvoll() {
-		if(CafeMain.getBarkarten().size() == 5) { //HIER WIEDER ZURÜCKSTELLEN
+	protected boolean barvoll() {
+		if(CafeMain.getBarkarten().size() == 21) {
+			CafeMain.setZustand(33);
 			siegmeldung(2);
+			return true;
+		}
+		else {
+			return false;
 		}
 	}
 	

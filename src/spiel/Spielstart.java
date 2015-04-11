@@ -40,6 +40,7 @@ public class Spielstart {
 		
 		CafeMain.setAktSpieler(0);
 		new Spielzuege().handkartendemarkieren();
+		CafeMain.setZustand(12);
 		
 		CafeMain.getGastkarten().clear();
 		CafeMain.getLaenderkarten().clear();
@@ -54,9 +55,6 @@ public class Spielstart {
 				Spielkartenecke.getHandkarte(n).repaint();
 			}
 		}
-		System.out.println(CafeMain.getAktSpieler());
-		System.out.println(CafeMain.getSpieler(0).getName());
-		System.out.println(CafeMain.getSpieler(0).getHandkarten().get(0));
 	}
 	
 	protected void namensfrage() {

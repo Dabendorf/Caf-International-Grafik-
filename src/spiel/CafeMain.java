@@ -36,6 +36,7 @@ public class CafeMain {
     // Sonstiges
     private static Map<String, BufferedImage> tischcache = new TreeMap<>();
     private static Map<String, BufferedImage> stuhlcache = new TreeMap<>();
+    private static int zustand = 0; //(0:Spielstart),(11:1Karte legbar),(12:2Karten legbar),(21:Gastkarte ziehen),(22:Tischkarte ziehen),(31:SpielendeGast),(32:SpielendeTisch),(33:SpielendeBar)
    
 	protected CafeMain() throws IOException {
 		spielframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -141,5 +142,13 @@ public class CafeMain {
 
 	protected static Map<String, BufferedImage> getStuhlcache() {
 		return stuhlcache;
+	}
+
+	public static int getZustand() {
+		return zustand;
+	}
+
+	public static void setZustand(int zustand) {
+		CafeMain.zustand = zustand;
 	}
 }
