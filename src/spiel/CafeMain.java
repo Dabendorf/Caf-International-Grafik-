@@ -22,7 +22,6 @@ public class CafeMain {
    
     // Spieler
     private static int aktspieler = 0;
-    //private static Spieler[] spieler = new Spieler[2];
     private static Spieler[] spieler = {new Spieler(), new Spieler()};
    
     // Spielkarten
@@ -69,6 +68,8 @@ public class CafeMain {
         //spst.namensfrage();
         spieler[0].setName("Lukas"); //Kurzweg
         spieler[1].setName("Malte"); //Kurzweg
+        Uebersichtsecke.getInfz(0).punktzahlschreiben(); //Verlagern in Namensfrage
+        Uebersichtsecke.getInfz(1).punktzahlschreiben(); //Verlagern in Namensfrage
         
         long zeit1 = Debug.zeitnehmen(); //DEBUG
         spst.grafikladen();

@@ -37,18 +37,26 @@ public class Spielstart {
 				new Spielzuege().legetischkarte(i);
 			}
 		}
+		
 		CafeMain.setAktSpieler(0);
+		new Spielzuege().handkartendemarkieren();
+		
 		CafeMain.getGastkarten().clear();
 		CafeMain.getLaenderkarten().clear();
 		CafeMain.getBarkarten().clear();
 		gastkartenmischen();
 		laenderkartenmischen();
+		
 		for(int i=0;i<2;i++) {
-			Uebersichtsecke.getInfz(i).repaint();
+			Uebersichtsecke.getInfz(i).punktzahlschreiben();
 			for(int n=0;n<5;n++) {
 				Uebersichtsecke.getKartsp(i,n).repaint();
+				Spielkartenecke.getHandkarte(n).repaint();
 			}
 		}
+		System.out.println(CafeMain.getAktSpieler());
+		System.out.println(CafeMain.getSpieler(0).getName());
+		System.out.println(CafeMain.getSpieler(0).getHandkarten().get(0));
 	}
 	
 	protected void namensfrage() {

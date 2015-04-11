@@ -22,7 +22,7 @@ public class Barzelle extends JPanel {
 	protected Barzelle(int punkte) {
 		this.punkte = punkte;
 	}
-
+	
 	@Override
 	protected void paintComponent(Graphics gr) {
 		super.paintComponent(gr);
@@ -31,12 +31,13 @@ public class Barzelle extends JPanel {
 	        gr.drawImage(i, 0, 0, getWidth(), getHeight(), null);
 		} else {
 			fm = gr.getFontMetrics(font);
+			gr.setFont(font);
 			if(punkte > 0) {
 				gr.setColor(Color.white);
 			} else {
 				gr.setColor(Color.red);
 			}
-			gr.drawString(num,this.getWidth()/2-fm.stringWidth(num)/2,this.getHeight()/2);
+			gr.drawString(num,this.getWidth()/2-fm.stringWidth(num)/2,this.getHeight()/2-(int)fm.getStringBounds(num, gr).getCenterY());
 		}
 	}
 	

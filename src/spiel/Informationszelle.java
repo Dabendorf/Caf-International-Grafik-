@@ -1,27 +1,34 @@
 package spiel;
 
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
+import java.awt.GridLayout;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 public class Informationszelle extends JPanel {
 	
 	private int spieler;
+	private JLabel labelname = new JLabel();
+	private JLabel labelpunkte = new JLabel();
 	
 	protected Informationszelle(int spielernum) {
 		this.spieler = spielernum;
+		
+		setLayout(new GridLayout(2,1));
+		labelname.setHorizontalAlignment(SwingConstants.CENTER);
+		labelname.setOpaque(true);
+		add(labelname);
+		
+		labelpunkte.setHorizontalAlignment(SwingConstants.CENTER);
+		labelpunkte.setOpaque(true);
+		add(labelpunkte);
 	}
 	
-	protected void paintComponent(Graphics gr) {
-		super.paintComponent(gr);
-		Font font = new Font("Arial", Font.BOLD,16);
-		FontMetrics fm = gr.getFontMetrics(font);
-		
+	protected void punktzahlschreiben() {
 		String spnm = CafeMain.getSpieler(spieler).getName();
 		String pkt = Integer.toString(CafeMain.getSpieler(spieler).getPunkte());
-		String ges = spnm+"\n"+pkt;
-		gr.drawString(ges,this.getWidth()/2-fm.stringWidth(ges)/2,this.getHeight()/2);
+		labelname.setText(spnm);
+		labelpunkte.setText(pkt);
 	}
 }

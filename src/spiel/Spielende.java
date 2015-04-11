@@ -5,8 +5,8 @@ import javax.swing.JOptionPane;
 public class Spielende {
 	
 	protected void barvoll() {
-		if(CafeMain.getBarkarten().size() == 21) {
-			siegmeldung(2);//Wenn Bar voll ist. Und achte darauf, dass man die Bar nicht grundlos anklicken darf
+		if(CafeMain.getBarkarten().size() == 5) { //HIER WIEDER ZURÜCKSTELLEN
+			siegmeldung(2);
 		}
 	}
 	

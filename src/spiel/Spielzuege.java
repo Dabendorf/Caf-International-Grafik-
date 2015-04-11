@@ -42,7 +42,7 @@ public class Spielzuege {
 	protected void punktzahl(int addition) {
 		int neupktz = CafeMain.getSpieler(42).getPunkte()+ addition;
 		CafeMain.getSpieler(42).setPunkte(neupktz);
-		Uebersichtsecke.getInfz(CafeMain.getAktSpieler()).repaint();
+		Uebersichtsecke.getInfz(CafeMain.getAktSpieler()).punktzahlschreiben();
 	}
 	
 	protected void spielerwechsel() {
@@ -58,6 +58,7 @@ public class Spielzuege {
 		Spielkartenecke.setAkthandkartnum(-1);
 		for(int i=0;i<5;i++) {
 			Spielkartenecke.getHandkarte(i).setBorder(BorderFactory.createLineBorder(Color.black));
+			Spielkartenecke.getHandkarte(i).setGeklickt(false);
 			Spielkartenecke.getHandkarte(i).repaint();
 		}
 	}
