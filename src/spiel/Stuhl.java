@@ -13,22 +13,30 @@ public class Stuhl {
 		return gast;
 	}
 	
-	protected void setGast(Gastkarte gasttemp) {
+	protected boolean setGast(Gastkarte gasttemp) {
 		Meldungen msgbox = new Meldungen();
 		if(!gastLandKorrekt(gasttemp)) {
 			Spielfeld.getMeldungsbox().setText(msgbox.gastlandfalsch);
+			return false;
 		} else if(!gastGeschlechtKorrekt(gasttemp)) {
 			if(gasttemp.getGeschlecht().equals(Geschlecht.Mann)) {
 				Spielfeld.getMeldungsbox().setText(msgbox.gastzuvielemaenner);
 			} else {
 				Spielfeld.getMeldungsbox().setText(msgbox.gastzuvielefrauen);
 			}
+			return false;
 		} else if(!gastPartnerKorrekt(gasttemp)) {
 			Spielfeld.getMeldungsbox().setText(msgbox.gastpartnerfalsch);
+			return false;
 		} else {
-			System.out.println("Gast wird gelegt");
 			this.gast = gasttemp;
 			this.sz.repaint();
+			if(CafeMain.getZustand()==12) {
+				CafeMain.setZustand(11);
+			} else if(CafeMain.getZustand()==11) {
+				CafeMain.setZustand(21);
+			}
+			return true;
 		}
 	}
 	

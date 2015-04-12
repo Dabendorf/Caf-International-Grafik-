@@ -5,7 +5,7 @@ public class Tisch {
 	private Laenderkarte laenderkarte; //Tisch leeren -> Erst feststellen, dann leeren, für Fehlervermeidung und PktBerechnung bei mehreren Tischen
     private Stuhl[] stuehle;
 	private Spielzelle sz;
-    
+
 	protected Laenderkarte getLaenderkarte() {
 		return laenderkarte;
 	}
@@ -30,8 +30,12 @@ public class Tisch {
 		this.stuehle = stuehletemp;
 	}
 
+	protected Spielzelle getSpielzelle() { //Wenn nicht gebraucht, löschen!
+		return sz;
+	}
+	
 	protected void setSpielzelle(Spielzelle sz) {
 		this.sz = sz;
 	}
-
+	
 }

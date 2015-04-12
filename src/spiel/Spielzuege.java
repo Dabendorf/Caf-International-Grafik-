@@ -36,7 +36,10 @@ public class Spielzuege {
 	}
 
 	protected void legegastkarte(int handkartennum,int stuhlNr) {
-		CafeMain.getStuehle().get(stuhlNr).setGast(CafeMain.getSpieler(42).getHandkarten().get(handkartennum));
+		if(CafeMain.getStuehle().get(stuhlNr).setGast(CafeMain.getSpieler(42).getHandkarten().get(handkartennum)) == true) {
+			CafeMain.getSpieler(42).getHandkarten().set(handkartennum,null);
+			Uebersichtsecke.getKartsp(CafeMain.getAktSpieler(), handkartennum).repaint();
+		}
 		//Punktzahl und Neuekartenziehen
 		handkartendemarkieren();
 	}
@@ -46,6 +49,19 @@ public class Spielzuege {
 		CafeMain.getGastkarten().remove(0);
 		
 		Uebersichtsecke.getKartsp(CafeMain.getAktSpieler(), handkartennum).repaint();
+		Uebersichtsecke.getKartsp(CafeMain.getAktSpieler(), handkartennum).setBorder(BorderFactory.createLineBorder(Color.red, 2));
+		Thread thread = new Thread(new Runnable() {
+			  @Override
+			  public void run() {
+				  try {
+					  Thread.sleep(1500);
+					  Uebersichtsecke.getKartsp(0, handkartennum).setBorder(BorderFactory.createLineBorder(Color.black, 2));
+					  Uebersichtsecke.getKartsp(1, handkartennum).setBorder(BorderFactory.createLineBorder(Color.black, 2));
+					  } catch(InterruptedException e) {}
+				  }
+			  }
+		);
+		thread.start();
 		handkartendemarkieren();
 		CafeMain.setZustand(12);
 		if(!new Spielende().barvoll()) {

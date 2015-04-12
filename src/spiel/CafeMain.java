@@ -144,11 +144,11 @@ public class CafeMain {
 		return stuhlcache;
 	}
 
-	public static int getZustand() {
+	protected static int getZustand() {
 		return zustand;
 	}
 
-	public static void setZustand(int zustand) {
+	protected static void setZustand(int zustand) {
 		CafeMain.zustand = zustand;
 	}
 }
