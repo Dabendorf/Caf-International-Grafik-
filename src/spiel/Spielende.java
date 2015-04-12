@@ -4,6 +4,16 @@ import javax.swing.JOptionPane;
 
 public class Spielende {
 	
+	protected boolean keinegastkarten() {
+		if(CafeMain.getGastkarten().size() == 0) {
+			CafeMain.setZustand(21);
+			siegmeldung(0);
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	protected boolean barvoll() {
 		if(CafeMain.getBarkarten().size() == 21) {
 			CafeMain.setZustand(33);

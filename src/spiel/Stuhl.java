@@ -13,7 +13,7 @@ public class Stuhl {
 		return gast;
 	}
 	
-	protected boolean setGast(Gastkarte gasttemp) {
+	protected boolean setGast(Gastkarte gasttemp) { //Man kann Joker austauschen
 		Meldungen msgbox = new Meldungen();
 		if(!gastLandKorrekt(gasttemp)) {
 			Spielfeld.getMeldungsbox().setText(msgbox.gastlandfalsch);

@@ -64,7 +64,9 @@ public class Spielzuege {
 		thread.start();
 		handkartendemarkieren();
 		CafeMain.setZustand(12);
-		if(!new Spielende().barvoll()) {
+		if(new Spielende().barvoll()) { //man könnte mit int Zustand statt Boolean arbeiten
+		} else if(new Spielende().keinegastkarten()) {
+		} else {
 			spielerwechsel();
 		}
 	}
