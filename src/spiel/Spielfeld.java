@@ -1,6 +1,7 @@
 package spiel;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.MouseAdapter;
@@ -40,6 +41,7 @@ public class Spielfeld extends JPanel {
 					gbc.gridwidth = 11;
 					meldungsbox.setBackground(new Color(0,255,255));
 					meldungsbox.setOpaque(true);
+					meldungsbox.setPreferredSize(new Dimension(0, 20));
 					meldungsbox.setHorizontalAlignment(SwingConstants.CENTER);
 					add(meldungsbox, gbc);
 					break;
