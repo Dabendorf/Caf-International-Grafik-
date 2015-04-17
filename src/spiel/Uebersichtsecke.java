@@ -1,6 +1,7 @@
 package spiel;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
@@ -17,6 +18,7 @@ public class Uebersichtsecke extends JPanel {
 		for(int i=0;i<2;i++) {
 			infz[i] = new Informationszelle(i);
 			infz[i].setOpaque(true);
+			infz[i].setPreferredSize(new Dimension(0, 20));
 			infz[i].setBorder(BorderFactory.createLineBorder(Color.black));
 			add(infz[i]);
 		}
